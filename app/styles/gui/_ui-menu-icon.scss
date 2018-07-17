@@ -1,0 +1,91 @@
+// ----------------------------------------------------------------------------
+// Animated menu icon
+// ----------------------------------------------------------------------------
+.lines-button {
+  display: inline-block;
+  margin: 0 6px 0 10px;
+  vertical-align: top;
+  border: none;
+  background: none;
+  padding: 23px 10px;
+  transition: .3s;
+  cursor: pointer;
+  user-select: none;
+
+  @include breakpoint(900px) {
+    padding: 32px 12px;
+  }
+
+  &:hover {
+    opacity: 1;
+
+    .lines {
+      background: #FFF;
+
+      &:before, &:after {
+        background: #FFF;
+      }
+    }
+  }
+
+  &:active {
+    transition: 0;
+  }
+}
+
+@mixin line {
+  display: inline-block;
+  width: $close-button-size;
+  height: $close-button-size / 8;
+  background: $nav-font-color;
+  transition: $close-button-transition;
+}
+
+.lines {
+  @include line;
+  position: relative;
+  display: block;
+
+  &:before, &:after {
+   @include line;
+    position: absolute;
+    left:0;
+    content: '';
+    transform-origin: $close-button-size/14 center;
+  }
+  &:before {
+    top: $close-button-size/4;
+  }
+  &:after {
+    top: -$close-button-size/4;
+  }
+}
+
+.lines-button.close-menu {
+  transform: scale3d(.8,.8,.8);
+}
+
+.lines-button.x.close-menu {
+  .lines {
+    background: transparent;
+
+    &:before, &:after {
+      transform-origin: 50% 50%;
+      top:0;
+      width: $close-button-size;
+    }
+
+    &:before {
+      transform: rotate3d(0,0,1,45deg);
+    }
+
+    &:after {
+      transform: rotate3d(0,0,1,-45deg);
+    }
+  }
+}
+
+.ct-icon{
+  padding-right:20px;
+      font-size: 150%;
+}

@@ -1,0 +1,141 @@
+<div class="aside aside--secondary" tabindex="-1" role="dialog">
+  <div class="aside-dialog">
+    <div class="aside-content">
+      <div class="aside-header">
+        <div class="aside-close" ng-click="$hide()">&#xe2aa;</div>
+        <h4 class="aside-title">Chart</h4>
+      </div>
+      <div class="aside-body">
+        <div class="secondary-aside-body" ng-form name="form">
+
+          <div class="scheduling-field">
+            <div class="scheduling-field__label">Title</div>
+            <div class="scheduling-field__value">
+              <input type="text" class="input-field single-field" ng-model="editdash.title" required/>
+            </div>
+          </div>
+
+          <div class="scheduling-field">
+            <div class="scheduling-field__label">Chart Type</div>
+            <div class="scheduling-field__value">
+              <select ui-select2="{ minimumResultsForSearch: -1, width: '100%' }" ng-model="editdash.type" required data-placeholder="Pick a chart type">
+                <option value="line">Line</option>
+                <option value="bar">Bar</option>
+                <option value="pie">Pie</option>
+                <option value="doughnut">Doughnut</option>
+                <!-- <option value="area">Area</option> -->
+              </select>
+            </div>
+          </div>
+
+          <!--div class="scheduling-field">
+            <div class="scheduling-field__label">Refresh interval</div>
+            <div class="scheduling-field__value">
+              <select ui-select2="{ minimumResultsForSearch: -1, width: '100%' }"
+                ng-model="editdash.config.refresh" required data-placeholder="Pick a interval">
+                <option value="10000" selected>10s</option>
+                <option value="20000">20s</option>
+                <option value="30000">30s</option>
+                <option value="60000">1m</option>
+                <option value="360000">5m</option>
+              </select>
+            </div>
+          </div-->
+
+          <div class="scheduling-field">
+            <div class="scheduling-field__label">Source</div>
+            <div class="scheduling-field__value">
+              <select ng-options="item.name for item in available_metrics"
+                class="input-field single-field selected-ch" ng-model="editdash.config.source">
+              </select>
+              <select ui-select2="{ minimumResultsForSearch: -1, width: '100%' }"
+                ng-model="editdash.config.source" required data-placeholder="Pick a metrics">
+                <option value="{{metric}}" ng-repeat="metric in available_metrics">
+                  {{metric.name}}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="scheduling-field">
+            <div class="scheduling-field__label">Statistics</div>
+            <div class="scheduling-field__value">
+              <select ng-options="item for item in available_metrics"
+                class="input-field single-field selected-ch" ng-model="editdash.config.statistics">
+              </select>
+              <select ui-select2="{ minimumResultsForSearch: -1, width: '100%' }"
+                ng-model="editdash.config.statistics" required data-placeholder="Pick a statistics">
+                <option>SampleCount</option>
+                <option>Average</option>
+                <option>Sum</option>
+                <option>Minimum</option>
+                <option selected>Maximum</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="scheduling-field">
+            <div class="scheduling-field__label">Period</div>
+            <!-- <div class="scheduling-field__value">
+              <input type="number" class="input-field single-field" ng-model="editdash.config.period" value="60" required/>
+            </div> -->
+            <div class="scheduling-field__value">
+
+              <select ui-select2="{ minimumResultsForSearch: -1, width: '100%' }"
+                ng-model="editdash.config.period" required data-placeholder="Pick a Color">
+                <option value="1">1s</option>
+                <option value="5">5s</option>
+                <option value="10">10s</option>
+                <option value="30">30s</option>
+                <option value="60" >1m</option>
+                <option value="300" >5m</option>
+                <option value="900">15m</option>
+                <option value="3600">1h</option>
+                <option value="21600">6h</option>
+                <option value="86400">1d</option>
+                </select>
+            </div>
+
+          </div>
+
+
+          <div class="scheduling-field">
+            <div class="scheduling-field__label">Colors</div>
+            <div class="scheduling-field__value">
+
+              <select ui-select2="{ minimumResultsForSearch: -1, width: '100%' }"
+                ng-model="editdash.config.color" required data-placeholder="Pick a Color">
+                <option value="#803690">Purple</option>
+                <option value="#00ADF9">Light blue</option>
+                <option value="#DCDCDC">light Grey</option>
+                <option value="#FDB45C">Orange</option>
+                <option value="#46BFBD" >Aquamarine</option>
+                <option value="#949FB1" >Grey</option>
+                  <option value="#4D5360" >Dark Grey</option>
+              </select>
+            </div>
+          </div>
+          <!--div class="scheduling-field">
+            <div class="scheduling-field__label">Time Range</div>
+            <div class="scheduling-field__value">
+              <select ui-select2="{ minimumResultsForSearch: -1, width: '100%' }"
+                ng-model="editdash.config.time_range" required data-placeholder="Pick a Time range">
+                <option value="60000">Last 1m</option>
+                <option value="180000">Last 3m</option>
+                <option value="360000">Last 6m</option>
+                <option value="720000">Last 12m</option>
+                <option value="1440000" selected>Last 24m</option>
+              </select>
+            </div>
+          </div-->
+
+          <div class="aside-footer">
+            <button class="secondary-bglight-button" ng-click="$hide()">Cancel</button>
+            <button class="primary-bglight-button" ng-click="savedash(this)" ng-disabled="form.$invalid">Save</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

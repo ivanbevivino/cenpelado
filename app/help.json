@@ -1,0 +1,241 @@
+[
+  {
+    "name": "getGroup",
+    "description": "",
+    "example": "var group = cloudService.getGroup('Name');",
+    "response": {
+      "name": "Your company group",
+      "instances": [],
+      "loadBalancers": [],
+      "volumes": [],
+      "snapshots": []
+    }
+  },
+  {
+    "name": "getGroups",
+    "description": "Retrieves an array of your group names.",
+    "example": "var groups = cloudService.getGroups();",
+    "response": [
+      {
+        "name": "Your company group 1",
+        "instances": [],
+        "loadBalancers": [],
+        "volumes": [],
+        "snapshots": []
+      },
+      {
+        "name": "Your company group 2",
+        "instances": [],
+        "loadBalancers": [],
+        "volumes": [],
+        "snapshots": []
+      }
+    ]
+  },
+  {
+    "name": "getGroupConfiguration",
+    "description": "Retrieves the group configuration. It receives the group as a parameter.",
+    "example": "var configuration = cloudService.getGroupConfiguration('group_name');",
+    "response": {
+      "groupName": "Example Name",
+      "instanceGroups": [
+        {
+          "id": 1,
+          "name": "Group name",
+          "instanceIds": [ 2, 4, 6 ],
+          "orderStart": 1,
+          "delayAfterInstanceStartMillis": 10000,
+          "delayAfterGroupStartMillis": 10000,
+          "orderStop": 1,
+          "delayAfterInstanceStopMillis": 10000,
+          "delayAfterGroupStopMillis": 10000,
+          "orderRestart": 1,
+          "delayAfterInstanceRestartMillis": 10000,
+          "delayAfterGroupRestartMillis": 10000
+        }
+      ],
+      "excludedInstanceIds": [ 1, 5, 10 ]
+    }
+  },
+  {
+    "name": "getInstances",
+    "description": "Retrieves all instances in the account. It can be optionally filtered by provider.",
+    "example": "var instance = cloudService.getInstances();\nvar amazonInstances = cloudService.getInstances('AMAZON');\nvar softLayerInstances = cloudService.getInstances('SOFTLAYER');",
+    "response": [
+      {
+        "id": 1,
+        "name": "Dev Instance",
+        "provider": "AMAZON",
+        "privateIp": "",
+        "publicDns": "",
+        "status": "RUNNING",
+        "platform": "",
+        "started": 1473028110292,
+        "location": {
+          "id": 5,
+          "name": "US East",
+          "region": {
+            "id": 5,
+            "regionId": "us-east",
+            "latitude": 30.98764,
+            "longitude": 27.90374
+          }
+        },
+        "volumeIds": [
+          "x45-8593"
+        ],
+        "tags": {
+          "Name": "Dev Instance"
+        },
+        "attributes": {
+          "architecture": "",
+          "image": "",
+          "instance_type": "",
+          "availability_zone": "",
+          "scheme": "",
+          "hypervisor": "",
+          "ebs_optimized": "",
+          "spot_instance": "",
+          "root_device_name": "",
+          "root_device_type": "",
+          "subnetId": "",
+          "key_name": "",
+          "kernel": ""
+        }
+      }
+    ]
+  },
+  {
+    "name": "getLoadBalancers",
+    "description": "Retrieves all instances in the account. It can be optionally filtered by provider.",
+    "example": "var instance = cloudService.getLoadBalancers();\nvar amazonLbs = cloudService.getLoadBalancers('AMAZON');\nvar softLayerLbs = cloudService.getLoadBalancers('SOFTLAYER');",
+    "response": [
+      {
+        "id": 1,
+        "provider": "AMAZON",
+        "externalId": "",
+        "dnsName": "",
+        "tags": {
+          "Name": "LB Development"
+        },
+        "attributes": {
+          "allowed_number_of_hosts": "",
+          "connections_per_second": "",
+          "average_connections_per_second": "",
+          "load_balance_type": ""
+        }
+      }
+    ]
+  },
+  {
+    "name": "getVolumes",
+    "description": "Provides a list of volumes in the account. It can be optionally be filter by provider.",
+    "example": "var volumes = cloudService.getVolumes();\nvar amazonVolumes = cloudService.getVolumes('AMAZON');\nvar softLayerVolumes = cloudService.getVolumes('SOFTLAYER');",
+    "response": [
+      {
+        "id": 1,
+        "provider": "AMAZON",
+        "externalId": "",
+        "size": 23400,
+        "location": {
+          "id": 5,
+          "name": "US East",
+          "region": {
+            "id": 5,
+            "regionId": "us-east",
+            "latitude": 30.98764,
+            "longitude": 27.90374
+          }
+        },
+        "tags": {
+          "Name": "Main Volume",
+          "Activity": "Test"
+        },
+        "instanceIds": [
+          "i-937457"
+        ],
+        "attributes": {
+          "region": "",
+          "volume_size": "",
+          "description": ""
+        }
+      }
+    ]
+  },
+  {
+    "name": "getSnapshots",
+    "description": "Retrieves all snapshots in the account. It can be optionally filtered by provider.",
+    "example": "var volumes = cloudService.getSnapshots();\nvar amazonSnapshots = cloudService.getSnapshots('AMAZON');\nvar softLayerSnapshots = cloudService.getSnapshots('SOFTLAYER');",
+    "response": [
+      {
+        "id": 1,
+        "provider": "SOFTLAYER",
+        "externalId": "X56930475-4756",
+        "createDate": 1476128410292,
+        "tags": {},
+        "attributes": {}
+      }
+    ]
+  },
+  {
+    "name": "getRegions",
+    "description": "Retrieves all regions available.",
+    "example": "var regions = cloudService.getRegions();",
+    "response": [
+      {
+        "id": 1,
+        "name": "Region 1",
+        "region": {
+          "id": 5,
+          "regionId": "region-1",
+          "latitude": 30.98764,
+          "longitude": 27.90374
+        }
+      },
+      {
+        "id": 2,
+        "name": "Region 2",
+        "region": {
+          "id": 3,
+          "regionId": "region-2",
+          "latitude": 20.98764,
+          "longitude": 97.90374
+        }
+      }
+    ]
+  },
+  {
+    "name": "getSystemEvents",
+    "description": "Retrieves the events processed by the platform. Receives both the page size and page index. Possible event types can be found in the documentation section.",
+    "example": "var events = cloudService.getEvents(10, 1);",
+    "response": {
+      "pageIndex": 1,
+      "pageSize": 10,
+      "pageCount": 5,
+      "eventsCount": 55,
+      "events": [
+        {
+          "principalUsername": "",
+          "description": "",
+          "type": "INSTANCE_START"
+        }
+      ]
+    }
+  },
+  {
+    "name": "createBestPracticeError",
+    "description": "Marks the best practice as it had an error.",
+    "example": "cloudService.createBestPracticeError('Error message');"
+  },
+  {
+    "name": "createBestPracticeWarn",
+    "description": "Marks a warning for this best practice.",
+    "example": "cloudService.createBestPracticeWarn('Warning message');"
+  },
+  {
+    "name": "createBestPracticeOk",
+    "description": "Marks the best practice as it is successful.",
+    "example": "cloudService.createBestPracticeOk('Ok message');"
+  }
+
+]

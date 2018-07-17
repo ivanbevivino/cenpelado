@@ -1,0 +1,26 @@
+<div class="aside aside--secondary" tabindex="-1" role="dialog">
+  <div class="aside-dialog">
+    <div class="aside-content">
+      <div class="aside-header">
+        <div class="aside-close" ng-click="$hide()">&#xe2aa;</div>
+        <h4 class="aside-title" translate>ATTACH_TO_LB</h4>
+      </div>
+      <div class="aside-body">
+        <div class="secondary-aside-body">
+          <div class="scheduling-field">
+            <div class="scheduling-field__label" translate>LOAD_BALANCERS</div>
+            <div class="scheduling-field__value">
+              <tags-input ng-model="model.selection" key-property="id" display-property="label" tag-class="'scheduling-item'" placeholder="Add a load balancer"
+                add-from-autocomplete-only="true" replace-spaces-with-dashes="false">
+                <auto-complete source="loadItems($query)" load-on-empty="true" load-on-focus="true"></auto-complete>
+              </tags-input>
+            </div>
+          </div>
+          <div class="aside-footer">
+            <button class="secondary-bglight-button" translate ng-click="$hide()">CANCEL</button>
+            <button class="primary-bglight-button" translate ng-click="register()">ATTACH</button>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

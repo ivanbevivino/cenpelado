@@ -1,0 +1,56 @@
+<div class="js-admins-page" st-table="displayedRows" st-safe-src="admins">
+  <div class="state-title tab__bar">
+    <span class="state-title animated fadeInUp">
+      <span class="breadcrumbLink" translate ui-sref="app.admin-dashboard">ADMINISTRATION</span>
+      <span class="breadcrumbDivider">&gt;</span>
+      <span translate>MANAGE_ADMINS</span>
+    </span>
+    <button class="primary-bglight-button right" translate ng-click="createUserPopup()"
+      ng-if="(isAuthorized([roles.CH_USER_ADMIN,roles.CH_USER_LIMITED, roles.CH_SYSTEM_ADMIN]))">CREATE_ADMIN</button>
+    <button class="primary-bglight-button button--arrow right" ng-if="(isAuthorized([roles.CH_USER_ADMIN,roles.CH_USER_LIMITED, roles.CH_SYSTEM_ADMIN]))" translate
+      data-animation="am-flip-x" bs-dropdown="dropdownUser" data-placement="bottom-right" style="margin-left: 10px;" translate>MORE</button>
+    <div class="search-input">
+      <input st-search="{{name + publicIp + platform + provider}}" st-delay="200" placeholder="Search..." />
+    </div>
+  </div>
+
+  <div class="cp-table-container">
+    <table class="cp-table">
+      <colgroup>
+        <col class="col-check">
+        <col class="col-name">
+        <col class="col-lastname">
+        <col class="col-email">
+        <col class="col-roles">
+      </colgroup>
+      <thead>
+        <tr class="unselectable">
+          <th class="text-center" ng-if="(isAuthorized([roles.CH_USER_ADMIN,roles.CH_USER_LIMITED, roles.CH_SYSTEM_ADMIN]))">
+            <div class="ch-checkbox" ng-class="{'active': allActive}" ng-click="toggleAll()"></div>
+          </th>
+          <th st-sort="name" translate>NAME</th>
+          <th st-sort="lastName" translate>LASTNAME</th>
+          <th st-sort="email">EMAIL</th>
+          <th translate>ROLES</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-if="displayedRows.length == 0">
+          <td colspan="5" translate>NO_ADMINS</td>
+        </tr>
+        <tr class="unselectable actionable" ng-repeat="row in displayedRows" ng-click="toggleOne(row)">
+          <td class="text-center">
+            <div class="ch-checkbox" ng-class="{'active': row.active}"></div>
+          </td>
+          <td>{{row.name}}</td>
+          <td>{{row.lastName}}</td>
+          <td>{{row.email}}</td>
+          <td>
+            <div class="role selectable" translate>SYSTEM_ADMIN</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div st-pagination st-items-by-page="10"></div>
+  </div>
+</div>

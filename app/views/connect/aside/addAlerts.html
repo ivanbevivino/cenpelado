@@ -1,0 +1,170 @@
+<div class="aside aside--secondary" tabindex="-1" role="dialog">
+  <div class="aside-dialog">
+    <div class="aside-content">
+      <div class="aside-header">
+        <div class="aside-close" ng-click="$hide()">&#xe2aa;</div>
+        <h4 class="aside-title">Alarms</h4>
+      </div>
+      <div class="aside-body">
+        <div class="secondary-aside-body" ng-form name="form">
+
+
+          <div class="scheduling-field">
+            <!-- <div class="scheduling-field__label">Duration</div> -->
+            <div class="scheduling-field__value">
+              <input  type="text" class="input-field single-field tite-aside-alarms"  readonly value=""/>
+              <input  type="text" class="input-field single-field tite-small-aside-alarms"  readonly value="Warning Value"  required/>
+              <input  type="text" class="input-field single-field tite-small-aside-alarms"   readonly value="Danger Value" required/>
+            </div>
+          </div>
+
+          <div class="scheduling-field">
+            <!-- <div class="scheduling-field__label">Duration</div> -->
+            <div class="scheduling-field__value">
+              <input  style="margin-left: 2vh;" type="text" class="input-field single-field tite-aside-alarms"  readonly value=""/>
+
+              <input type="color" ng-model="alerts.warningbc"><input type="color" ng-model="alerts.warningfc">
+
+
+              <input style="margin-left: 4vh;" type="color" ng-model="alerts.dangerbc"><input type="color" ng-model="alerts.dangerfc">
+
+            </div>
+
+          </div>
+
+
+          <div class="scheduling-field">
+            <!-- <div class="scheduling-field__label">Duration</div> -->
+            <div class="scheduling-field__value">
+              <input  type="text" class="input-field single-field tite-aside-alarms"  readonly value="Duration"/>
+              <input  type="number" class="input-field single-field warning-aside-value" style="  background:{{alerts.warningbc}};color:{{alerts.warningfc}};"  ng-model="alerts.duration_warning" required/>
+              <input  type="number" class="input-field single-field danger-aside-value" style="background:{{alerts.dangerbc}};color:{{alerts.dangerfc}}"   ng-model="alerts.duration_danger" required/>
+            </div>
+          </div>
+
+          <div class="scheduling-field">
+            <!-- <div class="scheduling-field__label">AVG ACW</div> -->
+            <div class="scheduling-field__value">
+              <input  type="text" class="input-field single-field tite-aside-alarms"  readonly value="AVG ACW"/>
+              <input type="number" class="input-field single-field warning-aside-value" style="  background:{{alerts.warningbc}};color:{{alerts.warningfc}};"   ng-model="alerts.acw_warning" required/>
+              <input  type="number" class="input-field single-field danger-aside-value" style="background:{{alerts.dangerbc}};color:{{alerts.dangerfc}}"  ng-model="alerts.acw_danger" required/>
+            </div>
+          </div>
+
+          <div class="scheduling-field">
+            <!-- <div class="scheduling-field__label">Break Time</div> -->
+            <div class="scheduling-field__value">
+              <input  type="text" class="input-field single-field tite-aside-alarms"  readonly value="Break Time"/>
+              <input type="number" class="input-field single-field warning-aside-value" style="  background:{{alerts.warningbc}};color:{{alerts.warningfc}};"   ng-model="alerts.bt_warning" required/>
+              <input  type="number" class="input-field single-field danger-aside-value" style="background:{{alerts.dangerbc}};color:{{alerts.dangerfc}}"  ng-model="alerts.bt_danger" required/>
+            </div>
+          </div>
+
+          <div class="scheduling-field">
+            <!-- <div class="scheduling-field__label">Missed Calls</div> -->
+            <div class="scheduling-field__value">
+              <input  type="text" class="input-field single-field tite-aside-alarms"  readonly value="Missed Calls"/>
+              <input type="number" class="input-field single-field warning-aside-value" style="  background:{{alerts.warningbc}};color:{{alerts.warningfc}};"   ng-model="alerts.mc_warning" required/>
+              <input  type="number" class="input-field single-field danger-aside-value" style="background:{{alerts.dangerbc}};color:{{alerts.dangerfc}}"  ng-model="alerts.mc_danger" required/>
+            </div>
+          </div>
+          <div class="scheduling-field">
+            <!-- <div class="scheduling-field__label">Handled calls</div> -->
+            <div class="scheduling-field__value">
+              <input  type="text" class="input-field single-field tite-aside-alarms"  readonly value="Handled calls"/>
+              <input type="number" class="input-field single-field warning-aside-value" style="  background:{{alerts.warningbc}};color:{{alerts.warningfc}};"   ng-model="alerts.hc_warning" required/>
+              <input  type="number" class="input-field single-field danger-aside-value" style="background:{{alerts.dangerbc}};color:{{alerts.dangerfc}}"  ng-model="alerts.hc_danger" required/>
+            </div>
+          </div>
+
+        <hr>
+
+        <div class="scheduling-field">
+          <!-- <div class="scheduling-field__label">Agents on queue</div> -->
+          <div class="scheduling-field__value">
+            <input  type="text" class="input-field single-field tite-aside-alarms"  readonly value="Agents on queue"/>
+            <input  type="number" class="input-field single-field warning-aside-value" style="  background:{{alerts.warningbc}};color:{{alerts.warningfc}};"   ng-model="alerts.aq_warning" required/>
+            <input  type="number" class="input-field single-field danger-aside-value" style="background:{{alerts.dangerbc}};color:{{alerts.dangerfc}}"  ng-model="alerts.aq_danger" required/>
+          </div>
+        </div>
+
+        <div class="scheduling-field">
+          <!-- <div class="scheduling-field__label">Agents Available</div> -->
+          <div class="scheduling-field__value">
+            <input  type="text" class="input-field single-field tite-aside-alarms"  readonly value="Agents Available"/>
+            <input type="number" class="input-field single-field warning-aside-value" style="  background:{{alerts.warningbc}};color:{{alerts.warningfc}};"   ng-model="alerts.aa_warning" required/>
+            <input  type="number" class="input-field single-field danger-aside-value" style="background:{{alerts.dangerbc}};color:{{alerts.dangerfc}}"  ng-model="alerts.aa_danger" required/>
+          </div>
+        </div>
+
+        <div class="scheduling-field">
+          <!-- <div class="scheduling-field__label">Agents On call</div> -->
+          <div class="scheduling-field__value">
+            <input  type="text" class="input-field single-field tite-aside-alarms"  readonly value="Agents On call"/>
+            <input type="number" class="input-field single-field warning-aside-value" style="  background:{{alerts.warningbc}};color:{{alerts.warningfc}};"   ng-model="alerts.aoc_warning" required/>
+            <input  type="number" class="input-field single-field danger-aside-value" style="background:{{alerts.dangerbc}};color:{{alerts.dangerfc}}"  ng-model="alerts.aoc_danger" required/>
+          </div>
+        </div>
+
+        <div class="scheduling-field">
+          <!-- <div class="scheduling-field__label">Agents Not Available</div> -->
+          <div class="scheduling-field__value">
+            <input  type="text" class="input-field single-field tite-aside-alarms"  readonly value="Agents Not Available"/>
+            <input type="number" class="input-field single-field warning-aside-value" style="  background:{{alerts.warningbc}};color:{{alerts.warningfc}};"   ng-model="alerts.ana_warning" required/>
+            <input  type="number" class="input-field single-field danger-aside-value" style="background:{{alerts.dangerbc}};color:{{alerts.dangerfc}}"  ng-model="alerts.ana_danger" required/>
+          </div>
+        </div>
+        <div class="scheduling-field">
+          <!-- <div class="scheduling-field__label">Agents on ACW</div> -->
+          <div class="scheduling-field__value">
+            <input  type="text" class="input-field single-field tite-aside-alarms"  readonly value="Agents on ACW"/>
+            <input type="number" class="input-field single-field warning-aside-value" style="  background:{{alerts.warningbc}};color:{{alerts.warningfc}};"   ng-model="alerts.aacw_warning" required/>
+            <input  type="number" class="input-field single-field danger-aside-value" style="background:{{alerts.dangerbc}};color:{{alerts.dangerfc}}"  ng-model="alerts.aacw_danger" required/>
+          </div>
+        </div>
+
+        <div class="scheduling-field">
+          <!-- <div class="scheduling-field__label">Agents with Error</div> -->
+          <div class="scheduling-field__value">
+            <input  type="text" class="input-field single-field tite-aside-alarms"  readonly value="Agents with Error"/>
+            <input type="number" class="input-field single-field warning-aside-value" style="  background:{{alerts.warningbc}};color:{{alerts.warningfc}};"   ng-model="alerts.ae_warning" required/>
+            <input  type="number" class="input-field single-field danger-aside-value" style="background:{{alerts.dangerbc}};color:{{alerts.dangerfc}}"  ng-model="alerts.ae_danger" required/>
+          </div>
+        </div>
+
+        <div class="scheduling-field">
+          <!-- <div class="scheduling-field__label">Abandoned Calls </div> -->
+          <div class="scheduling-field__value">
+            <input  type="text" class="input-field single-field tite-aside-alarms"  readonly value="Abandoned Calls"/>
+            <input type="number" class="input-field single-field warning-aside-value" style="  background:{{alerts.warningbc}};color:{{alerts.warningfc}};"   ng-model="alerts.ac_warning" required/>
+            <input  type="number" class="input-field single-field danger-aside-value" style="background:{{alerts.dangerbc}};color:{{alerts.dangerfc}}"  ng-model="alerts.ac_danger" required/>
+          </div>
+        </div>
+
+        <div class="scheduling-field">
+          <!-- <div class="scheduling-field__label">Avg. Handle Time</div> -->
+          <div class="scheduling-field__value">
+            <input  type="text" class="input-field single-field tite-aside-alarms"  readonly value="Avg. Handle Time"/>
+            <input type="number" class="input-field single-field warning-aside-value" style="  background:{{alerts.warningbc}};color:{{alerts.warningfc}};"   ng-model="alerts.aht_warning" required/>
+            <input  type="number" class="input-field single-field danger-aside-value" style="background:{{alerts.dangerbc}};color:{{alerts.dangerfc}}"  ng-model="alerts.aht_danger" required/>
+          </div>
+        </div>
+
+        <div class="scheduling-field">
+          <!-- <div class="scheduling-field__label">Avg. Speed Answer</div> -->
+          <div class="scheduling-field__value">
+            <input  type="text" class="input-field single-field tite-aside-alarms" readonly value="Avg. Speed Answer"/>
+            <input type="number" class="input-field single-field warning-aside-value" style="  background:{{alerts.warningbc}};color:{{alerts.warningfc}};"   ng-model="alerts.asa_warning" required/>
+            <input  type="number" class="input-field single-field danger-aside-value" style="background:{{alerts.dangerbc}};color:{{alerts.dangerfc}}"  ng-model="alerts.asa_danger" required/>
+          </div>
+        </div>
+
+          <div class="aside-footer">
+            <button class="secondary-bglight-button" ng-click="$hide()">Cancel</button>
+            <button class="primary-bglight-button" ng-click="saveAlerts()" ng-disabled="form.$invalid">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

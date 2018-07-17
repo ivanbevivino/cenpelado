@@ -1,0 +1,16 @@
+<div class="box box--login" ng-class="{'.box--invalid': hasError}">
+  <img src="images/logo.png" width="443" height="69" class="animated fadeInDown" />
+  <form name="loginForm" class="box__form animated fadeInUp" ng-submit="login(credentials)">
+    <input type="email" class="box__input" ng-model="credentials.email"
+      placeholder="{{'ACCESS_EMAIL' | translate}}" spellcheck="false" required />
+    <input type="password" class="box__input" ng-model="credentials.password"
+      placeholder="{{'ACCESS_PASSWORD' | translate}}" required />
+    <input type="password" class="box__input" ng-model="credentials.authCode"
+      placeholder="{{'ACCESS_AUTH' | translate}}" only-digits required/>
+    <button class="box__button" ng-disabled="loginForm.$invalid" translate>LOG_IN</button>
+    <a href ui-sref="forgotPassword" class="box__link" translate>FORGOT_PASSWORD</a>
+    <br/><br/>
+    <a href ui-sref="account" class="box__link" translate>ACCESS_NEW_ACCOUNT</a>
+  </form>
+</div>
+<div class="footer navbar-fixed-bottom" > <span class="pull-right box__link" translate> PROGRAM_VERSION </span></div>

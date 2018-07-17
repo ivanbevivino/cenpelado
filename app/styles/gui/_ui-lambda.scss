@@ -1,0 +1,161 @@
+.lambda {
+  @include container();
+
+  &__list {
+    @include span(1.5 of 5 no-gutters);
+    background: #efefef;
+    height: 100vh;
+    min-height: 800px;
+    font-family: Raleway;
+    color: #6e6f84;
+
+    .lambda-search {
+      padding: 20px;
+      border-bottom: 1px solid #bfbfbf;
+
+      .search-input {
+        float: none;
+
+        input {
+          width: 100%;
+        }
+      }
+    }
+
+    .lambda-entries {
+      padding: 20px;
+    }
+
+    .lambda-entry {
+      margin-bottom: 20px;
+      cursor: pointer;
+
+      &.selected, &:hover {
+        color: #5288d1;
+      }
+    }
+
+    .lambda-empty {
+      margin-bottom: 20px;
+    }
+  }
+
+  &__details {
+    @include span(3.5 of 5 no-gutters);
+    padding: 20px;
+
+    .title {
+      font-size: 18px;
+      text-transform: uppercase;
+      line-height: 33px;
+      margin-bottom: 20px;
+      color: #6e6f84;
+
+      button {
+        padding: 0 10px;
+      }
+    }
+
+    .subtitle {
+      font-size: 16px;
+      text-transform: uppercase;
+      line-height: 33px;
+      margin: 20px 0;
+      color: #6e6f84;
+    }
+
+    .ace_editor {
+      height: 300px;
+      &.ace-merbivore {
+        background-color: #2f3243;
+
+        .ace_gutter {
+          background: #25262f;
+          color: #b7cce8;
+        }
+
+        .ace_print-margin {
+          display: none !important;
+        }
+      }
+    }
+
+    .fields {
+      @include clearfix;
+
+      input {
+        padding: 5px;
+        border-radius: 2px;
+        width: 100%;
+        border: 1px solid #CCC;
+        font-size: 13px;
+      }
+    }
+
+    .left-fields {
+      @include span(1 of 2 no-gutters);
+      width: 49%;
+      margin-right: 2%;
+    }
+
+    .right-fields {
+      @include span(1 of 2 no-gutters);
+      width: 49%;
+    }
+
+    .field {
+      margin-bottom: 20px;
+
+      &__name {
+        float: left;
+        line-height: 28px;
+        text-align: right;
+        padding-right: 7px;
+        width: 130px;
+        color: #6e6f84;
+        font-size: 13px;
+      }
+
+      &__value {
+        padding-left: 130px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      &__value-inner {
+        padding: 5px;
+        border-radius: 2px;
+        width: 100%;
+        border: 1px solid #CCC;
+        font-size: 13px;
+      }
+    }
+
+    .actions {
+      button {
+        min-width: 150px;
+        margin: 20px 0;
+      }
+    }
+  }
+}
+
+.payload-popup {
+  .ace_editor {
+    height: 150px;
+    margin-top: 20px;
+
+    &.ace-merbivore {
+      background-color: #2f3243;
+
+      .ace_gutter {
+        background: #25262f;
+        color: #b7cce8;
+      }
+
+      .ace_print-margin {
+        display: none !important;
+      }
+    }
+  }
+}

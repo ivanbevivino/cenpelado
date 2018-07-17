@@ -1,0 +1,36 @@
+
+<div style="margin-left: 110px;">
+  <div class="state-title tab__bar">
+    <span class="tab__title animated fadeInUp" translate>USER_PROFILE</span>
+  </div>
+
+  <div class="form form--profile">
+    <img class="gravatar gravatar--big gravatar--profile" gravatar-src="updatedUser.email" gravatar-size="100">
+    <div class="form__row">
+      <div class="form__label required" translate>NAME</div>
+      <input class="form__input" ng-model="updatedUser.name" spellcheck="false" />
+    </div>
+    <div class="form__row">
+      <div class="form__label required" translate>LASTNAME</div>
+      <input class="form__input" ng-model="updatedUser.lastName" spellcheck="false" />
+    </div>
+    <div class="form__row">
+      <div class="form__label required" translate>EMAIL</div>
+      <input class="form__input" ng-model="updatedUser.email" spellcheck="false" />
+    </div>
+    <div class="form__row">
+      <div class="form__label" translate>SECONDARY_EMAIL</div>
+      <input class="form__input" ng-model="updatedUser.emailSecondary" spellcheck="false" />
+    </div>
+    <div class="form__row clearfix">
+      <button class="primary-bglight-button right" translate ng-click="updateUser()">UPDATE</button>
+    </div>
+    <div class="form__row">
+      <div class="form__subtitle" translate>PASSWORD_SETTINGS</div>
+      <div class="form__note" translate>PASSWORD_SETTINGS_NOTE</div>
+    </div>
+    <div class="form__row clearfix">
+      <button class="tertiary-bglight-button right" translate ng-click="resetPassword()">RESET_PASSWORD</button>
+    </div>
+  </div>
+</div>

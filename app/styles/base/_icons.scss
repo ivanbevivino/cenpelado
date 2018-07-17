@@ -1,0 +1,63 @@
+@font-face {
+  font-family: $icon-font;
+  src:font-url('streamline/streamline.eot');
+  src:font-url('streamline/streamline.eot') format('embedded-opentype'),
+    font-url('streamline/streamline.woff') format('woff'),
+    font-url('streamline/streamline.ttf') format('truetype'),
+    font-url('streamline.svg#streamline-24px-filled') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: $secondary-icon-font;
+  src: font-url('icons/cp-icons.eot?70473884');
+  src: font-url('icons/cp-icons.eot?70473884#iefix') format('embedded-opentype'),
+       font-url('icons/cp-icons.woff?70473884') format('woff'),
+       font-url('icons/cp-icons.ttf?70473884') format('truetype'),
+       font-url('icons/cp-icons.svg?70473884#cp-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: $tertiary-icon-font;
+  src:url('/fonts/icons/icomoon.eot?3d1mhj');
+  src:url('/fonts/icons/icomoon.eot?#iefix3d1mhj') format('embedded-opentype'),
+    url('/fonts/icons/icomoon.woff?3d1mhj') format('woff'),
+    url('/fonts/icons/icomoon.ttf?3d1mhj') format('truetype'),
+    url('/fonts/icons/icomoon.svg?3d1mhj#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[data-icon-before]:before {
+  font-family: $icon-font !important;
+  content: attr(data-icon-before);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  @include font-smoothing(true);
+}
+
+[data-icon-after]:after {
+  font-family: $icon-font !important;
+  content: attr(data-icon-after);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  @include font-smoothing(true);
+}
+
+/*
+.icon-down:before { content: '\62'; } // 'b'
+.icon-left:before { content: '\6c'; } // 'l'
+.icon-right:before { content: '\72'; } // 'r'
+.icon-up:before { content: '\74'; } // 't'
+*/

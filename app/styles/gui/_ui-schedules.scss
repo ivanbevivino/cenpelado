@@ -1,0 +1,65 @@
+.containerSelect {
+  .select2-chosen {
+    text-transform: capitalize;
+  }
+}
+
+.dropdownSelect {
+  .select2-results {
+    li {
+      padding: 1px 0;
+    }
+
+    .select2-result-selectable {
+      color: #333;
+      &.select2-highlighted {
+        background: #5288d1;
+        color: #FFF;
+      }
+    }
+  }
+}
+
+.capitalizeSelect {
+  .select2-result-label {
+    text-transform: capitalize;
+  }
+}
+
+.btn-schedule-delete {
+  font-family: streamline;
+  color: #6e6f84;
+  float: right;
+}
+
+.schedule-list {
+  margin-bottom: 40px;
+
+  .table__row {
+    &.actionable {
+      border-left: 3px solid transparent;
+    }
+    padding: 10px 0;
+    border-bottom: none;
+
+    &.header {
+      border-bottom: 1px solid #d7d6d6;
+    }
+  }
+}
+
+.schedule-list-label {
+  float: left;
+  line-height: 34px;
+}
+
+.instance-label {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.scheduling-ctr {
+  .tab-ctrl {
+    margin-bottom: 25px;
+  }
+}

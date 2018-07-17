@@ -1,0 +1,266 @@
+<div class="state-title animated fadeInUp">
+  {{customer.name}}</div>
+
+<div class="js-intro-helper">
+  <ul class="tabbedNav">
+    <li class="tabbedNav__item">
+      <span class="tabLink" translate ng-class="{'active': tab == 'users'}" ng-click="activateTab('users')">USERS</span>
+    </li>
+    <li class="tabbedNav__item">
+      <span class="tabLink" translate ng-class="{'active': tab == 'credentials'}" ng-click="activateTab('credentials')">CREDENTIALS</span>
+    </li>
+    <li class="tabbedNav__item">
+      <span class="tabLink" translate ng-class="{'active': tab == 'headquarter'}" ng-click="activateTab('headquarter')">HEADQUARTER</span>
+    </li>
+    <li class="tabbedNav__item">
+      <span class="tabLink" translate ng-class="{'active': tab == 'event-stream-notifications'}" ng-click="activateTab('event-stream-notifications')">EVENTS_STREAM_NOTIFICATIONS</span>
+    </li>
+    <li class="tabbedNav__item" ng-if="isAuthorized([roles.CH_SYSTEM_ADMIN])">
+      <span class="tabLink" translate ng-class="{'active': tab == 'liquidware-servers'}" ng-click="activateTab('liquidware-servers')">LIQUIDWARE_SERVERS</span>
+    </li>
+  </ul>
+
+  <div ng-switch="tab">
+    <div id="js-users-tab" class="tab__content" ng-switch-when="users">
+      <div class="tab__bar clearfix">
+        <button class="primary-bglight-button right" translate ng-click="createUserPopup()" ng-if="(isAuthorized([roles.CH_USER_ADMIN,roles.CH_USER_LIMITED, roles.CH_SYSTEM_ADMIN]))">CREATE_USER</button>
+
+        <button class="secondary-bglight-button button--arrow right" translate data-animation="am-flip-x" bs-dropdown="dropdownUser" data-placement="bottom-right" ng-if="(isAuthorized([roles.CH_USER_ADMIN,roles.CH_USER_LIMITED, roles.CH_SYSTEM_ADMIN])) && users.length > 0">MORE</button>
+      </div>
+
+      <div class="table--empty" ng-if="users.length == 0" translate>NO_USERS</div>
+      <div ng-if="users.length > 0">
+        <div class="table__row header unselectable">
+          <div class="column column--1" ng-if="(isAuthorized([roles.CH_USER_ADMIN,roles.CH_USER_LIMITED, roles.CH_SYSTEM_ADMIN]))">&nbsp;</div>
+          <div class="column column--4 column--sortable" ng-click="sortTable('userSort', 'name')" translate ng-class="{'sort-asc': userSort == 'name', 'sort-desc': userSort == '-name'}">NAME</div>
+          <div class="column column--4 column--sortable" ng-click="sortTable('userSort', 'lastName')" translate ng-class="{'sort-asc': userSort == 'lastName', 'sort-desc': userSort == '-lastName'}">LASTNAME</div>
+          <div class="column column--9 column--sortable" ng-click="sortTable('userSort', 'email')" translate ng-class="{'sort-asc': userSort == 'email', 'sort-desc': userSort == '-email'}">EMAIL</div>
+          <div class="column column--3" translate>ROLES</div>
+          <div class="column column--3 last">&nbsp;</div>
+        </div>
+
+        <div class="table__row unselectable" ng-click="user.active = !user.active" ng-class="{'actionable': (isAuthorized([roles.CH_USER_ADMIN,roles.CH_USER_LIMITED, roles.CH_SYSTEM_ADMIN]))}" ng-repeat="user in users | orderBy:userSort | offset: (currentUserPage - 1) * 10 | limitTo: 10">
+          <div class="column column--1" ng-if="(isAuthorized([roles.CH_USER_ADMIN,roles.CH_USER_LIMITED, roles.CH_SYSTEM_ADMIN]))">
+            <div class="ch-checkbox" ng-class="{'active': user.active}"></div>
+          </div>
+          <div class="column selectable" ng-class="{'column--4': (isAuthorized([roles.CH_USER_ADMIN,roles.CH_USER_LIMITED, roles.CH_SYSTEM_ADMIN])), 'column--5': (!isAuthorized([roles.CH_USER_ADMIN,roles.CH_USER_LIMITED, roles.CH_SYSTEM_ADMIN]))}" translate>{{user.name}}</div>
+          <div class="column column--4 selectable" translate>{{user.lastName}}</div>
+          <div class="column column--9 selectable" translate>{{user.email}}</div>
+          <div class="column column--3">
+            <div class="role selectable" ng-class="['role--' + role]" ng-repeat="role in user.roles" translate>{{role}}</div>
+          </div>
+          <div class="column column--3 centered last">
+            <span class="actionLnk" ng-click="createEditUserPopup($event, user)" ng-if="(isAuthorized([roles.CH_USER_ADMIN,roles.CH_USER_LIMITED, roles.CH_SYSTEM_ADMIN]))" translate>EDIT</span>
+          </div>
+        </div>
+        <div class="cp-pagination" ng-init="currentUserPage = 1" ng-show="users.length > 10">
+          <pagination total-items="users.length" ng-model="currentUserPage" max-size="5" class="pagination-sm" boundary-links="true"></pagination>
+        </div>
+      </div>
+    </div>
+    <div id="js-credentials-tab" class="tab__content" ng-switch-when="credentials">
+      <div class="tab__bar clearfix">
+        <button class="primary-bglight-button button--arrow right" ng-if="(isAuthorized([roles.CH_USER_ADMIN,roles.CH_USER_LIMITED, roles.CH_SYSTEM_ADMIN]))" data-animation="am-flip-x" bs-dropdown="dropdownCloud" data-placement="bottom-right" translate>ADD_CLOUD</button>
+        <button class="secondary-bglight-button right" ng-if="(isAuthorized([roles.CH_USER_ADMIN,roles.CH_USER_LIMITED, roles.CH_SYSTEM_ADMIN]))" translate ng-click="deleteClouds()">DELETE</button>
+      </div>
+
+      <div class="table--empty" ng-if="credentials.length == 0" translate>NO_CLOUD_CREDENTIALS</div>
+      <div ng-if="credentials.length > 0">
+        <div class="table__row header unselectable">
+          <div class="column column--1" ng-if="(isAuthorized([roles.CH_USER_ADMIN,roles.CH_USER_LIMITED, roles.CH_SYSTEM_ADMIN]))">&nbsp;</div>
+          <div class="column column--sortable" ng-click="sortTable('credentialSort', 'accountName')" translate ng-class="{'column--7': (isAuthorized([roles.CH_USER_ADMIN,roles.CH_USER_LIMITED, roles.CH_SYSTEM_ADMIN])), 'column--8': (!isAuthorized([roles.CH_USER_ADMIN,roles.CH_USER_LIMITED, roles.CH_SYSTEM_ADMIN])), 'sort-asc': credentialSort == 'accountName', 'sort-desc': credentialSort == '-accountName'}">NAME</div>
+          <div class="column column--6" translate>IDENTIFIER</div>
+          <div class="column column--6" ng-click="sortTable('credentialSort', 'provider')" translate>PROVIDER</div>
+          <div class="column column--4 last">&nbsp;</div>
+        </div>
+
+        <div class="table__row unselectable" ng-repeat="credential in credentials | orderBy:credentialSort | offset: (currentCredentialPage - 1) * 10 | limitTo: 10" ng-class="{'actionable': (isAuthorized([roles.CH_USER_ADMIN,roles.CH_USER_LIMITED, roles.CH_SYSTEM_ADMIN]))}"
+          ng-click="credential.active = !credential.active">
+          <div class="column column--1" ng-if="(isAuthorized([roles.CH_USER_ADMIN,roles.CH_USER_LIMITED, roles.CH_SYSTEM_ADMIN]))">
+            <div class="ch-checkbox" ng-class="{'active': credential.active}"></div>
+          </div>
+          <div class="column" ng-class="{'column--7': (isAuthorized([roles.CH_USER_ADMIN,roles.CH_USER_LIMITED, roles.CH_SYSTEM_ADMIN])), 'column--8': (!isAuthorized([roles.CH_USER_ADMIN,roles.CH_USER_LIMITED, roles.CH_SYSTEM_ADMIN]))}">
+            {{credential.accountName}}
+          </div>
+          <div class="column column--6" ng-if="credential.provider == 'AMAZON'">{{credential.accessKey}}</div>
+          <div class="column column--6" ng-if="credential.provider == 'SOFTLAYER'">{{credential.username}}</div>
+          <div class="column column--6 selectable" translate>{{credential.provider}}</div>
+          <div class="column column--4 centered last">
+            <span class="actionLnk" ng-click="createEditCloudPopup($event, credential)" ng-if="(isAuthorized([roles.CH_USER_ADMIN,roles.CH_USER_LIMITED, roles.CH_SYSTEM_ADMIN]))" translate>EDIT</span>
+          </div>
+        </div>
+
+        <div class="cp-pagination" ng-init="currentCredentialPage = 1" ng-show="credentials.length > 10">
+          <pagination total-items="credentials.length" ng-model="currentCredentialPage" max-size="5" class="pagination-sm" boundary-links="true"></pagination>
+        </div>
+      </div>
+    </div>
+    <div id="js-headquarter-tab" class="tab__content" ng-switch-when="headquarter">
+      <script type="text/ng-template" id="searchbox.tpl.html">
+        <input type="text" class="headquarter-search" placeholder="Search Box">
+      </script>
+      <div class="headquarter-description" translate>HEADQUARTER_DESCRIPTION</div>
+      <div class="headquarter-map-control">
+        <ui-gmap-google-map center='map.center' zoom='map.zoom' options="options" control="control">
+          <ui-gmap-search-box template="searchbox.template" events="searchbox.events" options="searchbox.options"></ui-gmap-search-box>
+          <ui-gmap-markers models="clickedMarker" coords="'self'" icon="'icon'" ng-if="clickedMarker != null"></ui-gmap-markers>
+        </ui-gmap-google-map>
+      </div>
+    </div>
+    <div id="js-event-stream-notifications-tab" class="tab__content" ng-switch-when="event-stream-notifications" ng-form name="forms.form">
+      <div class="panel panel-default">
+        <div class="panel-heading" translate>ADD_EVENTS_STREAM_NOTIFICATIONS</div>
+        <div class="panel-body">
+          <!-- <div class="col-lg-3" ng-class="{'hide': !isAuthorized([roles.CH_SYSTEM_ADMIN])}">
+            <div class="scheduling-field__label" translate>CLIENT</div>
+            <div class="scheduling-field__value">
+              <select ui-select2="{ minimumResultsForSearch: -1, width: '100%' }" ng-model="eventStreamNotification.customerId" required>
+                <option value="{{customer.id}}" ng-repeat="customer in customers">{{customer.name}} {{customer.lastName}}</option>
+              </select>
+            </div>
+          </div> -->
+
+          <div class="col-lg-6">
+            <div class="scheduling-field__label" translate>EVENT</div>
+            <div class="scheduling-field__value">
+              <select ui-select2="{ minimumResultsForSearch: 6, width: '100%' }" ng-model="eventStreamNotification.eventType" required>
+                <option value="{{e}}" ng-repeat="e in eventTypes" translate>{{'EVENT_' + e}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-lg-3">
+            <div class="scheduling-field__label" translate>TYPE</div>
+            <div class="scheduling-field__value">
+              <select ui-select2="{ minimumResultsForSearch: -1, width: '100%' }" ng-model="eventStreamNotification.method" required ng-change="eventStreamNotification.endpoint = null">
+                <option value="EMAIL" translate>EMAIL</option>
+                <option value="WEBHOOK">Webhook</option>
+              </select>
+            </div>
+          </div>
+
+          <div ng-class="{'col-lg-9': isAuthorized([roles.CH_SYSTEM_ADMIN]), 'col-lg-3': !isAuthorized([roles.CH_SYSTEM_ADMIN])}">
+            <div class="scheduling-field__label" translate>{{eventStreamNotification.method == 'WEBHOOK' ? 'URL' : 'EMAIL'}}
+            </div>
+            <input name="email" class="col-lg-12" type="email" ng-model="eventStreamNotification.endpoint" style="height: 30px; padding: 0 5px;" required autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" ng-class="{'input-error': (forms.form.email.$invalid && !forms.form.email.$pristine)}"
+              ng-if="eventStreamNotification.method == 'EMAIL'" />
+            <input name="url" class="col-lg-12" type="url" ng-model="eventStreamNotification.endpoint" style="height: 30px; padding: 0 5px;" required autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" ng-class="{'input-error': (forms.form.url.$invalid && !forms.form.url.$pristine)}"
+              ng-if="eventStreamNotification.method == 'WEBHOOK'" />
+          </div>
+
+        </div>
+        <div class="panel-body text-right">
+          <button class="btn btn-primary" translate ng-click="createEventNotification()" ng-disabled="forms.form.$invalid">CREATE</button>
+        </div>
+      </div>
+
+      <div class="js-servers-page" st-table="displayedRows" st-safe-src="eventStreamNotifications">
+
+        <div id="js-resources-summary" class="resources panel">
+
+          <div class="state-title state-subtitle clearfix" style="padding: 0 15px;">
+            <div class="schedule-list-label animated fadeInUp" translate>EVENTS_STREAM_NOTIFICATIONS</div>
+            <button class="btn btn-default btn-schedule-delete" ng-click="deleteEventStreamNotifications()" ng-if="(isAuthorized([roles.CH_USER_ADMIN,roles.CH_USER_LIMITED, roles.CH_SYSTEM_ADMIN]))">b</button>
+          </div>
+
+          <div class="cp-table-container">
+            <table class="cp-table">
+              <colgroup>
+                <col class="col-check">
+                <col class="col-name">
+                <col class="col-publicIp">
+                <col class="col-status">
+                <col class="col-platform">
+                <col class="col-region">
+                <col class="col-provider">
+                <col class="col-view">
+              </colgroup>
+              <thead>
+                <tr class="unselectable">
+                  <th class="text-center" ng-if="(isAuthorized([roles.CH_USER_ADMIN,roles.CH_USER_LIMITED, roles.CH_SYSTEM_ADMIN]))">
+                    <div class="ch-checkbox" ng-class="{'active': allActive}" ng-click="toggleAll()"></div>
+                  </th>
+                  <th class="col-lg-3" st-sort="eventType" translate>EVENT</th>
+                  <th class="col-lg-3" st-sort="method">TYPE</th>
+                  <th class="col-lg-3" st-sort="endpoint" translate>URL/EMAIL</th>
+                  <th class="col-lg-2" translate>DETAILS</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-if="displayedRows.length == 0">
+                  <td colspan="{{(isAuthorized([roles.CH_USER_ADMIN,roles.CH_USER_LIMITED, roles.CH_SYSTEM_ADMIN])) ? 8 : 7}}" translate style="padding-left: 15px;">NO_EVENT_STREAMS_NOTIFICATIONS</td>
+                </tr>
+                <tr ng-repeat="row in displayedRows" ng-click="toggleOne(row)" ng-class="{'actionable': (isAuthorized([roles.CH_USER_ADMIN,roles.CH_USER_LIMITED, roles.CH_SYSTEM_ADMIN]))}">
+                  <td class="text-center">
+                    <div class="ch-checkbox" ng-class="{'active': row.active}" data-bs-enabled="!row.managed"></div>
+                  </td>
+                  <td>{{'EVENT_' + row.eventType | translate}}</td>
+                  <td>{{row.method}}</td>
+                  <td>{{row.endpoint}}</td>
+                  <td>
+                    <span class="actionLnk" ng-click="viewEventStreamNotification($event, row)" translate>VIEW</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div st-pagination st-items-by-page="5"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="js-liquidwareservers-tab" class="tab__content" ng-switch-when="liquidware-servers">
+
+      <div class="cp-table-container table-light" st-table="displayedRows" st-safe-src="liquidware" style="padding-bottom: 30px;">
+
+
+        <table class="cp-table">
+          <thead>
+            <tr class="unselectable">
+              <th class="hidden">IDACCOUNT</th>
+              <th st-sort="row.name" translate>ALIAS</th>
+              <th translate>TYPE</th>
+              <th translate>URL</th>
+              <th translate>USERNAME</th>
+              <th translate>PASSWORD</th>
+              <th ng-if="(isAuthorized([roles.CH_SYSTEM_ADMIN]))" translate>EDIT</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-if="displayedRows.length == 0">
+              <td colspan="{{(isAuthorized([roles.CH_USER_ADMIN,roles.CH_USER_LIMITED, roles.CH_SYSTEM_ADMIN])) ? 7 : 6}}" translate>NO_LIQUIDWARE_SERVERS</td>
+            </tr>
+            <tr ng-repeat="row in displayedRows" class="hover-opacity" ng-if="::row.liquidwareConfiguration.internal == false && row.liquidwareConfiguration.idaccount !== null">
+                <td class="hidden">{{::row.liquidwareConfiguration.idaccount}}</td>
+                <td>{{::row.accountName}}</td>
+                <td><span class="label label-success margin-y-sm">Customer</span></td>
+                <td>{{::row.liquidwareConfiguration.url}}</td>
+                <td>{{::row.liquidwareConfiguration.username}}</td>
+                <td>******</td>
+                <!-- <td>{{::row.password}}</td> -->
+                <td><a ng-if="(isAuthorized([roles.CH_SYSTEM_ADMIN]))" href="" ng-click="editLiquidware()" class="action"><span class="ct-icon glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
+            </tr>
+            <tr ng-repeat="row in displayedRows" class="hover-opacity" ng-if="::row.liquidwareConfiguration.internal == true && row.liquidwareConfiguration.idaccount !== null">
+                <td class="hidden">{{::row.liquidwareConfiguration.idaccount}}</td>
+                <td>{{::row.accountName}}</td>
+                <td><span class="label label-primary margin-y-sm">CloudHesive</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><a ng-if="(isAuthorized([roles.CH_SYSTEM_ADMIN]))" href="" ng-click="editLiquidware()" class="action"><span class="ct-icon glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
+            </tr>
+            <tr ng-repeat="row in displayedRows" class="hover-opacity" ng-if="::row.liquidwareConfiguration.idaccount == null">
+                <td class="hidden">{{::row.liquidwareConfiguration.idaccount}}</td>
+                <td>{{::row.accountName}}</td>
+                <td><span class="label label-danger margin-y-sm">Not configured</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><a ng-if="(isAuthorized([roles.CH_SYSTEM_ADMIN]))" href="" ng-click="editLiquidware()" class="action"><span class="ct-icon glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
+            </tr>
+          </tbody>
+        </table>
+        <div st-pagination st-items-by-page="15"></div>
+      </div>
+    </div>
+  </div>
+</div>

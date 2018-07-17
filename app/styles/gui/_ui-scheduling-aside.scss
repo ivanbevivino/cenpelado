@@ -1,0 +1,183 @@
+.secondary-aside-body {
+  margin: 5px 28px;
+  color: #6e6f84;
+
+  .title {
+    padding-bottom: 15px;
+  }
+
+  select {
+    display: none;
+  }
+}
+
+.schedule-action-btn {
+  display: block;
+  text-align: center;
+  border: none;
+  border-radius: 2px;
+  background: #5288d1;
+  padding: 5px;
+  height: 39px;
+  font-size: 16px;
+  color: #fff;
+  margin: 8px 0 12px 0;
+  width: 100%;
+
+  &.disabled {
+    background: #CCC !important;
+  }
+}
+
+.scheduling-field {
+  &__label {
+    margin-bottom: 10px;
+    font-size: 14px;
+    padding-left: 2px;
+    text-transform: capitalize;
+  }
+
+  &__note {
+    background: #EEE;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-size: 13px;
+  }
+
+  &__value {
+    > * {
+      margin-bottom: 10px;
+    }
+
+    textarea {
+      border: 1px solid #bdc3c5;
+      padding: 5px;
+      width: 100%;
+      resize: none;
+      height: 60px;
+      font-size: 13px;
+      color: #444;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 7px 5px;
+      border: 1px solid #bdc3c5;
+    }
+  }
+
+  &--nomargin {
+    .select2-container {
+      margin-bottom: 0 !important;
+    }
+  }
+}
+
+.scheduling-division {
+  margin: 18px 0 15px 0;
+  font-weight: 500;
+  color: #333;
+  font-size: 14px;
+  padding-left: 2px;
+
+  .highlight {
+    color: #5288d1;
+  }
+
+  &--momargintop {
+    margin-top: 0;
+  }
+}
+
+.scheduling-period-divider {
+  padding: 0 10px;
+  font-size: 14px;
+}
+
+.scheduling-hour-control,
+.scheduling-day-control,
+.scheduling-month-control,
+.scheduling-year-control {
+  display: none;
+}
+
+.scheduling-hour {
+  .scheduling-hour-control {
+    display: block;
+  }
+}
+
+.scheduling-day {
+  .scheduling-day-control {
+    display: block;
+  }
+}
+
+.scheduling-month {
+  .scheduling-month-control {
+    display: block;
+  }
+}
+
+.scheduling-year {
+  .scheduling-year-control {
+    display: block;
+  }
+}
+
+tags-input {
+  .tags {
+    border: 1px solid #bdc3c5;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    box-shadow: none;
+
+    .tag-item.scheduling-item {
+      background: #5288d1;
+      border: 1px solid #5288d1;
+      color: #fff;
+
+      .remove-button {
+        color: #fff;
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+
+    &.focused {
+      box-shadow: none;
+    }
+  }
+
+  .autocomplete {
+    .suggestion-item {
+      color: #444;
+      &.selected {
+        background-color: #5288d1;
+      }
+    }
+  }
+
+  input {
+    width: auto !important;
+  }
+}
+
+[state=app\.scheduling] {
+  .select2-search {
+    margin-top: 5px !important;
+  }
+}
+
+.extendable {
+  font-family: streamline;
+
+  &--active {
+    color: #5288d1;
+  }
+}

@@ -1,0 +1,40 @@
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" style="width:690px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="$hide()">&times;</button>
+        <h4 class="modal-title" ng-bind-html="title"></h4>
+      </div>
+      <div class="modal-body" style="height:300px;">
+        <div class="form__row">
+          <div class="form__label required" translate>NAME</div>
+          <input class="form__input" ng-model="editUser.name" spellcheck="false" />
+        </div>
+        <div class="form__row">
+          <div class="form__label required" translate>LASTNAME</div>
+          <input class="form__input" ng-model="editUser.lastName" spellcheck="false" />
+        </div>
+        <div class="form__row">
+          <div class="form__label required" translate>EMAIL</div>
+          <input class="form__input" ng-model="editUser.email" spellcheck="false" />
+        </div>
+        <div class="form__row">
+          <div class="form__label" translate>SECONDARY_EMAIL</div>
+          <input class="form__input" ng-model="editUser.secondaryEmail" spellcheck="false" />
+        </div>
+        <div class="form__row last">
+          <div class="form__label required" translate>ROLES</div>
+          <div class="form__radios">
+            <div class="form__radio" ng-class="{'selected': editUser.role == 'ROLE_CH_USER_ADMIN'}" ng-click="configureEditPermission('ROLE_CH_USER_ADMIN')" translate>ADMIN</div>
+            <div class="form__radio" ng-class="{'selected': editUser.role == 'ROLE_CH_LIMITED_ADMIN'}" ng-click="configurePermission('ROLE_CH_LIMITED_ADMIN')" translate>LIMITED</div>
+            <div class="form__radio" ng-class="{'selected': editUser.role == 'ROLE_CH_USER'}" ng-click="configureEditPermission('ROLE_CH_USER')" translate>USER</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="$hide()" translate>CANCEL</button>
+        <button type="button" class="btn btn-primary" ng-click="updateUser()" translate>UPDATE</button>
+      </div>
+    </div>
+  </div>
+</div>

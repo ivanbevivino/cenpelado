@@ -1,0 +1,126 @@
+
+.box {
+  text-align: center;
+  @include centre;
+  @include font-smoothing(true);
+
+  input.has-visited.ng-invalid:not(.has-focus) {
+    border: 1px solid #bf518d;
+  }
+}
+
+  .box--login {
+    width: 443px;
+    height: 420px;
+  }
+
+  .box--forgotPassword {
+    width: 443px;
+    height: 310px;
+
+    .box__button {
+      margin: 30px 10px;
+      width: 180px;
+    }
+  }
+
+  .box--password-change {
+    width: 443px;
+    height: 452px;
+
+    .box__button {
+      margin: 30px 10px;
+      width: 180px;
+    }
+  }
+
+  .box--passwordChanged {
+    .box__note {
+      margin-top: 40px;
+    }
+
+    .box__button {
+      width: 170px;
+    }
+  }
+
+  .box--account {
+    width: 443px;
+    height: 586px;
+
+    .box__button {
+      margin: 30px 10px;
+      width: 180px;
+    }
+  }
+
+.box__form {
+  margin-top: 30px;
+}
+
+.box__note {
+  color: #a3a8c4;
+  text-align: left;
+  font-style: italic;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.box__input {
+  background: #2e3141;
+  color: $font-color-dark;
+  font-size: 16px;
+  font-weight: 500;
+  width: 100%;
+  height: 52px;
+  margin: 5px 0;
+  padding: 3px 10px;
+  border: 1px solid #2e3141;
+  transform: translate3d(0,0,0);
+
+  &:focus {
+    border: 1px solid $font-color-dark;
+  }
+
+  @include input-placeholder {
+    color: $font-color-dark;
+    font-size: 16px;
+    font-weight: 500;
+  }
+}
+
+.box__button {
+  background: #5989cb;
+  border-radius: 26px;
+  height: 52px;
+  margin: 30px 0;
+  width: 100%;
+  border: none;
+  color: #FFF;
+  font-size: 17px;
+  font-weight: 500;
+  cursor: pointer;
+
+  &:hover {
+    background: lighten(#5989cb, 3%);
+  }
+
+  &.box__button--secondary {
+    margin: 0;
+    background: #262937;
+
+    &:hover {
+      background: lighten(#262937, 3%);
+    }
+  }
+}
+
+.box__link {
+  color: $font-color-dark;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+    color: $font-color-dark;
+  }
+}

@@ -1,0 +1,14 @@
+image: registry.gitlab.com/lmenaolivares/arancione-registry:web
+
+pipelines:
+  branches:
+      deploy:
+        - step:
+            script:
+              - mkdir -p ~/.ssh
+              - ssh-keyscan -t rsa 52.67.125.85 > ~/.ssh/known_hosts
+              - (umask  077 ; echo $SSH_KEY | sed 's/ /\n/g' | base64 --decode > ~/.ssh/id_rsa)
+              - npm install
+              - bower install
+              - grunt build
+              - rsync -av --exclude 'config.json' dist/* ubuntu@52.67.125.85:/home/ubuntu/deploy/web/

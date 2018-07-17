@@ -1,0 +1,44 @@
+.tags-editor {
+  &__buttons {
+    height: 35px;
+    margin-bottom: 5px;
+  }
+
+  .col-edit {
+    width: 84px;
+  }
+
+  .tags-action {
+    border: 1px solid #5288d1;
+    font-family: streamline;
+    font-size: 18px;
+    border-radius: 3px;
+    margin-left: 5px;
+
+    &.light {
+      background: #fff;
+      color: #5288d1;
+    }
+
+    &.dark {
+      background: #5288d1;
+      color: #fff;
+    }
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &--submit {
+      font-family: arial;
+    }
+  }
+
+  .editable-wrap {
+    width: 100%;
+  }
+
+  input {
+    width: 100%;
+  }
+}

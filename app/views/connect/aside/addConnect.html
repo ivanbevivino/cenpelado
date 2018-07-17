@@ -1,0 +1,103 @@
+<div class="aside aside--secondary" tabindex="-1" role="dialog">
+  <div class="aside-dialog">
+    <div class="aside-content">
+      <div class="aside-header">
+        <div class="aside-close" ng-click="$hide()">&#xe2aa;</div>
+        <h4 class="aside-title">Add Connect Instance</h4>
+      </div>
+      <div class="aside-body">
+        <div class="secondary-aside-body" ng-form name="form">
+              <input  type="text" class="hidden" ng-model="connect.id"/>
+          <div class="scheduling-field">
+            <div class="scheduling-field__label">ALIAS</div>
+            <div class="scheduling-field__value">
+              <input  type="text" class="input-field single-field" ng-model="connect.alias" required/>
+            </div>
+          </div>
+
+          <div class="scheduling-field">
+            <div class="scheduling-field__label">ARN</div>
+            <div class="scheduling-field__value">
+              <input type="text" class="input-field single-field" ng-model="connect.arn" required/>
+            </div>
+          </div>
+
+          <div class="scheduling-field">
+            <div class="scheduling-field__label">Instance ID</div>
+            <div class="scheduling-field__value">
+              <input type="text" class="input-field single-field" ng-model="connect.instanceid" required/>
+            </div>
+          </div>
+
+          <div class="scheduling-field">
+            <div class="scheduling-field__label">URL</div>
+            <div class="scheduling-field__value">
+              <input type="text" class="input-field single-field" ng-model="connect.url" required/>
+            </div>
+          </div>
+          <div class="scheduling-field">
+            <div class="scheduling-field__label">Kinesis Agent</div>
+            <div class="scheduling-field__value">
+              <input type="text" class="input-field single-field" ng-model="connect.kinesis_agent" required/>
+            </div>
+          </div>
+          <div class="scheduling-field">
+            <div class="scheduling-field__label">Kinesis Contact</div>
+            <div class="scheduling-field__value">
+              <input type="text" class="input-field single-field" ng-model="connect.kinesis_contact" required/>
+            </div>
+          </div>
+          <div class="scheduling-field">
+            <div class="scheduling-field__label">Region</div>
+            <div class="scheduling-field__value">
+              <input type="text" class="input-field single-field" ng-model="connect.region" required/>
+            </div>
+          </div>
+          <div class="scheduling-field">
+            <div class="scheduling-field__label">iFrame URL 1</div>
+            <div class="scheduling-field__value">
+              <input type="text" class="input-field single-field" ng-model="connect.iframeurl1" required/>
+            </div>
+          </div>
+          <div class="scheduling-field">
+            <div class="scheduling-field__label">iFrame URL 2</div>
+            <div class="scheduling-field__value">
+              <input type="text" class="input-field single-field" ng-model="connect.iframeurl2" required/>
+            </div>
+          </div>
+          <div class="scheduling-field">
+            <div class="scheduling-field__label">iFrame URL 3</div>
+            <div class="scheduling-field__value">
+              <input type="text" class="input-field single-field" ng-model="connect.iframeurl3" required/>
+            </div>
+          </div>
+          <div class="scheduling-field">
+            <div class="scheduling-field__label">iFrame URL 4</div>
+            <div class="scheduling-field__value">
+              <input type="text" class="input-field single-field" ng-model="connect.iframeurl4" required/>
+            </div>
+          </div>
+          <div class="scheduling-field">
+            <div class="scheduling-field__label">iFrame URL 5</div>
+            <div class="scheduling-field__value">
+              <input type="text" class="input-field single-field" ng-model="connect.iframeurl5" required/>
+            </div>
+          </div>
+          <div class="scheduling-field">
+            <div class="scheduling-field__label">iFrame URL 6</div>
+            <div class="scheduling-field__value">
+              <input type="text" class="input-field single-field" ng-model="connect.iframeurl6" required/>
+            </div>
+          </div>
+          <div class="scheduling-field" class="checkbox">
+              <label><input id="isactive" type="checkbox" ng-model="connect.active"> Active</label>
+          </div>
+          <div class="aside-footer">
+            <button class="secondary-bglight-button" ng-click="$hide()">Cancel</button>
+            <button class="primary-bglight-button" ng-click="execute()" ng-disabled="form.$invalid">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

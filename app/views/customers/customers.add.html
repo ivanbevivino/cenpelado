@@ -1,0 +1,156 @@
+<div id="wizard" class="wizard-container">
+
+  <div class="wizard-positions clearfix">
+
+    <div class="wizard-position">
+      <div class="wizard-indicator-label" translate>NEW_CLIENT_STEP_1_TITLE</div>
+      <div class="wizard-indicator" ng-class="{'complete': step > 0, 'inprocess': step == 0}">&#xe2a5;</div>
+    </div>
+
+    <div class="wizard-navigation-state" ng-class="{'complete': step > 0}">&nbsp;</div>
+
+    <div class="wizard-position">
+      <div class="wizard-indicator-label" translate>NEW_CLIENT_STEP_2_TITLE</div>
+      <div class="wizard-indicator" ng-class="{'complete': step > 1, 'inprocess': step == 1}">&#xe2a5;</div>
+    </div>
+
+    <div class="wizard-navigation-state" ng-class="{'complete': step > 1}">&nbsp;</div>
+
+    <div class="wizard-position">
+      <div class="wizard-indicator-label" translate>NEW_CLIENT_STEP_3_TITLE</div>
+      <div class="wizard-indicator" ng-class="{'complete': step > 2, 'inprocess': step == 2}">&#xe2a5;</div>
+    </div>
+
+  </div>
+
+  <div class="wizard-steps" ng-switch="step">
+
+    <div class="step step1" ng-switch-when="0">
+      <div class="step__title" translate>NEW_CLIENT_STEP_1_TITLE</div>
+      <div class="step__content" style="  height: 100% !important;">
+        <div class="step__note" translate>NEW_CLIENT_STEP_1_NOTE</div>
+        <div class="form__row last">
+          <div class="form__label required" translate>NAME</div>
+          <input class="form__input" ng-model="model.customer.name" spellcheck="false" />
+        </div>
+        <div ng-repeat="aplication in aplications" class="row">
+          <label class="padding-md" >
+            <input type="checkbox"  value="{{aplication}}" ng-checked="selection.indexOf(aplication) > -1" ng-click="toggleSelection(aplication)" translate> {{aplication}}
+          </label>
+        </div>
+      </div>
+      <div class="step__navigation unselectable">
+        {{ 'STEP' | translate }} 1 / 3
+        <div class="step__btn" data-icon-after="&#xe4ba" ng-click="processStep1()" translate>NEXT</div>
+      </div>
+
+    </div>
+
+    <div class="step step2" ng-switch-when="1">
+      <div class="step__title" translate>NEW_CLIENT_STEP_2_TITLE</div>
+      <div class="step__content">
+        <div class="step__note" translate>NEW_CLIENT_STEP_2_NOTE</div>
+
+        <div class="form__section-title">
+          AMAZON
+          <a href="#" class="policy-link" ng-click="showAmazonPolicy()" translate>SHOW_POLICY</a>
+        </div>
+
+        <div class="form__row">
+          <div class="form__label">Access key</div>
+          <input type="text" class="form__input" ng-model="model.amazonAccount.accessKey" spellcheck="false" />
+        </div>
+        <div class="form__row">
+          <div class="form__label">Secret key</div>
+          <input type="password" class="form__input" ng-model="model.amazonAccount.secretKey" spellcheck="false" />
+        </div>
+        <div class="form__row">
+          <div class="form__label">Account Reach</div>
+          <select ui-select2="{ minimumResultsForSearch: -1, width: 470, containerCssClass: 'containerSelect', dropdownCssClass : 'capitalizeSelect' }" ng-model="model.amazonAccount.accountReach">
+            <option value="REGULAR">Regular Account</option>
+            <option value="GOVCLOUD_US">GovCloud US</option>
+            <option value="GOVCLOUD_CHINA">GovCloud China</option>
+          </select>
+        </div>
+
+        <div class="form__section-title">SOFTLAYER</div>
+
+        <div class="form__row">
+          <div class="form__label" translate>USERNAME</div>
+          <input type="text" class="form__input" ng-model="model.softlayerAccount.username" spellcheck="false" />
+        </div>
+        <div class="form__row last">
+          <div class="form__label">API key</div>
+          <input type="password" class="form__input" ng-model="model.softlayerAccount.apiKey" spellcheck="false" />
+        </div>
+        <div ng-if="selection.indexOf('WORKSPACES') > -1">
+          <hr>
+          <div class="step__note" translate>NEW_CLIENT_STEP_2_NOTE_LIQUIDWARE</div>
+          <div class="form__section-title">LIQUIDWARE</div>
+          <div translate><input type="checkbox" ng-model="model.liquidware.internal">USES_LIQUIDWARE_INTERNAL</div>
+
+          <div ng-if="!model.liquidware.internal">
+            <div class="form__row">
+              <div class="form__label" translate>URL</div>
+              <input type="text" class="form__input" ng-model="model.liquidware.url" spellcheck="false" />
+            </div>
+            <div class="form__row">
+              <div class="form__label" translate>USERNAME</div>
+              <input type="text" class="form__input" ng-model="model.liquidware.username" spellcheck="false" />
+            </div>
+            <div class="form__row">
+              <div class="form__label" translate>PASSWORD</div>
+              <input type="text" class="form__input" ng-model="model.liquidware.password" spellcheck="false" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="step__navigation unselectable">
+        {{ 'STEP' | translate }} 2 / 3
+        <div class="step__btn" data-icon-after="&#xe4ba" ng-click="processStep2()" translate>NEXT</div>
+        <div class="step__btn" data-icon-before="&#xe4b9" ng-click="goBack()" translate>PREVIOUS</div>
+      </div>
+    </div>
+
+    <div class="step step3" ng-switch-when="2">
+      <div class="step__title" translate>NEW_CLIENT_STEP_3_TITLE</div>
+      <div class="step__content">
+        <div class="step__note" translate>NEW_CLIENT_STEP_3_NOTE</div>
+        <div class="form__row">
+          <div class="form__label required" translate>NAME</div>
+          <input class="form__input" ng-model="model.user.name" spellcheck="false" />
+        </div>
+        <div class="form__row">
+          <div class="form__label required" translate>LASTNAME</div>
+          <input class="form__input" ng-model="model.user.lastName" spellcheck="false" />
+        </div>
+        <div class="form__row">
+          <div class="form__label required" translate>EMAIL</div>
+          <input class="form__input" ng-model="model.user.email" spellcheck="false" />
+        </div>
+        <div class="form__row">
+          <div class="form__label" translate>SECONDARY_EMAIL</div>
+          <input class="form__input" ng-model="model.user.secondaryEmail" spellcheck="false" />
+        </div>
+        <div class="form__row last">
+          <div class="form__label required" translate>PASSWORD</div>
+          <input type="password" class="form__input" ng-model="model.user.password" spellcheck="false" />
+        </div>
+        <div class="form__row last">
+          <div class="form__label required" translate>ROLES</div>
+          <div class="form__radios">
+            <div class="form__radio" ng-class="{'selected': model.user.role == 'ROLE_CH_USER_ADMIN'}" ng-click="model.user.role = 'ROLE_CH_USER_ADMIN'" translate>ADMIN</div>
+            <div class="form__radio" ng-class="{'selected': model.user.role == 'ROLE_CH_LIMITED_ADMIN'}" ng-click="model.user.role = 'ROLE_CH_LIMITED_ADMIN'" translate>LIMITED</div>
+            <div class="form__radio" ng-class="{'selected': model.user.role == 'ROLE_CH_USER'}" ng-click="model.user.role = 'ROLE_CH_USER'" translate>READ_ONLY</div>
+          </div>
+        </div>
+      </div>
+      <div class="step__navigation unselectable">
+        {{ 'STEP' | translate }} 3 / 3
+        <div class="step__btn" data-icon-after="&#xe4ba" ng-click="processStep3()" translate>FINISH</div>
+        <div class="step__btn" data-icon-before="&#xe4b9" ng-click="goBack()" translate>PREVIOUS</div>
+      </div>
+    </div>
+
+  </div>
+</div>

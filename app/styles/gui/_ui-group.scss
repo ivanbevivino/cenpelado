@@ -1,0 +1,250 @@
+
+.groupConfig {
+  .step {
+    .step__note {
+      line-height: 20px;
+    }
+  }
+  padding-bottom: 30px;
+}
+.groups {
+  .group {
+    background: #FFF;
+    padding: 10px 0;
+    position: relative;
+
+    &__header {
+      margin: 10px 0;
+      clear: both;
+    }
+
+    &__subheader {
+      margin: 10px 0;
+
+      span {
+        font-family: Raleway, sans-serif;
+        font-size: 16px;
+        color: rgb(150, 151, 165);
+        width: 240px;
+        display: inline-block;
+      }
+
+      .group-delay-after-instance, .group-delay-after-group {
+        width: 100px;
+        padding: 6px 5px;
+        border: 1px solid #bfbfbf;
+        border-radius: 3px;
+        color: #6e6f84;
+        font-weight: 500;
+        display: inline-block;
+        vertical-align: middle;
+        text-align: right;
+      }
+
+      .group-delay-after-instance {
+        margin-right: 20px;
+      }
+
+      .start {
+        margin-bottom: 10px;
+      }
+    }
+
+    &__settings {
+      background:#eee;
+      padding: 2px 7px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      position: relative;
+
+      &:after {
+        position: absolute;
+        content: 'Group Settings';
+        position: absolute;
+        background: #ccc;
+        top: 0;
+        right: 20px;
+        padding: 5px 10px;
+        color: #666;
+      }
+
+    }
+
+    &__container {
+      position: relative;
+    }
+
+    .drop-zone {
+      min-height: 49px;
+      line-height: 49px;
+      border: 1px dashed #aeaeae;
+      position: relative;
+      z-index: 2;
+    }
+
+    .empty-placeholder {
+      min-height: 49px;
+      line-height: 49px;
+      font-style: italic;
+      font-weight: 500;
+      text-align: center;
+      width: 100%;
+      text-align: center;
+      position: absolute;
+      top: 0;
+      z-index: 1;
+    }
+  }
+
+  .dndPlaceholder {
+    background: #CCC;
+    border-bottom: 1px solid #d7d7d7;
+    height: 49px;
+    line-height: 49px;
+    text-align: center;
+    display: block;
+  }
+}
+
+.servers-configured {
+  font-weight: 300;
+  font-style: italic;
+}
+
+.servers, .practices {
+  min-height: 51px;
+  margin: 30px 0 30px 0;
+  border: 1px solid #CCC;
+
+  .group__server, .practice {
+    background: #FFF;
+    border-bottom: 1px solid #d7d7d7;
+    height: 49px;
+  }
+
+  .dndPlaceholder {
+    background: #CCC;
+    border-bottom: 1px solid #d7d7d7;
+    height: 49px;
+    line-height: 49px;
+    text-align: center;
+    display: block;
+  }
+}
+
+.group-name {
+  padding: 6px 5px;
+  border: 1px solid #bfbfbf;
+  border-radius: 3px;
+  color: #6e6f84;
+  font-weight: 500;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.group-name-value {
+  padding: 6px 5px;
+  border-radius: 3px;
+  color: #6e6f84;
+  font-weight: 500;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.groupName {
+  color: #c71968;
+  text-transform: capitalize;
+}
+
+.btn--save {
+  margin-left: 5px;
+}
+
+.btn--group {
+  float: right;
+}
+
+.btn-delete {
+  font-family: streamline;
+  color: #6e6f84;
+  display: inline-block;
+  vertical-align: middle;
+  border-color: #bfbfbf;
+}
+
+.btn-move {
+  font-family: icons;
+  float: right;
+  display: inline-block;
+  border-color: #bfbfbf;
+  margin-left: 5px;
+  color: #6e6f84;
+}
+
+.table__row {
+  &.table__row--secondary {
+    padding: 0;
+
+    .column {
+      line-height: 49px;
+      color: #6e6f84;
+      font-weight: 500;
+
+      &--icon {
+        background: #5288d1;
+        padding: 0 !important;
+        color: #FFF;
+        font-family: icons;
+        font-size: 1.1si es que en psd no me sirverem;
+      }
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+.groups-configuration {
+  padding: 0 5px;
+
+  .state-title {
+    padding-left: 0;
+    margin-bottom: 10px;
+
+    .tab__title {
+      line-height: 40px;
+    }
+  }
+
+  &__actions {
+    float: right;
+  }
+
+  .btn-radio.active, .btn-radio:hover {
+    background: #fff;
+  }
+
+  .state-subtitle {
+    margin-bottom: 5px;
+  }
+
+  .ch-checkbox, .ch-checkbox-label {
+    vertical-align: middle;
+    margin-top: 4px;
+    display: inline-block;
+  }
+
+  .checkbox-holder {
+    display: inline-block;
+    cursor: pointer;
+  }
+}
+
+.group-config-header {
+  margin-top: 20px;
+}
+
+.dndDragging {
+  background: #CCC !important;
+}

@@ -1,0 +1,43 @@
+.loading {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100px;
+  height: 50px;
+  z-index: 2;
+  animation-delay: .5s;
+  display: none;
+  background: image-url("loading.png") center center #5288d1 no-repeat;
+
+  @include breakpoint(900px) {
+    width: 120px;
+    height: 69px;
+  }
+
+  &.active {
+    display: block;
+  }
+
+  &:after {
+    font-family: streamline;
+    content: "\e283";
+    position: absolute;
+    top: 19px;
+    left: 44px;
+    color: #FFF;
+    animation: spin .7s infinite linear;
+    @include font-smoothing;
+    font-weight: 700;
+    text-rendering: optimizeLegibility;
+
+    @include breakpoint(900px) {
+      top: 28px;
+      left: 53px;
+    }
+  }
+}
+
+@keyframes spin {
+    0%  { transform: rotate(360deg); }
+    100% { transform: rotate(0deg); }
+}

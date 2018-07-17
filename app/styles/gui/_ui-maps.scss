@@ -1,0 +1,194 @@
+.mapInformation {
+  background: #25262f;
+  padding: 20px;
+  margin-top: 10px;
+  margin-left: -20px;
+  border-radius: 5px;
+  width: 232px;
+  height: 163px;
+  color: #b7cce8;
+  font-size: 13px;
+  box-shadow: 1px 1px 1px rgba(255, 255, 255, .2);
+
+  &:after {
+    content: '';
+    position: absolute;
+    border-style: solid;
+    border-width: 0 10px 10px;
+    border-color: #25262f transparent;
+    display: block;
+    width: 0;
+    z-index: 1;
+    top: -10px;
+    left: 13px;
+  }
+
+  img {
+    content: url("/images/maps/close.png");
+  }
+
+  &.mapInformation--info {
+    width: 300px;
+    height: 90px;
+
+    .availability {
+      display: block;
+    }
+
+    .counts {
+      display: none;
+    }
+  }
+
+  &.hq-popup {
+    width: 300px;
+    height: 100px;
+
+    .counts {
+      display: none;
+    }
+
+    .business-location {
+      display: block;
+    }
+  }
+
+  .availability {
+    display: none;
+  }
+
+  .counts {
+    display: block;
+  }
+
+  .business-location {
+    display: none;
+    font-weight: 300;
+
+    .business-location-title {
+      margin-bottom: 10px;
+      font-size: 14px;
+      font-weight: 400;
+    }
+
+    .address {
+      margin-bottom: 10px;
+    }
+  }
+
+  .location-name {
+    font-weight: 500;
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+
+  .count {
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 300;
+  }
+
+  .count-number {
+    background: #5288d1;
+    display: inline-block;
+    padding: 3px 5px;
+    width: 30px;
+    border-radius: 8px;
+    margin-right: 7px;
+    text-align: center;
+    color: #FFF;
+  }
+}
+
+.map-legend {
+  height: 45px;
+  width: 405px;
+  padding: 10px;
+  background: #FFF;
+  position: relative;
+  z-index: 2;
+  left: 50%;
+  margin-left: -195px;
+  box-shadow: 1px 2px 2px #CCC;
+  border-radius: 0 0 5px 5px;
+
+  li {
+    position: relative;
+    display: inline;
+    margin-right: 13px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.map-legend__label {
+  padding-left: 30px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #25262f;
+  line-height: 22px;
+}
+
+.map-legend__hexagon {
+  position: absolute;
+  width: 20px;
+  height: 11.55px;
+  margin: 5.77px 0;
+
+  &.map-legend__hexagon--active {
+    background-color: #09aa73;
+  }
+
+  &.map-legend__hexagon--inactive {
+    background-color: #333541;
+  }
+
+  &.map-legend__hexagon--hq {
+    background-color: #c61d6a;
+  }
+}
+
+.map-legend__hexagon:before,
+.map-legend__hexagon:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+}
+
+.map-legend__hexagon:before {
+  bottom: 100%;
+}
+
+.map-legend__hexagon--active:before {
+  border-bottom: 5.77px solid #09aa73;
+}
+
+.map-legend__hexagon--inactive:before {
+  border-bottom: 5.77px solid #333541;
+}
+
+.map-legend__hexagon--hq:before {
+  border-bottom: 5.77px solid #c61d6a;
+}
+
+.map-legend__hexagon:after {
+  top: 100%;
+  width: 0;
+  border-top: 5.77px solid #09aa73;
+}
+
+.map-legend__hexagon--active:after {
+  border-top: 5.77px solid #09aa73;
+}
+
+.map-legend__hexagon--inactive:after {
+  border-top: 5.77px solid #333541;
+}
+
+.map-legend__hexagon--hq:after {
+  border-top: 5.77px solid #c61d6a;
+}

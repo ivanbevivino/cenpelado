@@ -1,0 +1,44 @@
+<div class="state-title-connect">
+  <span class="page-title animated fadeInUp title">
+    <span class="path" translate>CUSTOMERS_MANAGEMENT</span>
+  </span>
+  <button class="primary-bglight-button button--arrow right" ng-if="(isAuthorized([roles.CH_USER_ADMIN,roles.CH_USER_LIMITED, roles.CH_SYSTEM_ADMIN]))" data-animation="am-flip-x" bs-dropdown="options" data-placement="bottom-right" translate>OPTIONS</button>
+</div>
+
+<div class="cp-table-container table-light" st-table="displayedRows" st-safe-src="customers" style="padding-bottom: 30px;">
+
+
+  <table class="cp-table">
+    <thead>
+      <tr class="unselectable">
+        <th class="hidden">CUSTOMERID</th>
+        <th></th>
+        <th st-sort="row.name" translate>ALIAS</th>
+        <th translate>APPLICATIONS</th>
+        <th translate>HEADCUARTER</th>
+        <th class="text-center" translate>status</th>
+        <th ng-if="(isAuthorized([roles.CH_USER_ADMIN,roles.CH_USER_LIMITED,  roles.CH_SYSTEM_ADMIN]))" translate>EDIT</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-if="displayedRows.length == 0">
+        <td colspan="{{(isAuthorized([roles.CH_USER_ADMIN,roles.CH_USER_LIMITED, roles.CH_SYSTEM_ADMIN])) ? 7 : 6}}" translate>NO_CUSTOMERS</td>
+      </tr>
+      <tr ng-repeat="row in displayedRows" ng-click="row.active = !row.active" class="hover-opacity">
+        <td class="hidden">{{::row.id}}</td>
+        <td>
+          <div class="ch-checkbox" ng-class="{'active': row.active}"></div>
+        </td>
+        <td>{{::row.name}}</td>
+        <td><span ng-repeat="app in ::row.apps" class="label label-primary margin-y-sm">{{::app}}</span></td>
+        <td>{{::row.headquarter}}</td>
+        <td>
+          <div class="text-center" ng-class="{'customer-enabled': row.enabled, 'customer-disabled': !row.enabled}">{{row.enabled ? '&#xe2a5;':'&#xe264;' }}</div>
+        </td>
+        <td><a ng-if="(isAuthorized([roles.CH_USER_ADMIN,roles.CH_USER_LIMITED,  roles.CH_SYSTEM_ADMIN]))" href="" ng-click="editCustomer()" class="action"><span class="ct-icon glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div st-pagination st-items-by-page="15"></div>
+</div>

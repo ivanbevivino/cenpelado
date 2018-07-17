@@ -1,0 +1,62 @@
+<div class="js-admins-page" st-table="displayedRows" st-safe-src="regions">
+  <div class="state-title tab__bar">
+    <span class="state-title animated fadeInUp">
+      <span class="breadcrumbLink" translate ui-sref="app.admin-dashboard">ADMINISTRATION</span>
+      <span class="breadcrumbDivider">&gt;</span>
+      <span translate>MANAGE_REGIONS</span>
+    </span>
+    <button class="primary-bglight-button right" translate ng-click="createRegionPopup()">CREATE_REGION</button>
+    <div class="search-input">
+      <input st-search="{{name + regionId + provider}}" st-delay="200" placeholder="Search..." />
+    </div>
+  </div>
+
+  <div class="cp-table-container">
+    <table class="cp-table cp-table--regions">
+      <colgroup>
+        <col class="col-check">
+        <col class="col-name">
+        <col class="col-regionId">
+        <col class="col-provider">
+        <col class="col-latitude">
+        <col class="col-longitude">
+        <col class="col-actions">
+      </colgroup>
+      <thead>
+        <tr class="unselectable">
+          <th class="text-center" ng-if="(isAuthorized([roles.CH_USER_ADMIN,roles.CH_USER_LIMITED, roles.CH_SYSTEM_ADMIN]))">
+            <div class="ch-checkbox" ng-class="{'active': allActive}" ng-click="toggleAll()"></div>
+          </th>
+          <th st-sort="name" st-sort-default="true" translate>NAME</th>
+          <th st-sort="lastName" translate>REGION ID</th>
+          <th st-sort="provider" class="text-center" translate>PROVIDER</th>
+          <th st-sort="latitude" translate>LATITUDE</th>
+          <th st-sort="longitude" translate>LONGITUDE</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-if="displayedRows.length == 0">
+          <td colspan="5" translate>NO_REGIONS</td>
+        </tr>
+        <tr class="unselectable actionable" ng-repeat="row in displayedRows" ng-click="toggleOne(row)">
+          <td class="text-center">
+            <div class="ch-checkbox" ng-class="{'active': row.active}"></div>
+          </td>
+          <td>{{row.name}}</td>
+          <td>{{row.regionId}}</td>
+          <td class="text-center">
+            <div class="provider" ng-class="['provider--' + row.provider]">{{row.provider}}</div>
+          </td>
+          <td>{{row.latitude}}</td>
+          <td>{{row.longitude}}</td>
+          <td class="text-center">
+            <span class="actionLnk" ng-click="editRegionPopup($event, row)" translate>EDIT</span>&nbsp;&nbsp;
+            <span class="actionLnk" ng-click="deleteRegion($event, row)" translate>DELETE</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div st-pagination st-items-by-page="10"></div>
+  </div>
+</div>

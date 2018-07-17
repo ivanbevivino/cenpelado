@@ -1,0 +1,244 @@
+.ch-pusher {
+  position: relative;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.ch-menu {
+  position: absolute; /* we can't use fixed here :( */
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 300px;
+  height: 100%;
+  transform: translate3d(-100%, 0, 0);
+  overflow-y: auto;
+  background: #25262f;
+}
+
+.ch-menu__link {
+  text-decoration: none;
+  color: $nav-font-color;
+  font-size: 16px;
+  margin: 10px 0;
+  display: block;
+  padding: 12px 20px;
+  text-shadow: 0 0 1px rgba(255,255,255,0.1);
+  transition: background 0.3s, box-shadow 0.3s;
+  border-left: 4px solid $nav-hover;
+
+  &:focus {
+    color: $nav-font-color;
+    text-decoration: none;
+  }
+
+  &.active, &:hover {
+    border-left: 4px solid $accent-color;
+    background: $nav-hover;
+    color: #FFF;
+    text-decoration: none;
+  }
+
+  &:after {
+    font-size: 11px;
+    float: right;
+    margin-top: 4px;
+  }
+}
+
+.ch-level {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: $background-nav;
+  transform: translate3d(-100%, 0, 0);
+}
+
+/* overlays for pusher and for level that gets covered */
+.ch-pusher::after,
+.ch-level::after,
+.ch-level::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  content: '';
+  opacity: 0;
+}
+
+.ch-pusher::after {
+  z-index: 2;
+}
+
+.ch-pusher::after,
+.ch-level::after {
+  background: rgba(0,0,0,0.3);
+  transition: opacity 0.3s, width 0.1s 0.3s, height 0.1s 0.3s;
+}
+
+.ch-level::after {
+  z-index: -1;
+}
+
+.ch-pusher.ch-pushed::after,
+.ch-level.ch-level-overlay::after {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  transition: opacity 0.3s;
+  margin-top: 50px;
+
+  @include breakpoint(900px) {
+    margin-top: 69px;
+  }
+}
+
+.ch-level.ch-level-overlay {
+  cursor: pointer;
+}
+
+.ch-level.ch-level-overlay.ch-level::before {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  opacity: 1;
+}
+
+.ch-pusher,
+.ch-level {
+  transition: all 0.5s;
+}
+
+/* overlap */
+.ch-overlap .ch-level.ch-level-open {
+  box-shadow: 1px 0 2px rgba(0,0,0,0.2);
+  transform: translate3d(-40px, 0, 0);
+}
+
+/* First level */
+.ch-menu > .ch-level,
+.ch-menu > .ch-level.ch-level-open,
+.ch-menu.ch-overlap > .ch-level,
+.ch-menu.ch-overlap > .ch-level.ch-level-open {
+  box-shadow: none;
+  transform: translate3d(0, 0, 0);
+}
+
+/* cover */
+.ch-cover .ch-level.ch-level-open {
+  transform: translate3d(0, 0, 0);
+}
+
+.ch-cover .ch-level.ch-level-open > ul > li > .ch-level:not(.ch-level-open) {
+  transform: translate3d(-100%, 0, 0);
+}
+
+/* content style */
+.ch-menu ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ch-menu h2 {
+  height: 50px;
+  line-height: 50px;
+  background: #5288d1;
+  color: #FFF;
+  padding: 0 20px;
+  font-size: 18px;
+
+  @include breakpoint(900px) {
+    height: 69px;
+    line-height: 69px;
+  }
+}
+
+.ch-menu.ch-overlap h2::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 8px;
+  font-size: 75%;
+  line-height: 1.8;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.1s 0.3s;
+  transform: translateX(-100%);
+}
+
+.ch-overlap .ch-level.ch-level-overlay > h2::before {
+  opacity: 1;
+  transition: transform 0.3s, opacity 0.3s;
+  transform: translateX(0);
+}
+
+.ch-menu ul li::before {
+  position: absolute;
+  left: 10px;
+  z-index: -1;
+  color: rgba(0,0,0,0.2);
+  line-height: 3.5;
+}
+
+.ch-menu .ch-level.ch-level-overlay > ul > li > a,
+.ch-level.ch-level-overlay > ul > li:first-child > a {
+  box-shadow: inset 0 -1px rgba(0,0,0,0);
+}
+
+.ch-level > ul > li:first-child > a:hover,
+.ch-level.ch-level-overlay > ul > li:first-child > a {
+  box-shadow: inset 0 -1px rgba(0,0,0,0), inset 0 1px rgba(0,0,0,0);
+} /* seems like Chrome 34.0.1847.131 needs the second shadow otherwise the transition breaks */
+
+.ch-back {
+  background: rgba(0,0,0,0.2);
+  outline: none;
+  color: $nav-font-color;
+  font-weight: 400;
+  display: block;
+  font-size: 0.8em;
+  padding: 1em;
+  position: relative;
+  transition: background 0.3s;
+  text-decoration: none;
+
+  &:before {
+    font-size: 11px;
+    float: left;
+    margin: 1px 10px 0 0;
+  }
+
+  &:hover {
+    background: rgba(0,0,0,0.2) !important;
+    border: none !important;
+    color: #FFF !important;
+  }
+}
+
+.ch-menu .ch-level.ch-level-overlay > .ch-back,
+.ch-menu .ch-level.ch-level-overlay > .ch-back::after {
+  background: transparent;
+  box-shadow: none;
+  color: transparent;
+}
+
+/* Fallback example for browsers that don't support 3D transforms (and no JS fallback) */
+/* We'll show the first level only */
+.no-csstransforms3d .ch-pusher,
+.no-js .ch-pusher {
+  padding-left: 300px;
+}
+
+.no-csstransforms3d .ch-menu .ch-level,
+.no-js .ch-menu .ch-level {
+  display: none;
+}
+
+.no-csstransforms3d .ch-menu > .ch-level,
+.no-js .ch-menu > .ch-level {
+  display: block;
+}

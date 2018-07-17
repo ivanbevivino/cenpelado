@@ -1,0 +1,46 @@
+
+// ----------------------------------------------------------------------------
+// Layout configuration
+// ----------------------------------------------------------------------------
+
+$susy: (
+  columns: 24,
+  gutters: 1/4,
+  math: fluid,
+  output: float,
+  gutter-position: after
+);
+
+// ----------------------------------------------------------------------------
+// Fonts
+// ----------------------------------------------------------------------------
+
+$primary-font: Raleway, sans-serif;
+$secondary-font: Cabin, sans-serif;
+$icon-font: 'streamline';
+$secondary-icon-font: 'icons';
+$tertiary-icon-font: 'icomoon';
+
+// ----------------------------------------------------------------------------
+// Colors
+// ----------------------------------------------------------------------------
+
+$background-light: #efefef;
+$background-dark: #3b3f55;
+$background-dark-accent: #5989cb;
+$background-nav: #25262f;
+
+$font-color-dark: #a3a8c4;
+
+$nav-font-color: #b7cce8;
+$nav-hover: #292b38;
+
+$background-light-font-color: #6e6f84;
+$accent-color: #ce206f;
+
+// ----------------------------------------------------------------------------
+// Animated menu icon
+// ----------------------------------------------------------------------------
+
+$close-button-size: 32px;
+$close-button-transition: .3s;

@@ -1,0 +1,21 @@
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" style="width:670px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="$hide()">&times;</button>
+        <h4 class="modal-title" translate>EXCEPTION_DETAILS</h4>
+      </div>
+      <div class="modal-body" style="height:270px;overflow: hidden;">
+        <div class="exception-subtitle" translate>EXCEPTION_CLASS</div>
+        <div>{{event.exceptionClass}}&nbsp;</div>
+        <div class="exception-subtitle" translate>EXCEPTION_REFERENCE</div>
+        <div>{{event.exceptionReference}}&nbsp;</div>
+        <div class="exception-subtitle" translate>EXCEPTION_TRACE</div>
+        <div>{{event.exceptionTrace}}&nbsp;</div>
+      </div>
+      <div class="modal-footer modal-footer--feedback">
+        <button type="button" class="btn btn-primary" ng-click="$hide()" translate>CLOSE</button>
+      </div>
+    </div>
+  </div>
+</div>

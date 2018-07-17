@@ -1,0 +1,19 @@
+<div class="box box--account" ng-class="{'.box--invalid': hasError}">
+  <img src="images/logo.png" width="443" height="69" class="animated fadeInDown" />
+  <form name="accountForm" class="box__form animated fadeInUp" ng-submit="createAccount(account)">
+    <input type="text" class="box__input" ng-model="account.customerName" placeholder="{{'ACCESS_COMPANY' | translate}}" spellcheck="false" required />
+    <input type="text" class="box__input" ng-model="account.name" placeholder="{{'ACCESS_NAME' | translate}}" spellcheck="false" required />
+    <input type="text" class="box__input" ng-model="account.lastName" placeholder="{{'ACCESS_LASTNAME' | translate}}" spellcheck="false" required />
+    <input type="email" class="box__input" ng-model="account.email" placeholder="{{'ACCESS_EMAIL' | translate}}" required />
+    <input type="password" class="box__input" ng-model="account.password" placeholder="{{'ACCESS_PASSWORD' | translate}}" required />
+    <input type="password" class="box__input" ng-model="account.passwordConfirm" placeholder="{{'ACCESS_CONFIRM_PASSWORD' | translate}}" required />
+    <div class="terms-ctr">
+      <div class="checkbox checkbox--account unselectable" ng-class="{'checked': checked}" ng-click="toggleTerms()" translate>
+        ACCEPT_TERMS
+      </div>
+      (<a href="UserAgreement_Centricity.pdf" class="terms-download" download>download</a>)
+    </div>
+    <button class="box__button box__button--secondary" ui-sref="login" translate>CANCEL</button>
+    <button class="box__button" ng-disabled="accountForm.$invalid" translate>CREATE</button>
+  </form>
+</div>

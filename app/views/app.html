@@ -1,0 +1,72 @@
+<div class="help-btn unselectable" ng-click="help()">
+  ?</div>
+<div class="feedback-btn unselectable" ng-click="feedback()" translate>FEEDBACK_SUGGESTIONS</div>
+<div class="ch-container">
+  <div id="ch-pusher" class="ch-pusher">
+    <nav id="ch-menu" class="ch-menu" menu>
+      <div class="ch-level">
+        <h2 translate>MENU_HEADLINE</h2>
+        <ul>
+          <li ng-if="isAuthorized([roles.CH_SYSTEM_ADMIN])">
+            <a href ui-sref="app.admin-dashboard" ui-sref-active="active" class="ch-menu__link" translate>MENU_ADMIN_DASHBOARD</a>
+          </li>
+          <li ng-if="hasApplications([applications.CLOUDPOXEE])">
+            <a href ui-sref="app.dashboard" ui-sref-active="active" class="ch-menu__link" translate>MENU_DASHBOARD</a>
+          </li>
+      
+          <li ng-if="hasApplications([applications.CONNECT])">
+            <a href ui-sref="app.connect" ui-sref-active="active" class="ch-menu__link" translate>MENU_CONNECT</a>
+          </li>
+   
+          <li ng-if="isAuthorized([roles.CH_SYSTEM_ADMIN])">
+            <a href ui-sref="app.customer-settings" ui-sref-active="active" class="ch-menu__link" translate>MENU_CUSTOMER_SETTINGS</a>
+          </li>
+          <li ng-if="isAuthorized([roles.CH_USER,roles.CH_USER_ADMIN,roles.CH_USER_LIMITED])">
+            <a href ui-sref="app.customer-settings" ui-sref-active="active" class="ch-menu__link" translate>MENU_SETTINGS</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="scroller">
+      <div class="scroller-inner">
+        <!-- ********** -->
+        <!-- Top header -->
+        <!-- ********** -->
+        <div class="topbar">
+          <button type="button" role="button" aria-label="Toggle Navigation" class="lines-button x js-menu-trigger" ng-class="{'close-menu': menuOpen}" ng-show="isAuthorized([roles.CH_USER,roles.CH_USER_ADMIN,roles.CH_USER_LIMITED]) || (isAuthorized([roles.CH_SYSTEM_ADMIN]) && customer)">
+            <span class="lines"></span>
+          </button>
+          <img class="logo" src="images/logo-header.png" ng-click="go('app.dashboard')" />
+          <img class="logo-small" src="images/logo-header-small.png" ng-click="go('app.dashboard')" />
+          <div class="loading" ng-class="{'active animated fadeIn': loading && !loadingBlock }"></div>
+          <div class="userbar" ng-class="{'animated fadeOut': loading && !loadingBlock, 'animated fadeIn': !loading }">
+            <div class="welcomebar">
+              <img class="gravatar" gravatar-src="user.email" gravatar-size="42">
+              <span class="usermenu--welcome">
+                {{ 'WELCOME' | translate }} <span class="usermenu__name">{{user.name}} {{user.lastName}}</span>
+              </span>
+              <span class="usermenu" data-animation="am-flip-x" bs-dropdown="dropdown" data-placement="bottom-right">
+                {{ 'WELCOME' | translate }} <span class="usermenu__name" data-icon-after="&#xe5ca">{{user.name}} {{user.lastName}}</span>
+              </span>
+            </div>
+            <button type="button" role="button" aria-label="Log out" class="userbar__logout" ng-if="isAuthorized([roles.CH_USER_ADMIN,roles.CH_USER_LIMITED, roles.CH_USER])" ng-click="$emit('logout')">&#xe26c;</button>
+            <div class="clientsbar" ng-if="isAuthorized([roles.CH_SYSTEM_ADMIN])">
+              <div class="adminmenu" data-icon-after="&#xe4ba" ng-click="openClientsPanel()">
+                <span ng-if="customer != null">{{customer.name}}</span>
+                <span ng-if="customer == null" translate>ADMIN_MENU_CLIENTS_SELECTION</span>
+              </div>
+            </div>
+          </div>
+          <div class="user-bar-responsive" ng-class="{'animated fadeOut': loading && !loadingBlock, 'animated fadeIn': !loading }">
+            <div class="usermenu" data-animation="am-flip-x" bs-dropdown="dropdown" data-placement="bottom-right">&#xe12a;</div>
+            <div class="clientmenu" ng-if="isAuthorized([roles.CH_SYSTEM_ADMIN])">&#xe0e6;</div>
+          </div>
+        </div>
+        <!-- ************ -->
+        <!-- Site content -->
+        <!-- ************ -->
+        <div class="state-content" ui-view></div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="aside aside--secondary" tabindex="-1" role="dialog">
+  <div class="aside-dialog">
+    <div class="aside-content">
+      <div class="aside-header">
+        <div class="aside-close" ng-click="$hide()">&#xe2aa;</div>
+        <h4 class="aside-title" translate>CUSTOMER</h4>
+      </div>
+      <div class="aside-body">
+        <div class="secondary-aside-body" ng-form name="form">
+
+            <div class="scheduling-field">
+                <input type="text" class="hidden" ng-model="customer.id" />
+              <div class="scheduling-field__label" translate>ALIAS</div>
+              <div class="scheduling-field__value">
+                <input  type="text" class="input-field single-field"  ng-model="customer.name" required/>
+              </div>
+            </div>
+            <div ng-repeat="aplication in aplications" class="row">
+              <label  class="padding-md" >
+                <input type="checkbox"  value="{{aplication}}" ng-checked="selection.indexOf(aplication) > -1" ng-click="toggleSelection(aplication)" translate> {{aplication}}
+              </label>
+            </div>
+          <hr>
+          <div <div class="aside-footer">
+            <button class="secondary-bglight-button" ng-click="$hide()">Cancel</button>
+            <button class="primary-bglight-button" ng-click="execute()" ng-disabled="form.$invalid">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+{
+
+
+    "API_URL": "http://dev.sandbox-us.centricity.io:8080/api",
+    "CONTENT_URL": "http://dev.sandbox-us.centricity.io:8080",
+    "API_CONNECT_URL": "http://dev.sandbox-us.centricity.io:8091/connect",
+    "API_MEDIABOX_URL": "http://dev.sandbox-us.centricity.io:8092/mediabox",
+    "METRICS_URL" : "http://dev.sandbox-us.centricity.io:8081/metrics"
+
+
+
+}

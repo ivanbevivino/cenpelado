@@ -1,0 +1,59 @@
+
+#nzTour-box-wrap #nzTour-box {
+  max-height: 270px;
+
+  #nzTour-step,  {
+    background: none;
+    font-family: Raleway, sans-serif;
+    color: rgb(110, 111, 132);
+    display: none;
+
+    &:after {
+      content: '/';
+      margin-left: 5px;
+    }
+  }
+
+  #nzTour-length {
+    background: none;
+    font-family: Raleway, sans-serif;
+    color: rgb(110, 111, 132);
+    display: none;
+  }
+
+  #nzTour-content {
+    box-shadow: none;
+    color: rgb(110, 111, 132);
+    font-family: Raleway, sans-serif;
+    max-height: 300px;
+    padding-bottom: 5px;
+  }
+
+  #nzTour-close {
+    width: 16px;
+    height: 16px;
+    font-size: 10px;
+
+    &:hover {
+      background-color: #5288d1;
+    }
+  }
+
+  #nzTour-actions {
+    button {
+      border: 1px solid #bdc3c5;
+      background-color: #FFF;
+      color: #6e6f84;
+
+      &.success {
+        background-color: #5288d1;
+        border: none;
+        color: #FFF;
+
+        &:hover {
+          background-color: ligthen(#5288d1, 10%);
+        }
+      }
+    }
+  }
+}

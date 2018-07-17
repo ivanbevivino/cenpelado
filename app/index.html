@@ -1,0 +1,218 @@
+<!doctype html>
+<!--[if lt IE 10]>         <html class="no-js not-supported" ng-app="aparcApp"> <![endif]-->
+<!--[if gte IE 10]><!-->
+<html class="no-js" ng-app="cloudpoxee">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <title ng-bind="title">Centricity</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <!--  Add New Relic -->
+  <!-- build:js scripts/new-relic.js -->
+  <script src="scripts/new-relic/new-relic.js"></script>
+  <!-- endbuild -->
+  <!-- build:css(./) styles/vendor.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
+  <link rel="stylesheet" href="bower_components/angular-growl-v2/build/angular-growl.css" />
+  <link rel="stylesheet" href="bower_components/select2/select2.css" />
+  <link rel="stylesheet" href="bower_components/bootstrap-css/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="bower_components/nz-tour/dist/nz-tour.min.css" />
+  <link rel="stylesheet" href="bower_components/ng-tags-input/ng-tags-input.css" />
+  <link rel="stylesheet" href="bower_components/angular-xeditable/dist/css/xeditable.css" />
+  <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker.css" />
+  <!-- endbower -->
+  <!-- endbuild -->
+
+  <!-- build:css({.tmp,app}) styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- endbuild -->
+
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,400italic,500,500italic,600,700|Cabin:500,700" rel="stylesheet" type="text/css">
+
+  <!-- build:js scripts/modernizr.js -->
+  <script src="scripts/modernizr/modernizr-3.0.0-beta.js"></script>
+  <!-- endbuild -->
+</head>
+
+<body state="{{$state.current.name}}">
+  <!-- UI Block loading -->
+  <div class="uiblock" ng-class="{'active': loadingBlock}">
+    <div class="loadingCtr">
+      <div class="loading"></div>
+      <div class="loadingLabel" translate>LOADING</div>
+    </div>
+  </div>
+
+  <!-- Notifications -->
+  <div class="growl-notifications" growl></div>
+
+  <!-- Site content -->
+  <ui-view></ui-view>
+
+  <!-- build:js(./) scripts/vendor.js -->
+  <script src="bower_components/ace-builds/src-min-noconflict/ace.js"></script>
+  <!-- bower:js -->
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/es5-shim/es5-shim.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/json3/lib/json3.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="bower_components/angular-gravatar/build/md5.js"></script>
+  <script src="bower_components/angular-gravatar/build/angular-gravatar.js"></script>
+  <script src="bower_components/angular-translate/angular-translate.js"></script>
+  <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+  <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+  <script src="bower_components/angular-strap/dist/angular-strap.js"></script>
+  <script src="bower_components/angular-strap/dist/angular-strap.tpl.js"></script>
+  <script src="bower_components/lodash/lodash.js"></script>
+  <script src="bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
+  <script src="bower_components/angular-growl-v2/build/angular-growl.js"></script>
+  <script src="bower_components/moment/moment.js"></script>
+  <script src="bower_components/angular-moment/angular-moment.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  <script src="bower_components/select2/select2.js"></script>
+  <script src="bower_components/angular-ui-select2/src/select2.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+  <script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+  <script src="bower_components/angular-translate-storage-local/angular-translate-storage-local.js"></script>
+  <script src="bower_components/bootstrap-css/js/bootstrap.min.js"></script>
+  <script src="bower_components/nz-tour/dist/nz-tour.min.js"></script>
+  <script src="bower_components/angular-drag-and-drop-lists/angular-drag-and-drop-lists.js"></script>
+  <script src="bower_components/angular-smart-table/dist/smart-table.js"></script>
+  <script src="bower_components/clipboard/dist/clipboard.js"></script>
+  <script src="bower_components/ngclipboard/dist/ngclipboard.js"></script>
+  <script src="bower_components/angular-ui-ace/ui-ace.js"></script>
+  <script src="bower_components/d3/d3.js"></script>
+  <script src="bower_components/ng-tags-input/ng-tags-input.js"></script>
+  <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
+  <script src="bower_components/gsap/src/uncompressed/TweenMax.js"></script>
+  <script src="bower_components/angular-svg-round-progressbar/build/roundProgress.js"></script>
+  <script src="bower_components/checklist-model/checklist-model.js"></script>
+  <script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+  <script src="bower_components/angular-filter/dist/angular-filter.js"></script>
+  <script src="bower_components/angular-permission/dist/angular-permission.js"></script>
+  <script src="bower_components/angular-permission/dist/angular-permission-ui.js"></script>
+  <script src="bower_components/angular-permission/dist/angular-permission-ng.js"></script>
+  <script src="bower_components/clappr/dist/clappr.js"></script>
+  <script src="bower_components/file-saver/dist/FileSaver.js"></script>
+  <script src="bower_components/html2canvas/build/html2canvas.js"></script>
+  <script src="bower_components/jspdf/dist/jspdf.debug.js"></script>
+  <script src="bower_components/jspdf-autotable/dist/jspdf.plugin.autotable.js"></script>
+  <script src="bower_components/tableexport.jquery.plugin/tableExport.js"></script>
+  <script src="bower_components/zingchart/client/zingchart.min.js"></script>
+  <script src="bower_components/ZingChart-AngularJS/src/zingchart-angularjs.js"></script>
+  <script src="bower_components/chart.js/dist/Chart.js"></script>
+  <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
+  <!-- endbower -->
+  <script src="bower_components/moment/locale/es.js"></script>
+  <!-- endbuild -->
+
+  <!-- build:js({.tmp,app}) scripts/scripts.js -->
+  <script src="scripts/app.js"></script>
+  <script src="scripts/additional/pushmenu.js"></script>
+  <script src="scripts/controllers/access.js"></script>
+  <script src="scripts/controllers/welcome.js"></script>
+  <script src="scripts/controllers/account.js"></script>
+  <script src="scripts/controllers/application.js"></script>
+  <script src="scripts/controllers/forgotPassword.js"></script>
+  <script src="scripts/controllers/changePassword.js"></script>
+  <script src="scripts/controllers/dashboard.js"></script>
+  <script src="scripts/controllers/adminDashboard.js"></script>
+  <script src="scripts/controllers/manageAdmins.js"></script>
+  <script src="scripts/controllers/profile.js"></script>
+  <!-- <script src="scripts/controllers/groups.js"></script> -->
+  <script src="scripts/controllers/groupDetails.js"></script>
+  <script src="scripts/controllers/groupConfig.js"></script>
+  <script src="scripts/controllers/servers.js"></script>
+  <script src="scripts/controllers/loadBalancers.js"></script>
+  <script src="scripts/controllers/volumes.js"></script>
+  <script src="scripts/controllers/snapshots.js"></script>
+  <!-- <script src="scripts/controllers/mapDistribution.js"></script> -->
+  <script src="scripts/controllers/customers/customers.js"></script>
+  <script src="scripts/controllers/customers/customersAdd.js"></script>
+  <script src="scripts/controllers/customers/customersManagement.js"></script>
+  <script src="scripts/controllers/customers/customerSettings.js"></script>
+  <script src="scripts/controllers/scheduling.js"></script>
+  <!-- <script src="scripts/controllers/ec2-commands.js"></script> -->
+  <script src="scripts/controllers/manageRegions.js"></script>
+<!--   <script src="scripts/controllers/best-practices/results.js"></script>
+  <script src="scripts/controllers/best-practices/manager.js"></script>
+  <script src="scripts/controllers/best-practices/creator.js"></script> -->
+  <!-- <script src="scripts/controllers/lambda/lambda.js"></script> -->
+  <script src="scripts/controllers/credentials/manager.js"></script>
+  <script src="scripts/controllers/credentials/creator.js"></script>
+<!--   <script src="scripts/controllers/security-groups/creator.js"></script>
+  <script src="scripts/controllers/security-groups/manager.js"></script> -->
+<!--   <script src="scripts/controllers/workspaces/workspaces.js"></script>
+  <script src="scripts/controllers/workspaces/workspace.js"></script> -->
+  <script src="scripts/controllers/connect/connect.js"></script>
+  <script src="scripts/controllers/connect/dashboard.js"></script>
+<!--   <script src="scripts/controllers/mediabox/streammanager.js"></script>
+  <script src="scripts/controllers/mediabox/pastevents.js"></script>
+  <script src="scripts/controllers/mediabox/medialibrary.js"></script> -->
+  <!-- <script src="scripts/controllers/hls.js"></script> -->
+  <!-- <script src="scripts/controllers/videojs-contrib-hls.min.js"></script>
+    <script src="scripts/controllers/video.js"></script> -->
+
+
+  <script src="scripts/directives/cron.js"></script>
+  <script src="scripts/directives/menu.js"></script>
+  <script src="scripts/directives/blurFocus.js"></script>
+  <script src="scripts/directives/onlyDigits.js"></script>
+  <script src="scripts/directives/activityEntry.js"></script>
+  <script src="scripts/directives/formatDateInput.js"></script>
+  <script src="scripts/directives/inputFilled.js"></script>
+  <script src="scripts/directives/hexagons.js"></script>
+
+  <script src="scripts/services/cloudApi.js"></script>
+  <script src="scripts/services/workspaceApi.js"></script>
+  <script src="scripts/services/workspaceValidationApi.js"></script>
+  <script src="scripts/services/utilities.js"></script>
+  <script src="scripts/services/tagService.js"></script>
+  <script src="scripts/services/tagHandler.js"></script>
+  <script src="scripts/services/authService.js"></script>
+  <script src="scripts/services/adminService.js"></script>
+  <script src="scripts/services/schedulingService.js"></script>
+  <script src="scripts/services/introduction.js"></script>
+  <script src="scripts/services/serverOptions.js"></script>
+  <script src="scripts/services/loadBalancerOptions.js"></script>
+  <script src="scripts/services/volumeOptions.js"></script>
+  <script src="scripts/services/snapshotOptions.js"></script>
+  <script src="scripts/services/groupOptions.js"></script>
+  <script src="scripts/services/credentialsOptions.js"></script>
+  <script src="scripts/services/permissionService.js"></script>
+  <script src="scripts/services/connectApi.js"></script>
+  <script src="scripts/services/mediaboxApi.js"></script>
+  <script src="scripts/services/redirect.js"></script>
+  <script src="scripts/services/reportApi.js"></script>
+
+  <script src="scripts/filters/offset.js"></script>
+  <script src="scripts/filters/numberFixedLen.js"></script>
+  <script src="scripts/filters/dayPostfix.js"></script>
+  <script src="scripts/filters/snapshotType.js"></script>
+  <script src="scripts/filters/truncate.js"></script>
+  <script src="scripts/filters/identifier.js"></script>
+  <script src="scripts/filters/taskInfo.js"></script>
+  <script src="scripts/filters/autocomplete.js"></script>
+  <script src="scripts/filters/impending.js"></script>
+  <script src="scripts/filters/reverse.js"></script>
+  <script src="scripts/filters/workspace-header.js"></script>
+
+  <script src="scripts/interceptors/authHttpInterceptor.js"></script>
+  <script src="scripts/interceptors/loadingHttpInterceptor.js"></script>
+
+  <!--
+  <script src="scripts/additional/datepicker/daterangepicker.js"> </script>
+    <script src="scripts/additional/datepicker/moment.js"> </script>
+  <script src="scripts/additional/datepicker/moment.min.js"> </script>
+  <script src="scripts/additional/datepicker/package.js"> </script> -->
+
+  <!-- endbuild -->
+</body>
+
+</html>

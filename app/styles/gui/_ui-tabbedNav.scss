@@ -1,0 +1,158 @@
+.tabbedNav {
+  border-bottom: 1px solid #d1d1d1;
+}
+
+.tabbedNav__item {
+  display: inline;
+  margin-right: 15px;
+}
+
+.tabLink {
+  padding: 0 5px;
+  line-height: 35px;
+  cursor: pointer;
+  position: relative;
+
+  &.active, &:hover {
+    color: #5288d1;
+  }
+
+  &.active {
+    &:before {
+      position: absolute;
+      bottom: -17.5px;
+      left: 50%;
+      margin-left: -10px;
+      content: '';
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 10px 10px 0 10px;
+      border-color: #d1d1d1 transparent transparent transparent;
+    }
+
+    &:after {
+      position: absolute;
+      bottom: -16.5px;
+      left: 50%;
+      margin-left: -10px;
+      content: '';
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 10px 10px 0 10px;
+      border-color: #efefef transparent transparent transparent;
+    }
+  }
+}
+
+.tab__content {
+  margin: 15px 0;
+  padding: 5px 0;
+
+  &.tab__content--fit {
+    padding: 0 0 20px 0;
+  }
+}
+
+.tab__bar {
+  margin-bottom: 10px;
+
+  .dropdown-menu {
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .1);
+    margin-top: 5px;
+    margin-left: 5px;
+
+    li > a {
+      color: #585869;
+
+      &:hover {
+        background: #f3f3f3;
+        color: #585869;
+      }
+    }
+
+    &:before {
+      display: none;
+    }
+
+    .divider {
+      background: #eee;
+      height: 1px;
+    }
+  }
+}
+
+.tab__title {
+  line-height: 35px;
+  font-weight: 500;
+
+  &--light {
+    font-weight: 300;
+  }
+  @include font-smoothing(true);
+}
+
+.primary-bglight-button {
+  background: #5288d1;
+  padding: 10px 20px;
+  border: none;
+  color: #FFF;
+  border-radius: 5px;
+  font-size: 13px;
+  margin: 0 5px;
+  @include font-smoothing(true);
+
+  &.right {
+    float: right;
+  }
+
+  &[disabled] {
+    opacity: .7;
+  }
+}
+
+.secondary-bglight-button {
+  background: #efefef;
+  padding: 10px 20px;
+  border: 1px solid #bdc3c5;
+  color: #6e6f84;
+  border-radius: 5px;
+  font-size: 13px;
+  margin: 0 5px;
+  @include font-smoothing(true);
+
+  &.right {
+    float: right;
+  }
+}
+
+.tertiary-bglight-button {
+  background: #606177;
+  padding: 10px 20px;
+  border: 1px solid #bdc3c5;
+  color: #FFF;
+  border-radius: 5px;
+  font-size: 13px;
+  margin: 0 5px;
+  @include font-smoothing(true);
+
+  &.right {
+    float: right;
+  }
+}
+
+.button--arrow {
+  position: relative;
+  padding-right: 35px;
+
+  &:after {
+    font-family: streamline;
+    content: '\e5ca';
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    font-size: 11px;
+  }
+}

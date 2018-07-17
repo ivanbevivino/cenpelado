@@ -1,0 +1,42 @@
+<div class="welcome">
+  <div class="state-title tab__bar">
+    <span class="tab__title tab__title--light animated fadeInUp" translate>GETTING_STARTED</span>
+  </div>
+  <div class="state-description state-description--light tab__bar" ng-bind-html="'GETTING_STARTED_DESCRIPTION' | translate"></div>
+
+  <div class="step">
+    <div class="step__title">
+      {{NEW_CLIENT_STEP_2_TITLE | translate}}
+    </div>
+    <div class="step__content">
+      <div class="form__section-title">
+        AMAZON
+        <a href="#" class="policy-link" ng-click="showAmazonPolicy()" translate>SHOW_POLICY</a>
+      </div>
+
+      <div class="form__row">
+        <div class="form__label">Access key</div>
+        <input type="text" class="form__input" ng-model="model.amazon.accessKey" spellcheck="false" />
+      </div>
+      <div class="form__row">
+        <div class="form__label">Secret key</div>
+        <input type="password" class="form__input" ng-model="model.amazon.secretKey" spellcheck="false" />
+      </div>
+
+      <div class="form__section-title">SOFTLAYER</div>
+
+      <div class="form__row">
+        <div class="form__label" translate>USERNAME</div>
+        <input type="text" class="form__input" ng-model="model.softlayer.username" spellcheck="false" />
+      </div>
+      <div class="form__row last">
+        <div class="form__label">API key</div>
+        <input type="password" class="form__input" ng-model="model.softlayer.apiKey" spellcheck="false" />
+      </div>
+      <div class="form__row clearfix unselectable">
+        <button class="primary-bglight-button right" ng-click="configureClouds()" translate>CONFIGURE</button>
+      </div>
+    </div>
+  </div>
+</div>
+

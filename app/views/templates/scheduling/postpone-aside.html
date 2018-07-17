@@ -1,0 +1,24 @@
+<div class="aside aside--secondary" tabindex="-1" role="dialog">
+  <div class="aside-dialog">
+    <div class="aside-content">
+      <div class="aside-header">
+        <div class="aside-close" ng-click="$hide()">&#xe2aa;</div>
+        <h4 class="aside-title" translate>SCHEDULING</h4>
+      </div>
+      <div class="aside-body" ng-form name="form">
+        <div class="secondary-aside-body">
+          <div class="scheduling-field">
+            <div class="scheduling-field__label" translate>DELAY_IN_MINUTES</div>
+            <div class="scheduling-field__value">
+              <input type="number" ng-model="delay" style="width: 100%; padding: 2px;" required/>
+            </div>
+          </div>
+          <div class="aside-footer">
+            <button class="secondary-bglight-button" translate ng-click="$hide()">CANCEL</button>
+            <button class="primary-bglight-button" translate ng-click="postpone(delay); $hide();" ng-disabled="form.$invalid">POSTPONE</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

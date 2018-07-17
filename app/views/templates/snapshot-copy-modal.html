@@ -1,0 +1,30 @@
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" style="width:690px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="$hide()">&times;</button>
+        <h4 class="modal-title" translate>COPY_SNAPSHOT_TO</h4>
+      </div>
+      <div class="modal-body" style="height:100px;">
+        <div class="form__row last">
+          <div class="form__label required" translate>DESTINATION</div>
+          <select ui-select2="{ minimumResultsForSearch: -1, width: 470, containerCssClass: 'containerSelect', dropdownCssClass : 'capitalizeSelect' }" ng-model="destination">
+            <option value="ap-northeast-1">Asia Pacific (Tokyo)</option>
+            <option value="ap-southeast-1">Asia Pacific (Singapore)</option>
+            <option value="ap-southeast-2">Asia Pacific (Sydney)</option>
+            <option value="eu-central-1">EU (Frankfurt)</option>
+            <option value="eu-west-1">EU (Ireland)</option>
+            <option value="sa-east-1">South America (Sao Paulo)</option>
+            <option value="us-east-1">US East (N. Virginia)</option>
+            <option value="us-west-1">US West (N. California)</option>
+            <option value="us-west-2">US West (Oregon)</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="$hide()" translate>CANCEL</button>
+        <button type="button" class="btn btn-primary" ng-click="execute(destination)" translate>COPY</button>
+      </div>
+    </div>
+  </div>
+</div>

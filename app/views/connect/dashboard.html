@@ -1,0 +1,558 @@
+<div class="cp-content__main">
+  <div class="loading-central active animated fadeIn hidden"></div>
+
+  <div class="cp-content__header">
+    <div class="title">CONNECT</div>
+  </div>
+  <div class="tab-ctrl unselectable">
+
+    <div class="tab" ng-class="{'active': tab == 4}" ng-click="tab = 4 ; hiddenloading(); changetab()">
+      <span class="tab__label" translate>REAL-TIME</span>
+    </div>
+    <div class="tab" ng-class="{'active': tab == 0}" ng-click="tab = 0; changetab() ">
+      <span class="tab__label" translate>DASHBOARD</span>
+    </div>
+
+    <div class="tab" ng-class="{'active': tab == 3}" ng-click="tab = 3 ; hiddenloading(); changetab();chargedatepicker()">
+      <span class="tab__label" translate>AGENTS</span>
+    </div>
+    <div class="tab" ng-class="{'active': tab == 2}" ng-click="tab = 2 ; hiddenloading(); changetab();chargedatepicker()">
+      <span class="tab__label" translate>CALLS</span>
+    </div>
+    <div class="tab" ng-class="{'active': tab == 1}" ng-click="tab = 1 ; hiddenloading(); changetab();chargedatepicker()">
+      <span class="tab__label" translate>REPORTS</span>
+    </div>
+
+    <div class="tab col-md-5 pull-right" style="padding-bottom: 0px;padding-top: 0px;cursor: default;" ng-if="tab == 1 || tab == 2 || tab == 4 || tab == 0" ng-init="chargedatepicker()">
+
+
+      <div class="col-md-1 pull-right" ng-if="tab == 4 " style="margin-top: -12px;">
+        <button class="btn btn-export  btn-block" type="button" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true" ng-click="Alerts()" style="width: 65px;color: #ffffff !important;background-color: #d00e67;border-color: #d00e67;">
+          <span translate > Alerts </span>
+        </button>
+      </div>
+      <div class="col-md-1 pull-right" ng-if="tab == 4 || tab == 0" style="margin-top: -12px;">
+        <div class="dropdown">
+          <button class="btn btn-export dropdown-toggle btn-block" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width: 59px;">
+            <i class=""></i><span translate ng-if="refreshTime > 59">{{refreshTime/60}}m</span><span translate ng-if="refreshTime < 59">{{refreshTime}}s</span>
+            <span class="caret"></span>
+          </button>
+          <ul class="table-export dropdown-menu btn-block" aria-labelledby="dropdownMenu1" style="    width: 59px !important; max-width: 59px;  min-width: 59px;">
+            <li>
+              <a ng-click="setRefreshingTime(5)">5s</a>
+            </li>
+            <li>
+              <a ng-click="setRefreshingTime(10)">10s</a>
+            </li>
+            <li>
+              <a ng-click="setRefreshingTime(30)">30s</a>
+            </li>
+            <li>
+              <a ng-click="setRefreshingTime(60)">1m</a>
+            </li>
+            <li>
+              <a ng-click="setRefreshingTime(300)">5m</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-2 pull-right" ng-if="tab == 4 || tab == 0" style="margin-top: -6px;">
+        <span style="vertical-align: sub;">Refresh Time</span>
+      </div>
+
+      <div class="col-md-1 pull-right" ng-if="tab == 0" style="margin-top: -12px;">
+        <div class="dropdown">
+          <button class="btn btn-export dropdown-toggle btn-block" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width: 59px;    margin-left: -2vh;">
+            <i class=""></i>    <span ng-if="rangeTime/60/60/1000<24">{{rangeTime/60/60/1000}}h</span> <span ng-if="rangeTime/60/60/1000>=24">{{rangeTime/60/60/1000/24}}d</span>
+            <span class="caret"></span>
+          </button>
+          <ul class="table-export dropdown-menu btn-block" aria-labelledby="dropdownMenu2" style="width: 100px !important;max-width: 100px;min-width: 100px;margin-left: -5vh;">
+
+
+
+            <li>
+              <a ng-click="setRangeTime(3600000)">Last 1h</a>
+            </li>
+            <li>
+              <a ng-click="setRangeTime(10800000)">Last 3h</a>
+            </li>
+            <li>
+              <a ng-click="setRangeTime(43200000)">Last 12h</a>
+            </li>
+            <li>
+              <a ng-click="setRangeTime(86400000)">Last 1d</a>
+            </li>
+            <li>
+              <a ng-click="setRangeTime(259200000)">Last 3d</a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-2 pull-right" ng-if="tab == 0" style="margin-top: -6px;">
+        <span style="vertical-align: sub;">Time Range</span>
+      </div>
+
+      <div class="scheduling-field__value pull-right col-md-4" style="    margin-top: -12px;" ng-if="tab == 4">
+        <select ui-select2="{ minimumResultsForSearch: 1, width: '100%' }" ng-model="routingProfileSelected" style="background: white !important; width: 100%" placeholder="Select a routing profile" class="btn-block">
+          <option ng-repeat=" routingProfile in routingProfiles track by $index">{{routingProfile.routing_profile}}</option>
+        </select>
+      </div>
+      <div class="pull-right col-md-4" style="text-align: end;" ng-if="tab == 4">
+        <span>Routing Profiles</span>
+      </div>
+
+      <div class="col-md-3 pull-right" ng-if="tab == 1">
+        <div class="dropdown">
+          <button class="btn btn-export dropdown-toggle btn-block" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <i class=""></i><span translate>EXPORT_REPORT</span>
+            <span class="caret"></span>
+          </button>
+          <ul class="table-export dropdown-menu btn-block" aria-labelledby="dropdownMenu1">
+            <li>
+              <a ng-click="exportReport('pdf')">PDF</a>
+            </li>
+
+            <li>
+              <a ng-click="exportReport('excel')">Excel</a>
+            </li>
+
+            <li>
+              <a ng-click="exportReport('csv')">CSV</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- <button class="primary-bglight-button right ng-scope" style="float:left;" translate="View" ng-click="exportReport()"></button> -->
+      </div>
+      <div id="reportrange" class="pull-right divreportrange" ng-if="tab == 1 || tab == 2">
+        <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+        <span></span> <b class="caret"></b>
+      </div>
+      <!-- <button class="primary-bglight-button-search  glyphicon glyphicon-search" ng-click="changedate(tab)"></button> -->
+
+    </div>
+  </div>
+</div>
+
+
+<div class="cp-body" ng-switch="tab">
+
+  <div class="cp-body-elements" ng-switch-when="0" ng-init="dashboardtab()">
+    <!-- <div class="col-md-3 col-md-offset-9">
+
+      <a href="" ng-click="EditDashboard()" class="action"><span class="ct-icon glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+      <a href="" ng-click="SaveDashboard()" class="action"><span class="ct-icon glyphicon glyphicon-ok" aria-hidden="true"></span></a>
+      <a href="" ng-click="CancelDashboard()" class="action"><span class="ct-icon glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+
+    </div> -->
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4" id="report{{$index}}" ng-repeat="report in dashboard track by $index">
+          <div class='panel panel-default' id="panelreport{{$index}}">
+
+            <div class="panel-heading" style="height: 4vh;">
+              <div class="col-md-8">
+                <span style="    position: absolute;">{{report.title}}</span>
+              </div>
+              <div class="col-md-3 pull-right" style="text-align:right;">
+                <a ng-if="report.type != null" ng-click="configChart(report)"><span style="font-weight: bolder;" class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+                <a ng-if="report.type == null" ng-click="configChart(report)"><span style="font-weight: bolder;" class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
+                <a ng-if="report.type != null && report.maximize==0" ng-click="maximizeReport(report,$index)"><span style="font-weight: bolder;" class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span></a>
+                <a ng-if="report.type != null && report.maximize==1" ng-click="minimizeReport(report,$index)"><span style="font-weight: bolder;" class="glyphicon glyphicon-resize-small" aria-hidden="true"></span></a>
+              </div>
+            </div>
+            <div class="panel-body" id="panelbody{{$index}}" style="height: 200px; align-items: center;">
+              <!-- style="padding:0px !important"-->
+              <!--zingchart id="{{report.id}}" zc-json="report.json" zc-width="auto" zc-height="200px"></zingchart-->
+              <canvas ng-if="report.type != null" class="chart-base" chart-type="report.type" chart-colors="report.color" chart-data="report.data" chart-labels="report.labels" chart-options="chartoptions"></canvas>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="cp-body-elements" ng-switch-when="1" ng-init="chargereports()">
+    <div class="col-md-2 tab-reports-report">
+      <div class="input-group box-shadow">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+        <input class="form-control" type="text" ng-model="reportfilter" placeholder="Search Report" ng-keyup="changecolors()">
+      </div>
+      <ul class="list-group ul-overflow box-shadow">
+        <li id="{{report.id}}" class="list-group-item report-item" ng-repeat="report in reports | filter:{name:reportfilter}" ng-click="selectreport($index,report)">{{report.name}}</li>
+      </ul>
+    </div>
+    <div class="col-md-10 iframe">
+      <!-- <div><iframe id="iframereport" src="" width="100%" height="700rem"></iframe></div> -->
+      <div class="cp-table-container table-light-large-report" ng-if="datacolumns" style="max-width: 201vh;overflow: auto;">
+        <table class="cp-table table" name="table" id="table">
+          <colgroup>
+            <col ng-repeat="column in datacolumns" class="{{column}}">
+          </colgroup>
+          <thead>
+            <tr class="unselectable">
+              <th class="tdreporte" style="text-align: -webkit-center;" ng-repeat="column in datacolumns" translate>{{column}}</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="unselectable actionable" ng-repeat="data in datavales track by $index">
+              <td class="tdreporte" ng-repeat="field in data" translate>{{field}}</td>
+
+            </tr>
+
+          </tbody>
+        </table>
+        <!-- <div st-pagination st-items-by-page="1"></div> -->
+      </div>
+    </div>
+
+  </div>
+
+  <div class="cp-body-elements" ng-switch-when="2" ng-init="chargeagents()">
+    <div class="col-md-2 tab-calls-agents">
+      <div class="input-group box-shadow">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+        <input class="form-control" type="text" ng-model="agentfilter" placeholder="Search Agents" ng-keyup="changecolors()">
+        <span ng-click="checkAll()" class="input-group-addon btn btn-block"><i class="glyphicon glyphicon-ok"></i></span> <span ng-click="uncheckAll()" class="input-group-addon btn btn-block"><i class="glyphicon glyphicon-remove" ></i></span>
+      </div>
+      </ul>
+
+      <ul class="list-group agent-list ul-overflow box-shadow" ng-click="getCalls()">
+        <li class="list-group-item" ng-repeat="agent in agents | filter:{agent_username:agentfilter}"><label style="display:block"><input type="checkbox" checklist-model="agentselected.agents" checklist-value="agent.agent_arn"> {{agent.agent_username}}</label></li>
+      </ul>
+    </div>
+    <div class="col-md-10 tab-calls-table">
+      <div class="cp-table-container table-light box-shadow" st-table="displayedRows" st-safe-src="calls" style="padding-bottom: 30px;">
+        <table class="cp-table">
+          <thead>
+            <tr>
+              <th st-sort="row.agentUsername" translate>USER_NAME</th>
+              <th st-sort="row.agent_connect_to_agent_timestamp" translate>DATE</th>
+              <th st-sort="row.agent_interaction_duration" translate>DURATION</th>
+              <th translate>AUDIO</th>
+              <th translate>TRANSCRIBE</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-if="displayedRows.length == 0">
+              <td translate> SELECT_AGENT_DATE </td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr ng-repeat="row in displayedRows">
+              <td>{{::row.agent_username}}</td>
+              <td>{{::row.agent_connect_to_agent_timestamp}}</td>
+              <td>{{::row.agent_interaction_duration}}s</td>
+              <td>
+                <div id="{{row.contact_id}}" class="max-min-150"><button type="button" name="button" class="glyphicon glyphicon-volume-up" ng-click="playcall()"></button></div>
+
+              </td>
+              <td>
+                <div ng-if="row.transcribestatus === 'COMPLETED'">
+                  <button type="button" class="color-success" aria-label="Left Align" ng-click="gettranscribe(row.contact_id)">
+                    <span class="glyphicon glyphicon-subtitles" aria-hidden="true"></span>
+                  </button>
+                </div>
+                <div ng-if="row.transcribestatus != 'COMPLETED'">
+                  <button type="button" class="color-danger" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-subtitles" aria-hidden="true"></span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div st-pagination st-items-by-page="15"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cp-body-elements tab-agents-connect" ng-switch-when="3" ng-init="chargeastatusagents()">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12 tab-agents-connect1">
+          <div class="col-md-2 col-md-offset-1">
+            <div class="card card-agents-Available">
+              <span class="glyphicon glyphicon-user agent-status-icon"></span>
+              <span class="agent-status-quantity">{{agentstatusquantity.available}}</span>
+              <span class="agent-status-description" translate>AVAILABLE</span>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="card card-agents-oncall">
+              <span class="glyphicon glyphicon-earphone agent-status-icon"></span>
+              <span class="agent-status-quantity">{{agentstatusquantity.oncall}}</span>
+              <span class="agent-status-description" translate>ON_CALL</span>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="card card-agents-acw">
+              <span class="glyphicon glyphicon-pencil agent-status-icon"></span>
+              <span class="agent-status-quantity">{{agentstatusquantity.acw}}</span>
+              <span class="agent-status-description">ACW</span>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="card card-agents-Not">
+              <span class="glyphicon glyphicon-ban-circle agent-status-icon"></span>
+              <span class="agent-status-quantity">{{agentstatusquantity.notavailable}}</span>
+              <span class="agent-status-description" translate>NOT_AVAILABLE</span>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="card card-agents-Disconnect">
+              <span class="glyphicon glyphicon-off agent-status-icon"></span>
+              <span class="agent-status-quantity">{{agentstatusquantity.disconnect}}</span>
+              <span class="agent-status-description" translate>DISCONNECTED</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-10 col-md-offset-1">
+          <div class="container-agents-status tab-agents-connect2">
+            <h4 class="container-header" translate><b>AGENTS_LC</b></h4>
+            <div class="card-agent" ng-repeat="agent in agentsstatuslist.agents">
+              <a id="{{agent.Agent_Name}}" class="card-icon card-agents-{{agent.Agent_Status}} glyphicon glyphicon-user agent-status-icon-min" ng-mouseover="showagentdetail()" ng-mouseleave="hideagentdetail()" data-toggle="popover" title="" data-placement="top"> </a>
+              <span class="agent-name">{{agent.Agent_Name}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cp-body-elements" ng-switch-when="4" ng-init="realtime()">
+    <div class='container-fluid'>
+      <div class='row'>
+        <div class='col-md-12'>
+          <!-- <div class='col-md-12'  style="height: 22rem;max-height: 22rem;min-height: 22rem;overflow: auto;"> -->
+          <div class='panel panel-default'>
+            <div class="panel-body">
+              <table class="cp-table table" name="table" id="agentsTable">
+                <thead>
+                  <tr class="unselectable">
+
+                    <th> <input class="form-control" type="text" ng-model="agentFilter.Agent" placeholder="Search Agent"> </th>
+                    <th> <input class="form-control" type="text" ng-model="agentFilter.Status" placeholder="Search Status"> </th>
+                    <th>Duration</th>
+                    <th>Hierarchy</th>
+                    <th>Routing Profile</th>
+                    <th>Contact State</th>
+                    <th>Contact Queue</th>
+                    <th>AVG. ACW</th>
+                    <th>Break Time (Today)</th>
+                    <th>Missed Calls (Today)</th>
+                    <th>Handled In (Today)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="rtAgents in agentsRealtime | toArray:false | filter:agentFilter">
+                    <td>{{rtAgents.Agent}}</td>
+                    <td>{{rtAgents.Status}}</td>
+                    <td ng-if="configAlerts.duration_warning+configAlerts.duration_danger==0">{{ timeCounter(rtAgents.Duration) }}</td>
+                    <td ng-if="configAlerts.duration_warning+configAlerts.duration_danger>0 && configAlerts.duration_warning < configAlerts.duration_danger &&  rtAgents.Duration < configAlerts.duration_warning ">{{ timeCounter(rtAgents.Duration) }}</td>
+                    <td ng-if="configAlerts.duration_warning+configAlerts.duration_danger>0 && configAlerts.duration_warning < configAlerts.duration_danger &&  rtAgents.Duration >= configAlerts.duration_warning && rtAgents.Duration <=  configAlerts.duration_danger" class="warning-realtime"
+                      style="  background:{{configAlerts.warningbc}}  color{{configAlerts.warningfc}};">{{ timeCounter(rtAgents.Duration) }}</td>
+                    <td ng-if="configAlerts.duration_warning+configAlerts.duration_danger>0 && configAlerts.duration_warning < configAlerts.duration_danger  && rtAgents.Duration >=  configAlerts.duration_danger" class="danger-realtime" style="background:{{configAlerts.dangerbc}};color:{{configAlerts.dangerfc}};">{{ timeCounter(rtAgents.Duration) }}</td>
+                    <td ng-if="configAlerts.duration_warning+configAlerts.duration_danger>0 && configAlerts.duration_warning > configAlerts.duration_danger &&  rtAgents.Duration > configAlerts.duration_warning ">{{ timeCounter(rtAgents.Duration) }}</td>
+                    <td ng-if="configAlerts.duration_warning+configAlerts.duration_danger>0 && configAlerts.duration_warning > configAlerts.duration_danger &&  rtAgents.Duration <= configAlerts.duration_warning && rtAgents.Duration >=  configAlerts.duration_danger" class="warning-realtime"
+                      style="  background:{{configAlerts.warningbc}}  color{{configAlerts.warningfc}};">{{ timeCounter(rtAgents.Duration) }}</td>
+                    <td ng-if="configAlerts.duration_warning+configAlerts.duration_danger>0 && configAlerts.duration_warning > configAlerts.duration_danger  && rtAgents.Duration <=  configAlerts.duration_danger" class="danger-realtime" style="background:{{configAlerts.dangerbc}};color:{{configAlerts.dangerfc}};">{{ timeCounter(rtAgents.Duration) }}</td>
+                    <td>{{rtAgents.Agent_Hierarchy}}</td>
+                    <td>{{rtAgents.Routing_Profile}}</td>
+                    <td>{{rtAgents.Contact_State}}</td>
+                    <td>{{rtAgents.Contact_Queue}}</td>
+                    <!-- <td>{{rtAgents.Avg_ACW}}</td> -->
+                    <td ng-if="configAlerts.acw_warning+configAlerts.acw_danger==0">{{ rtAgents.Avg_ACW }}</td>
+                    <td ng-if="configAlerts.acw_warning+configAlerts.acw_danger>0 && configAlerts.acw_warning < configAlerts.acw_danger &&  rtAgents.Avg_ACW < configAlerts.acw_warning ">{{ rtAgents.Avg_ACW }}</td>
+                    <td ng-if="configAlerts.acw_warning+configAlerts.acw_danger>0 && configAlerts.acw_warning < configAlerts.acw_danger &&  rtAgents.Avg_ACW >= configAlerts.acw_warning && rtAgents.Avg_ACW <=  configAlerts.acw_danger" class="warning-realtime" style="  background:{{configAlerts.warningbc}}  color{{configAlerts.warningfc}};">{{ rtAgents.Avg_ACW }}</td>
+                    <td ng-if="configAlerts.acw_warning+configAlerts.acw_danger>0 && configAlerts.acw_warning < configAlerts.acw_danger  && rtAgents.Avg_ACW >=  configAlerts.acw_danger" class="danger-realtime" style="background:{{configAlerts.dangerbc}};color:{{configAlerts.dangerfc}};">{{ rtAgents.Avg_ACW }}</td>
+                    <td ng-if="configAlerts.acw_warning+configAlerts.acw_danger>0 && configAlerts.acw_warning > configAlerts.acw_danger &&  rtAgents.Avg_ACW > configAlerts.acw_warning ">{{ rtAgents.Avg_ACW }}</td>
+                    <td ng-if="configAlerts.acw_warning+configAlerts.acw_danger>0 && configAlerts.acw_warning > configAlerts.acw_danger &&  rtAgents.Avg_ACW <= configAlerts.acw_warning && rtAgents.Avg_ACW >=  configAlerts.acw_danger" class="warning-realtime" style="  background:{{configAlerts.warningbc}}  color{{configAlerts.warningfc}};">{{ rtAgents.Avg_ACW }}</td>
+                    <td ng-if="configAlerts.acw_warning+configAlerts.acw_danger>0 && configAlerts.acw_warning > configAlerts.acw_danger  && rtAgents.Avg_ACW <=  configAlerts.acw_danger" class="danger-realtime" style="background:{{configAlerts.dangerbc}};color:{{configAlerts.dangerfc}};">{{ rtAgents.Avg_ACW }}</td>
+                    <!-- <td>{{ timeCounter(rtAgents.Break_Today) }}</td> -->
+                    <td ng-if="configAlerts.bt_warning+configAlerts.bt_danger==0">{{ timeCounter(rtAgents.Break_Today) }}</td>
+                    <td ng-if="configAlerts.bt_warning+configAlerts.bt_danger>0 && configAlerts.bt_warning < configAlerts.bt_danger &&  rtAgents.Break_Today < configAlerts.bt_warning ">{{ timeCounter(rtAgents.Break_Today) }}</td>
+                    <td ng-if="configAlerts.bt_warning+configAlerts.bt_danger>0 && configAlerts.bt_warning < configAlerts.bt_danger &&  rtAgents.Break_Today >= configAlerts.bt_warning && rtAgents.Break_Today <=  configAlerts.bt_danger" class="warning-realtime" style="  background:{{configAlerts.warningbc}}  color{{configAlerts.warningfc}};">{{ timeCounter(rtAgents.Break_Today) }}</td>
+                    <td ng-if="configAlerts.bt_warning+configAlerts.bt_danger>0 && configAlerts.bt_warning < configAlerts.bt_danger  && rtAgents.Break_Today >=  configAlerts.bt_danger" class="danger-realtime" style="background:{{configAlerts.dangerbc}};color:{{configAlerts.dangerfc}};">{{ timeCounter(rtAgents.Break_Today) }}</td>
+                    <td ng-if="configAlerts.bt_warning+configAlerts.bt_danger>0 && configAlerts.bt_warning > configAlerts.bt_danger &&  rtAgents.Break_Today > configAlerts.bt_warning ">{{ timeCounter(rtAgents.Break_Today) }}</td>
+                    <td ng-if="configAlerts.bt_warning+configAlerts.bt_danger>0 && configAlerts.bt_warning > configAlerts.bt_danger &&  rtAgents.Break_Today <= configAlerts.bt_warning && rtAgents.Break_Today >=  configAlerts.bt_danger" class="warning-realtime" style="  background:{{configAlerts.warningbc}}  color{{configAlerts.warningfc}};">{{ timeCounter(rtAgents.Break_Today) }}</td>
+                    <td ng-if="configAlerts.bt_warning+configAlerts.bt_danger>0 && configAlerts.bt_warning > configAlerts.bt_danger  && rtAgents.Break_Today <=  configAlerts.bt_danger" class="danger-realtime" style="background:{{configAlerts.dangerbc}};color:{{configAlerts.dangerfc}};">{{ timeCounter(rtAgents.Break_Today) }}</td>
+                    <!-- <td>{{rtAgents.Missed_Calls_Today}}</td> -->
+                    <td ng-if="configAlerts.mc_warning+configAlerts.mc_danger==0">{{ rtAgents.Missed_Calls_Today }}</td>
+                    <td ng-if="configAlerts.mc_warning+configAlerts.mc_danger>0 && configAlerts.mc_warning < configAlerts.mc_danger &&  rtAgents.Missed_Calls_Today < configAlerts.mc_warning ">{{ rtAgents.Missed_Calls_Today }}</td>
+                    <td ng-if="configAlerts.mc_warning+configAlerts.mc_danger>0 && configAlerts.mc_warning < configAlerts.mc_danger &&  rtAgents.Missed_Calls_Today >= configAlerts.mc_warning && rtAgents.Missed_Calls_Today <=  configAlerts.mc_danger" class="warning-realtime"
+                      style="  background:{{configAlerts.warningbc}}  color{{configAlerts.warningfc}};">{{ rtAgents.Missed_Calls_Today }}</td>
+                    <td ng-if="configAlerts.mc_warning+configAlerts.mc_danger>0 && configAlerts.mc_warning < configAlerts.mc_danger  && rtAgents.Missed_Calls_Today >=  configAlerts.mc_danger" class="danger-realtime" style="background:{{configAlerts.dangerbc}};color:{{configAlerts.dangerfc}};">{{ rtAgents.Missed_Calls_Today }}</td>
+                    <td ng-if="configAlerts.mc_warning+configAlerts.mc_danger>0 && configAlerts.mc_warning > configAlerts.mc_danger &&  rtAgents.Missed_Calls_Today > configAlerts.mc_warning ">{{ rtAgents.Missed_Calls_Today }}</td>
+                    <td ng-if="configAlerts.mc_warning+configAlerts.mc_danger>0 && configAlerts.mc_warning > configAlerts.mc_danger &&  rtAgents.Missed_Calls_Today <= configAlerts.mc_warning && rtAgents.Missed_Calls_Today >=  configAlerts.mc_danger" class="warning-realtime"
+                      style="  background:{{configAlerts.warningbc}}  color{{configAlerts.warningfc}};">{{ rtAgents.Missed_Calls_Today }}</td>
+                    <td ng-if="configAlerts.mc_warning+configAlerts.mc_danger>0 && configAlerts.mc_warning > configAlerts.mc_danger  && rtAgents.Missed_Calls_Today <=  configAlerts.mc_danger" class="danger-realtime" style="background:{{configAlerts.dangerbc}};color:{{configAlerts.dangerfc}};">{{ rtAgents.Missed_Calls_Today }}</td>
+                    <!-- <td>{{rtAgents.Handled_In_Today}}</td> -->
+                    <td ng-if="configAlerts.hc_warning+configAlerts.hc_danger==0">{{ rtAgents.Handled_In_Today }}</td>
+                    <td ng-if="configAlerts.hc_warning+configAlerts.hc_danger>0 && configAlerts.hc_warning < configAlerts.hc_danger &&  rtAgents.Handled_In_Today < configAlerts.hc_warning ">{{ rtAgents.Handled_In_Today }}</td>
+                    <td ng-if="configAlerts.hc_warning+configAlerts.hc_danger>0 && configAlerts.hc_warning < configAlerts.hc_danger &&  rtAgents.Handled_In_Today >= configAlerts.hc_warning && rtAgents.Handled_In_Today <=  configAlerts.hc_danger" class="warning-realtime"
+                      style="  background:{{configAlerts.warningbc}}  color{{configAlerts.warningfc}};">{{ rtAgents.Handled_In_Today }}</td>
+                    <td ng-if="configAlerts.hc_warning+configAlerts.hc_danger>0 && configAlerts.hc_warning < configAlerts.hc_danger  && rtAgents.Handled_In_Today >=  configAlerts.hc_danger" class="danger-realtime" style="background:{{configAlerts.dangerbc}};color:{{configAlerts.dangerfc}};">{{ rtAgents.Handled_In_Today }}</td>
+                    <td ng-if="configAlerts.hc_warning+configAlerts.hc_danger>0 && configAlerts.hc_warning > configAlerts.hc_danger &&  rtAgents.Handled_In_Today > configAlerts.hc_warning ">{{ rtAgents.Handled_In_Today }}</td>
+                    <td ng-if="configAlerts.hc_warning+configAlerts.hc_danger>0 && configAlerts.hc_warning > configAlerts.hc_danger &&  rtAgents.Handled_In_Today <= configAlerts.hc_warning && rtAgents.Handled_In_Today >=  configAlerts.hc_danger" class="warning-realtime"
+                      style="  background:{{configAlerts.warningbc}}  color{{configAlerts.warningfc}};">{{ rtAgents.Handled_In_Today }}</td>
+                    <td ng-if="configAlerts.hc_warning+configAlerts.hc_danger>0 && configAlerts.hc_warning > configAlerts.hc_danger  && rtAgents.Handled_In_Today <=  configAlerts.hc_danger" class="danger-realtime" style="background:{{configAlerts.dangerbc}};color:{{configAlerts.dangerfc}};">{{ rtAgents.Handled_In_Today }}</td>
+
+
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class='row'>
+        <!-- <div class='col-md-12' style="height: 22rem;max-height: 22rem;min-height: 22rem;overflow: auto;margin-top:1rem;"> -->
+        <div class='col-md-12'>
+          <div class='panel panel-default'>
+            <div class="panel-body">
+              <table class="cp-table table" name="table" id="queuesTable">
+                <thead>
+                  <tr class="unselectable">
+
+                    <th> <input class="form-control" type="text" ng-model="queueFilter.queue" placeholder="Search Queue"> </th>
+                    <th>Agents On Queue</th>
+                    <th>Agents Available</th>
+                    <th>Agents On Call</th>
+                    <th>Agents Not Available</th>
+                    <th>Agents On ACW</th>
+                    <th>Agents With Error</th>
+                    <th>Abandoned Calls</th>
+                    <th>AVG Handle Time</th>
+                    <th>AVG Speed Answer</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="rtQueues in queuesRealtime | toArray:false | filter:queueFilter">
+                    <td>{{rtQueues.queue}}</td>
+                    <!-- <td>{{rtQueues.Online}}</td> -->
+                    <td ng-if="configAlerts.aq_warning+configAlerts.aq_danger==0">{{rtQueues.Online }}</td>
+                    <td ng-if="configAlerts.aq_warning+configAlerts.aq_danger>0 && configAlerts.aq_warning < configAlerts.aq_danger && rtQueues.Online < configAlerts.aq_warning ">{{rtQueues.Online }}</td>
+                    <td ng-if="configAlerts.aq_warning+configAlerts.aq_danger>0 && configAlerts.aq_warning < configAlerts.aq_danger && rtQueues.Online >= configAlerts.aq_warning && rtQueues.Online <  configAlerts.aq_danger" class="warning-realtime" style="  background:{{configAlerts.warningbc}};color:{{configAlerts.warningfc}};">{{rtQueues.Online }}</td>
+                    <td ng-if="configAlerts.aq_warning+configAlerts.aq_danger>0 && configAlerts.aq_warning < configAlerts.aq_danger  && rtQueues.Online >=  configAlerts.aq_danger" class="danger-realtime" style="background:{{configAlerts.dangerbc}};color:{{configAlerts.dangerfc}};">{{rtQueues.Online }}</td>
+                    <td ng-if="configAlerts.aq_warning+configAlerts.aq_danger>0 && configAlerts.aq_warning > configAlerts.aq_danger && rtQueues.Online > configAlerts.aq_warning ">{{rtQueues.Online }}</td>
+                    <td ng-if="configAlerts.aq_warning+configAlerts.aq_danger>0 && configAlerts.aq_warning > configAlerts.aq_danger && rtQueues.Online <= configAlerts.aq_warning && rtQueues.Online >  configAlerts.aq_danger" class="warning-realtime" style="  background:{{configAlerts.warningbc}};color:{{configAlerts.warningfc}};">{{rtQueues.Online }}</td>
+                    <td ng-if="configAlerts.aq_warning+configAlerts.aq_danger>0 && configAlerts.aq_warning > configAlerts.aq_danger  && rtQueues.Online <=  configAlerts.aq_danger" class="danger-realtime" style="background:{{configAlerts.dangerbc}};color:{{configAlerts.dangerfc}};">{{rtQueues.Online }}</td>
+
+
+                    <!-- <td>{{rtQueues.available}}</td> -->
+                    <td ng-if="configAlerts.aa_warning+configAlerts.aa_danger==0">{{rtQueues.available }}</td>
+                    <td ng-if="configAlerts.aa_warning+configAlerts.aa_danger>0 && configAlerts.aa_warning < configAlerts.aa_danger && rtQueues.available < configAlerts.aa_warning ">{{rtQueues.available }}</td>
+                    <td ng-if="configAlerts.aa_warning+configAlerts.aa_danger>0 && configAlerts.aa_warning < configAlerts.aa_danger && rtQueues.available >= configAlerts.aa_warning && rtQueues.available <  configAlerts.aa_danger" class="warning-realtime" style="  background:{{configAlerts.warningbc}};color:{{configAlerts.warningfc}};">{{rtQueues.available }}</td>
+                    <td ng-if="configAlerts.aa_warning+configAlerts.aa_danger>0 && configAlerts.aa_warning < configAlerts.aa_danger  && rtQueues.available >=  configAlerts.aa_danger" class="danger-realtime" style="background:{{configAlerts.dangerbc}};color:{{configAlerts.dangerfc}};">{{rtQueues.available }}</td>
+                    <td ng-if="configAlerts.aa_warning+configAlerts.aa_danger>0 && configAlerts.aa_warning > configAlerts.aa_danger && rtQueues.available > configAlerts.aa_warning ">{{rtQueues.available }}</td>
+                    <td ng-if="configAlerts.aa_warning+configAlerts.aa_danger>0 && configAlerts.aa_warning > configAlerts.aa_danger && rtQueues.available <= configAlerts.aa_warning && rtQueues.available >  configAlerts.aa_danger" class="warning-realtime" style="  background:{{configAlerts.warningbc}};color:{{configAlerts.warningfc}};">{{rtQueues.available }}</td>
+                    <td ng-if="configAlerts.aa_warning+configAlerts.aa_danger>0 && configAlerts.aa_warning > configAlerts.aa_danger  && rtQueues.available <=  configAlerts.aa_danger" class="danger-realtime" style="background:{{configAlerts.dangerbc}};color:{{configAlerts.dangerfc}};">{{rtQueues.available }}</td>
+                    <!-- <td>{{rtQueues.on_call}}</td> -->
+                    <td ng-if="configAlerts.aoc_warning+configAlerts.aoc_danger==0">{{rtQueues.on_call }}</td>
+                    <td ng-if="configAlerts.aoc_warning+configAlerts.aoc_danger>0 && configAlerts.aoc_warning < configAlerts.aoc_danger && rtQueues.on_call < configAlerts.aoc_warning ">{{rtQueues.on_call }}</td>
+                    <td ng-if="configAlerts.aoc_warning+configAlerts.aoc_danger>0 && configAlerts.aoc_warning < configAlerts.aoc_danger && rtQueues.on_call >= configAlerts.aoc_warning && rtQueues.on_call <  configAlerts.aoc_danger" class="warning-realtime" style="  background:{{configAlerts.warningbc}};color:{{configAlerts.warningfc}};">{{rtQueues.on_call }}</td>
+                    <td ng-if="configAlerts.aoc_warning+configAlerts.aoc_danger>0 && configAlerts.aoc_warning < configAlerts.aoc_danger  && rtQueues.on_call >=  configAlerts.aoc_danger" class="danger-realtime" style="background:{{configAlerts.dangerbc}};color:{{configAlerts.dangerfc}};">{{rtQueues.on_call }}</td>
+                    <td ng-if="configAlerts.aoc_warning+configAlerts.aoc_danger>0 && configAlerts.aoc_warning > configAlerts.aoc_danger && rtQueues.on_call > configAlerts.aoc_warning ">{{rtQueues.on_call }}</td>
+                    <td ng-if="configAlerts.aoc_warning+configAlerts.aoc_danger>0 && configAlerts.aoc_warning > configAlerts.aoc_danger && rtQueues.on_call <= configAlerts.aoc_warning && rtQueues.on_call >  configAlerts.aoc_danger" class="warning-realtime" style="  background:{{configAlerts.warningbc}};color:{{configAlerts.warningfc}};">{{rtQueues.on_call }}</td>
+                    <td ng-if="configAlerts.aoc_warning+configAlerts.aoc_danger>0 && configAlerts.aoc_warning > configAlerts.aoc_danger  && rtQueues.on_call <=  configAlerts.aoc_danger" class="danger-realtime" style="background:{{configAlerts.dangerbc}};color:{{configAlerts.dangerfc}};">{{rtQueues.on_call }}</td>
+
+                    <!-- <td>{{rtQueues.not_avail}}</td> -->
+                    <td ng-if="configAlerts.ana_warning+configAlerts.ana_danger==0">{{rtQueues.not_avail }}</td>
+                    <td ng-if="configAlerts.ana_warning+configAlerts.ana_danger>0 && configAlerts.ana_warning < configAlerts.ana_danger && rtQueues.not_avail < configAlerts.ana_warning ">{{rtQueues.not_avail }}</td>
+                    <td ng-if="configAlerts.ana_warning+configAlerts.ana_danger>0 && configAlerts.ana_warning < configAlerts.ana_danger && rtQueues.not_avail >= configAlerts.ana_warning && rtQueues.not_avail <  configAlerts.ana_danger" class="warning-realtime" style="  background:{{configAlerts.warningbc}};color:{{configAlerts.warningfc}};">{{rtQueues.not_avail }}</td>
+                    <td ng-if="configAlerts.ana_warning+configAlerts.ana_danger>0 && configAlerts.ana_warning < configAlerts.ana_danger  && rtQueues.not_avail >=  configAlerts.ana_danger" class="danger-realtime" style="background:{{configAlerts.dangerbc}};color:{{configAlerts.dangerfc}};">{{rtQueues.not_avail }}</td>
+                    <td ng-if="configAlerts.ana_warning+configAlerts.ana_danger>0 && configAlerts.ana_warning > configAlerts.ana_danger && rtQueues.not_avail > configAlerts.ana_warning ">{{rtQueues.not_avail }}</td>
+                    <td ng-if="configAlerts.ana_warning+configAlerts.ana_danger>0 && configAlerts.ana_warning > configAlerts.ana_danger && rtQueues.not_avail <= configAlerts.ana_warning && rtQueues.not_avail >  configAlerts.ana_danger" class="warning-realtime" style="  background:{{configAlerts.warningbc}};color:{{configAlerts.warningfc}};">{{rtQueues.not_avail }}</td>
+                    <td ng-if="configAlerts.ana_warning+configAlerts.ana_danger>0 && configAlerts.ana_warning > configAlerts.ana_danger  && rtQueues.not_avail <=  configAlerts.ana_danger" class="danger-realtime" style="background:{{configAlerts.dangerbc}};color:{{configAlerts.dangerfc}};">{{rtQueues.not_avail }}</td>
+                    <!-- <td>{{rtQueues.ACW}}</td> -->
+                    <td ng-if="configAlerts.aacw_warning+configAlerts.aacw_danger==0">{{rtQueues.ACW }}</td>
+                    <td ng-if="configAlerts.aacw_warning+configAlerts.aacw_danger>0 && configAlerts.aacw_warning < configAlerts.aacw_danger && rtQueues.ACW < configAlerts.aacw_warning ">{{rtQueues.ACW }}</td>
+                    <td ng-if="configAlerts.aacw_warning+configAlerts.aacw_danger>0 && configAlerts.aacw_warning < configAlerts.aacw_danger && rtQueues.ACW >= configAlerts.aacw_warning && rtQueues.ACW <  configAlerts.aacw_danger" class="warning-realtime" style="  background:{{configAlerts.warningbc}};color:{{configAlerts.warningfc}};">{{rtQueues.ACW }}</td>
+                    <td ng-if="configAlerts.aacw_warning+configAlerts.aacw_danger>0 && configAlerts.aacw_warning < configAlerts.aacw_danger  && rtQueues.ACW >=  configAlerts.aacw_danger" class="danger-realtime" style="background:{{configAlerts.dangerbc}};color:{{configAlerts.dangerfc}};">{{rtQueues.ACW }}</td>
+                    <td ng-if="configAlerts.aacw_warning+configAlerts.aacw_danger>0 && configAlerts.aacw_warning > configAlerts.aacw_danger && rtQueues.ACW > configAlerts.aacw_warning ">{{rtQueues.ACW }}</td>
+                    <td ng-if="configAlerts.aacw_warning+configAlerts.aacw_danger>0 && configAlerts.aacw_warning > configAlerts.aacw_danger && rtQueues.ACW <= configAlerts.aacw_warning && rtQueues.ACW >  configAlerts.aacw_danger" class="warning-realtime" style="  background:{{configAlerts.warningbc}};color:{{configAlerts.warningfc}};">{{rtQueues.ACW }}</td>
+                    <td ng-if="configAlerts.aacw_warning+configAlerts.aacw_danger>0 && configAlerts.aacw_warning > configAlerts.aacw_danger  && rtQueues.ACW <=  configAlerts.aacw_danger" class="danger-realtime" style="background:{{configAlerts.dangerbc}};color:{{configAlerts.dangerfc}};">{{rtQueues.ACW }}</td>
+                    <!-- <td>{{rtQueues.Error}}</td> -->
+                    <td ng-if="configAlerts.ae_warning+configAlerts.ae_danger==0">{{rtQueues.Error}}</td>
+                    <td ng-if="configAlerts.ae_warning+configAlerts.ae_danger>0 && configAlerts.ae_warning < configAlerts.ae_danger && rtQueues.Error< configAlerts.ae_warning ">{{rtQueues.Error}}</td>
+                    <td ng-if="configAlerts.ae_warning+configAlerts.ae_danger>0 && configAlerts.ae_warning < configAlerts.ae_danger && rtQueues.Error>= configAlerts.ae_warning && rtQueues.Error<  configAlerts.ae_danger" class="warning-realtime" style="  background:{{configAlerts.warningbc}};color:{{configAlerts.warningfc}};">{{rtQueues.Error}}</td>
+                    <td ng-if="configAlerts.ae_warning+configAlerts.ae_danger>0 && configAlerts.ae_warning < configAlerts.ae_danger  && rtQueues.Error>=  configAlerts.ae_danger" class="danger-realtime" style="background:{{configAlerts.dangerbc}};color:{{configAlerts.dangerfc}};">{{rtQueues.Error}}</td>
+                    <td ng-if="configAlerts.ae_warning+configAlerts.ae_danger>0 && configAlerts.ae_warning > configAlerts.ae_danger && rtQueues.Error> configAlerts.ae_warning ">{{rtQueues.Error}}</td>
+                    <td ng-if="configAlerts.ae_warning+configAlerts.ae_danger>0 && configAlerts.ae_warning > configAlerts.ae_danger && rtQueues.Error<= configAlerts.ae_warning && rtQueues.Error>  configAlerts.ae_danger" class="warning-realtime" style="  background:{{configAlerts.warningbc}};color:{{configAlerts.warningfc}};">{{rtQueues.Error}}</td>
+                    <td ng-if="configAlerts.ae_warning+configAlerts.ae_danger>0 && configAlerts.ae_warning > configAlerts.ae_danger  && rtQueues.Error<=  configAlerts.ae_danger" class="danger-realtime" style="background:{{configAlerts.dangerbc}};color:{{configAlerts.dangerfc}};">{{rtQueues.Error}}</td>
+                    <!-- <td>{{rtQueues.abandoned_calls}}</td> -->
+                    <td ng-if="configAlerts.ac_warning+configAlerts.ac_danger==0 ">{{rtQueues.abandoned_calls}}</td>
+                    <td ng-if="configAlerts.ac_warning+configAlerts.ac_danger>0 && configAlerts.ac_warning < configAlerts.ac_danger && rtQueues.abandoned_calls< configAlerts.ac_warning ">{{rtQueues.abandoned_calls}}</td>
+                    <td ng-if="configAlerts.ac_warning+configAlerts.ac_danger>0 && configAlerts.ac_warning < configAlerts.ac_danger && rtQueues.abandoned_calls>= configAlerts.ac_warning && rtQueues.abandoned_calls<  configAlerts.ac_danger" class="warning-realtime" style="  background:{{configAlerts.warningbc}};color:{{configAlerts.warningfc}};">{{rtQueues.abandoned_calls}}</td>
+                    <td ng-if="configAlerts.ac_warning+configAlerts.ac_danger>0 && configAlerts.ac_warning < configAlerts.ac_danger  && rtQueues.abandoned_calls>=  configAlerts.ac_danger" class="danger-realtime" style="background:{{configAlerts.dangerbc}};color:{{configAlerts.dangerfc}};">{{rtQueues.abandoned_calls}}</td>
+                    <td ng-if="configAlerts.ac_warning+configAlerts.ac_danger>0 && configAlerts.ac_warning > configAlerts.ac_danger && rtQueues.abandoned_calls> configAlerts.ac_warning ">{{rtQueues.abandoned_calls}}</td>
+                    <td ng-if="configAlerts.ac_warning+configAlerts.ac_danger>0 && configAlerts.ac_warning > configAlerts.ac_danger && rtQueues.abandoned_calls<= configAlerts.ac_warning && rtQueues.abandoned_calls>  configAlerts.ac_danger" class="warning-realtime" style="  background:{{configAlerts.warningbc}};color:{{configAlerts.warningfc}};">{{rtQueues.abandoned_calls}}</td>
+                    <td ng-if="configAlerts.ac_warning+configAlerts.ac_danger>0 && configAlerts.ac_warning > configAlerts.ac_danger  && rtQueues.abandoned_calls<=  configAlerts.ac_danger" class="danger-realtime" style="background:{{configAlerts.dangerbc}};color:{{configAlerts.dangerfc}};">{{rtQueues.abandoned_calls}}</td>
+                    <!-- <td>{{rtQueues.avg_handle_time}}</td> -->
+                    <td ng-if="configAlerts.aht_warning+configAlerts.aht_danger==0">{{rtQueues.avg_handle_time}}</td>
+                    <td ng-if="configAlerts.aht_warning+configAlerts.aht_danger>0 && configAlerts.aht_warning < configAlerts.aht_danger && rtQueues.avg_handle_time< configAlerts.aht_warning ">{{rtQueues.avg_handle_time}}</td>
+                    <td ng-if="configAlerts.aht_warning+configAlerts.aht_danger>0 && configAlerts.aht_warning < configAlerts.aht_danger && rtQueues.avg_handle_time>= configAlerts.aht_warning && rtQueues.avg_handle_time<  configAlerts.aht_danger" class="warning-realtime"
+                      style="  background:{{configAlerts.warningbc}};color:{{configAlerts.warningfc}};">{{rtQueues.avg_handle_time}}</td>
+                    <td ng-if="configAlerts.aht_warning+configAlerts.aht_danger>0 && configAlerts.aht_warning < configAlerts.aht_danger  && rtQueues.avg_handle_time>=  configAlerts.aht_danger" class="danger-realtime" style="background:{{configAlerts.dangerbc}};color:{{configAlerts.dangerfc}};">{{rtQueues.avg_handle_time}}</td>
+                    <td ng-if="configAlerts.aht_warning+configAlerts.aht_danger>0 && configAlerts.aht_warning > configAlerts.aht_danger && rtQueues.avg_handle_time> configAlerts.aht_warning ">{{rtQueues.avg_handle_time}}</td>
+                    <td ng-if="configAlerts.aht_warning+configAlerts.aht_danger>0 && configAlerts.aht_warning > configAlerts.aht_danger && rtQueues.avg_handle_time<= configAlerts.aht_warning && rtQueues.avg_handle_time>  configAlerts.aht_danger" class="warning-realtime"
+                      style="  background:{{configAlerts.warningbc}};color:{{configAlerts.warningfc}};">{{rtQueues.avg_handle_time}}</td>
+                    <td ng-if="configAlerts.aht_warning+configAlerts.aht_danger>0 && configAlerts.aht_warning > configAlerts.aht_danger  && rtQueues.avg_handle_time<=  configAlerts.aht_danger" class="danger-realtime" style="background:{{configAlerts.dangerbc}};color:{{configAlerts.dangerfc}};">{{rtQueues.avg_handle_time}}</td>
+                    <!-- <td>{{rtQueues.avg_speed_awnser}}</td> -->
+                    <td ng-if="configAlerts.asa_warning+configAlerts.asa_danger==0">{{rtQueues.avg_speed_awnser}}</td>
+                    <td ng-if="configAlerts.asa_warning+configAlerts.asa_danger>0 && configAlerts.asa_warning < configAlerts.asa_danger && rtQueues.avg_speed_awnser< configAlerts.asa_warning ">{{rtQueues.avg_speed_awnser}}</td>
+                    <td ng-if="configAlerts.asa_warning+configAlerts.asa_danger>0 && configAlerts.asa_warning < configAlerts.asa_danger && rtQueues.avg_speed_awnser>= configAlerts.asa_warning && rtQueues.avg_speed_awnser<  configAlerts.asa_danger" class="warning-realtime"
+                      style="  background:{{configAlerts.warningbc}};color:{{configAlerts.warningfc}};">{{rtQueues.avg_speed_awnser}}</td>
+                    <td ng-if="configAlerts.asa_warning+configAlerts.asa_danger>0 && configAlerts.asa_warning < configAlerts.asa_danger  && rtQueues.avg_speed_awnser>=  configAlerts.asa_danger" class="danger-realtime" style="background:{{configAlerts.dangerbc}};color:{{configAlerts.dangerfc}};">{{rtQueues.avg_speed_awnser}}</td>
+                    <td ng-if="configAlerts.asa_warning+configAlerts.asa_danger>0 && configAlerts.asa_warning > configAlerts.asa_danger && rtQueues.avg_speed_awnser> configAlerts.asa_warning ">{{rtQueues.avg_speed_awnser}}</td>
+                    <td ng-if="configAlerts.asa_warning+configAlerts.asa_danger>0 && configAlerts.asa_warning > configAlerts.asa_danger && rtQueues.avg_speed_awnser<= configAlerts.asa_warning && rtQueues.avg_speed_awnser>  configAlerts.asa_danger" class="warning-realtime"
+                      style="  background:{{configAlerts.warningbc}};color:{{configAlerts.warningfc}};">{{rtQueues.avg_speed_awnser}}</td>
+                    <td ng-if="configAlerts.asa_warning+configAlerts.asa_danger>0 && configAlerts.asa_warning > configAlerts.asa_danger  && rtQueues.avg_speed_awnser<=  configAlerts.asa_danger" class="danger-realtime" style="background:{{configAlerts.dangerbc}};color:{{configAlerts.dangerfc}};">{{rtQueues.avg_speed_awnser}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div id="myModal" class="modal-md">
+  <div class="modal-md-content box-shadow" style="margin: auto !important;">
+    <div class="modal-md-header">
+      <label>TRANSCRIPTION</label>
+      <span class="close-white glyphicon glyphicon-remove" ng-click="closemodal()"></span>
+
+    </div>
+    <div class="modal-md-body">
+      <label>COMPLETE TRANSCRIBE</label>
+      <hr>
+      <p>{{transcribe.transcription}}</p>
+      <br>
+      <br>
+    </div>
+    <div class="modal-md-footer" style="overflow: auto; min-height: 1vh;max-height: 55vh;">
+      <hr>
+      <label ng-click="custom=!custom"> DETAIL  <i ng-show="custom" class="glyphicon glyphicon-plus"> </i> <i ng-hide="custom" class="glyphicon glyphicon-minus"> </i></label>
+      <div ng-hide="custom">
+        <p ng-repeat="item in transcribe.items">{{item.startTime}} : {{item.content}}<br></p>
+
+      </div>
+      <div ng-show="custom"></div>
+    </div>
+  </div>
+
+</div>

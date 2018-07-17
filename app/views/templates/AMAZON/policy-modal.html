@@ -1,0 +1,92 @@
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" style="width:690px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="$hide()">&times;</button>
+        <h4 class="modal-title" translate>AMAZON_POLICY</h4>
+      </div>
+      <div class="modal-body form--readonly" style="height:400px;">
+        <div class="form__row" style="margin-top: 10px;">
+          <pre class="policy">
+{
+    "Version": "2018-02-02",
+    "Statement": [
+        {
+            "Sid": "CentricityPolicy",
+            "Effect": "Allow",
+            "Action": [
+                "ssm:SendCommand",
+                "ec2:CopySnapshot",
+                "workspaces:TerminateWorkspaces",
+                "ec2:AuthorizeSecurityGroupIngress",
+                "ec2:DescribeInstances",
+                "elasticloadbalancing:DescribeLoadBalancerPolicyTypes",
+                "lambda:GetFunctionConfiguration",
+                "ec2:DescribeSnapshots",
+                "elasticloadbalancing:DescribeLoadBalancers",
+                "ec2:DescribeVolumeStatus",
+                "ec2:ModifySnapshotAttribute",
+                "ec2:StartInstances",
+                "ec2:RevokeSecurityGroupEgress",
+                "ec2:DescribeVolumes",
+                "elasticloadbalancing:DescribeLoadBalancerPolicies",
+                "ssm:ListDocuments",
+                "workspaces:RebootWorkspaces",
+                "elasticloadbalancing:DescribeInstanceHealth",
+                "elasticloadbalancing:DeregisterInstancesFromLoadBalancer",
+                "elasticloadbalancing:RegisterInstancesWithLoadBalancer",
+                "workspaces:DescribeWorkspaces",
+                "ec2:DetachVolume",
+                "ec2:ModifyVolume",
+                "workspaces:RebuildWorkspaces",
+                "lambda:ListFunctions",
+                "lambda:InvokeFunction",
+                "ec2:DescribeSnapshotAttribute",
+                "ec2:CreateTags",
+                "workspaces:CreateWorkspaces",
+                "cloudwatch:GetMetricStatistics",
+                "ec2:StopInstances",
+                "ec2:DescribeVolumeAttribute",
+                "ec2:RevokeSecurityGroupIngress",
+                "elasticloadbalancing:DescribeLoadBalancerAttributes",
+                "elasticloadbalancing:AddTags",
+                "ec2:AssociateAddress",
+                "ec2:AttachVolume",
+                "ec2:DisassociateAddress",
+                "ec2:DeleteSnapshot",
+                "ec2:DescribeAddresses",
+                "ssm:DescribeDocument",
+                "ec2:DeleteTags",
+                "ec2:DescribeRegions",
+                "cloudwatch:ListMetrics",
+                "elasticloadbalancing:RemoveTags",
+                "workspaces:StopWorkspaces",
+                "workspaces:DescribeWorkspacesConnectionStatus",
+                "ec2:CreateSecurityGroup",
+                "ec2:CreateSnapshot",
+                "workspaces:StartWorkspaces",
+                "workspaces:DescribeWorkspaceDirectories",
+                "ec2:DescribeInstanceStatus",
+                "ec2:RebootInstances",
+                "ec2:AuthorizeSecurityGroupEgress",
+                "workspaces:ModifyWorkspaceProperties",
+                "ec2:DescribeTags",
+                "elasticloadbalancing:DescribeTags",
+                "ec2:ResetSnapshotAttribute",
+                "workspaces:DescribeWorkspaceBundles",
+                "ec2:DescribeSecurityGroups",
+                "ec2:DescribeVpcs",
+                "workspaces:DescribeTags",
+                "ec2:DeleteSecurityGroup",
+                "iam:GetUser"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+          </pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

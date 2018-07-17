@@ -1,0 +1,47 @@
+<div class="aside aside--secondary" tabindex="-1" role="dialog">
+  <div class="aside-dialog">
+    <div class="aside-content">
+      <div class="aside-header">
+        <div class="aside-close" ng-click="$hide()">&#xe2aa;</div>
+        <h4 class="aside-title">Add Report</h4>
+      </div>
+
+
+      <div class="aside-body-select">
+        <div class="select-ch">
+          <div class="label-input-strong">REPORT</div>
+          <div class="scheduling-field__value">
+            <select ng-options="report.alias for report in reports" class="input-field single-field selected-ch" ng-model="selectedreport">
+               <option value="">New Report</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="aside-body">
+        <div class="secondary-aside-body" ng-form name="form">
+          <input type="text" class="hidden" ng-model="selectedreport.id" />
+          <div class="scheduling-field">
+            <div class="scheduling-field__label">ALIAS</div>
+            <div class="scheduling-field__value">
+              <input type="text" class="input-field single-field" ng-model="selectedreport.alias" required/>
+            </div>
+          </div>
+
+          <div class="scheduling-field">
+            <div class="scheduling-field__label">URL</div>
+            <div class="scheduling-field__value">
+              <input type="text" class="input-field single-field" ng-model="selectedreport.url" required/>
+            </div>
+          </div>
+
+          <div class="aside-footer">
+            <button class="secondary-bglight-button" ng-click="$hide()">Cancel</button>
+            <button class="secondary-bglight-button" ng-click="deleteReport(selectedreport.id)" ng-if="selectedreport.id!=null">Delete</button>
+            <button class="primary-bglight-button" ng-click="saveReport(selectedreport)" ng-disabled="form.$invalid">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

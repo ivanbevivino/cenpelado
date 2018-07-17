@@ -1,0 +1,44 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('checkout-git') {
+            steps {
+                echo 'Get from git...'
+				git poll: true, url: 'git@github.com:cloudhesive/centricity-web.git'
+            }
+        }
+		stage('dependencies) {
+            steps {
+                sh 'install dependencies' 
+                sudo apt-get install gcc-4.9 -y
+				sudo apt-get install ruby-dev -y
+				sudo gem i susy compass
+				rm -fr node_modules
+				rm -fr package-lock.json
+				npm cache clean --force
+				npm install
+				bower install
+            }
+        }
+		stage('build-project') {
+            steps {
+                sh 'build grunt'  
+				grunt build
+            }
+        }
+		stage('build-docker') {
+            steps {
+                sh 'build docker' 
+                docker build -t cenweb 
+            }
+        }
+		stage('build-docker') {
+            steps {
+                sh 'push docker' 
+                docker tag cenweb fjanuszewski/cenweb
+				docker push fjanuszewski/cenweb
+            }
+        }
+    }
+}

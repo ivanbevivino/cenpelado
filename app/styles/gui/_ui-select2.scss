@@ -1,0 +1,55 @@
+.select2-container .select2-choice {
+  border-radius: 0;
+  height: 35px;
+  line-height: 35px;
+  background: none !important;
+  border: 1px solid #bdc3c5;
+
+  overflow: visible;
+
+  .select2-arrow {
+    background: none;
+    border: none;
+
+    b {
+      background: none !important;
+
+      &:after {
+        content: '\e5ca';
+        font-family: streamline;
+        font-size: 12px;
+        color: #999;
+      }
+    }
+  }
+}
+
+.select2-results {
+  color: #333;
+
+  .select2-highlighted {
+    background: #eee;
+    color: #25262f;
+  }
+
+  .select2-result-label {
+    color: #333;
+  }
+}
+
+.select2-drop {
+  border-radius: 3px;
+  margin-top: 5px;
+}
+
+.select2-drop-active {
+  border: 1px solid #e7e7e7;
+  box-shadow: 0 1px 2px rgba(195,195,195, .75);
+}
+
+.select2-container-active {
+  .select2-choice, .select2-choices {
+    border: 1px solid #bdc3c5;
+    box-shadow: none;
+  }
+}
