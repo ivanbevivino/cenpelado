@@ -48,7 +48,7 @@ app.config(function($stateProvider, $urlRouterProvider, $translateProvider, $dro
   .state('app.dashboard', {
     url: '/dashboard',
     title: 'Dashboard',
-    templateUrl: 'views/dashboard.html',
+    templateUrl: 'views/dashboard/dashboard.html',
     controller: 'DashboardCtrl',
 
     data:{
@@ -185,7 +185,7 @@ app.config(function($stateProvider, $urlRouterProvider, $translateProvider, $dro
   .state('app.admin-dashboard', {
     url: '/admin-dashboard',
     title: 'Admin Dashboard',
-    templateUrl: 'views/admin/admin.dashboard.html',
+    templateUrl: 'views/admindashboard/admin.dashboard.html',
     controller: 'AdminDashboardCtrl',
     resolve: {
       events: function(CloudAPI) {
@@ -290,7 +290,7 @@ app.config(function($stateProvider, $urlRouterProvider, $translateProvider, $dro
   .state('login', {
     url: '/login',
     title: 'Login',
-    templateUrl: 'views/access/login.html',
+    templateUrl: 'views/login/login.html',
     controller: 'AccessCtrl',
     data: {
       secured: false
@@ -300,7 +300,7 @@ app.config(function($stateProvider, $urlRouterProvider, $translateProvider, $dro
   .state('forgotPassword', {
     url: '/forgotPassword',
     title: 'Forgot Password',
-    templateUrl: 'views/access/password-forgot.html',
+    templateUrl: 'views/forgotpassword/password-forgot.html',
     controller: 'ForgotPasswordCtrl',
     data: {
       secured: false
@@ -310,7 +310,7 @@ app.config(function($stateProvider, $urlRouterProvider, $translateProvider, $dro
   .state('changePassword', {
     url: '/changePassword/:token',
     title: 'Change Password',
-    templateUrl: 'views/access/password-change.html',
+    templateUrl: 'views/changepassword/password-change.html',
     controller: 'ChangePasswordCtrl',
     data: {
       secured: false
@@ -326,15 +326,6 @@ app.config(function($stateProvider, $urlRouterProvider, $translateProvider, $dro
     }
   })
 
-  .state('account', {
-    url: '/account',
-    title: 'New Account',
-    templateUrl: 'views/access/account.html',
-    controller: 'AccountCtrl',
-    data: {
-      secured: false
-    }
-  })
 
   .state('accountCreated', {
     url: '/accountCreated',
