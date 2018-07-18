@@ -261,17 +261,6 @@ app.config(function($stateProvider, $urlRouterProvider, $translateProvider, $dro
     }
   })
 
-  // .state('app.manage-regions', {
-  //   url: '/manage-regions',
-  //   title: 'Manage regions',
-  //   templateUrl: 'views/admin/manage.regions.html',
-  //   controller: 'ManageRegionsCtrl',
-  //   resolve: {
-  //     regions: function(CloudAPI) {
-  //       return CloudAPI.getRegions();
-  //     }
-  //   }
-  // })
 
   // --------------------------------------------------------------------------
   // Access
