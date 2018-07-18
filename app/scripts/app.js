@@ -101,14 +101,14 @@ app.config(function($stateProvider, $urlRouterProvider, $translateProvider, $dro
   .state('app.welcome', {
     url: '/welcome',
     title: 'Welcome to Centricity',
-    templateUrl: 'views/welcome.html',
+    templateUrl: 'views/welcome/welcome.html',
     controller: 'WelcomeCtrl'
   })
 
   .state('app.profile', {
     url: '/profile',
     title: 'Profile',
-    templateUrl: 'views/profile.html',
+    templateUrl: 'views/profile/profile.html',
     controller: 'ProfileCtrl',
     data:{
       permissions: {
