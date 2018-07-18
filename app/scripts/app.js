@@ -123,17 +123,6 @@ app.config(function($stateProvider, $urlRouterProvider, $translateProvider, $dro
 
 
 
-  .state('app.customers', {
-    url: '/customers',
-    title: 'Customers',
-    templateUrl: 'views/customers.html',
-    controller: 'CustomersCtrl',
-    data:{
-      permissions: {
-        only: ['ROLE_CH_SYSTEM_ADMIN']
-      }
-    }
-  })
 
   .state('app.customers-add', {
     url: '/customers-add',
@@ -167,7 +156,7 @@ app.config(function($stateProvider, $urlRouterProvider, $translateProvider, $dro
   .state('app.customer-settings', {
     url: '/customer-settings',
     title: 'Customer Settings',
-    templateUrl: 'views/customers/customer-settings.html',
+    templateUrl: 'views/customerSettings/customer-settings.html',
     controller: 'CustomerSettingsCtrl',
     resolve: {
       users: function(CloudAPI) {
@@ -272,17 +261,17 @@ app.config(function($stateProvider, $urlRouterProvider, $translateProvider, $dro
     }
   })
 
-  .state('app.manage-regions', {
-    url: '/manage-regions',
-    title: 'Manage regions',
-    templateUrl: 'views/admin/manage.regions.html',
-    controller: 'ManageRegionsCtrl',
-    resolve: {
-      regions: function(CloudAPI) {
-        return CloudAPI.getRegions();
-      }
-    }
-  })
+  // .state('app.manage-regions', {
+  //   url: '/manage-regions',
+  //   title: 'Manage regions',
+  //   templateUrl: 'views/admin/manage.regions.html',
+  //   controller: 'ManageRegionsCtrl',
+  //   resolve: {
+  //     regions: function(CloudAPI) {
+  //       return CloudAPI.getRegions();
+  //     }
+  //   }
+  // })
 
   // --------------------------------------------------------------------------
   // Access
@@ -320,7 +309,7 @@ app.config(function($stateProvider, $urlRouterProvider, $translateProvider, $dro
   .state('passwordChanged', {
     url: '/passwordChanged',
     title: 'Password Changed',
-    templateUrl: 'views/access/password-changed.html',
+    templateUrl: 'views/changepassword/password-changed.html',
     data: {
       secured: false
     }
