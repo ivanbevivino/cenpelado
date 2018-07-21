@@ -13,10 +13,18 @@
           <li ng-if="hasApplications([applications.CLOUDPOXEE])">
             <a href ui-sref="app.dashboard" ui-sref-active="active" class="ch-menu__link" translate>MENU_DASHBOARD</a>
           </li>
-      
-          <li ng-if="hasApplications([applications.CONNECT])">
-            <a href ui-sref="app.connect" ui-sref-active="active" class="ch-menu__link" translate>MENU_CONNECT</a>
+       <li ng-if="hasApplications([applications.CLOUDPOXEE])">
+            <a href ui-sref="app.events" ui-sref-active="active" class="ch-menu__link" translate>EVENTS</a>
           </li>
+          <li ng-if="hasApplications([applications.CLOUDPOXEE])">
+            <a href ui-sref="app.categories" ui-sref-active="active" class="ch-menu__link" translate>CATEGORIES</a>
+          </li>
+          <!-- <li ng-if="hasApplications([applications.CLOUDPOXEE])">
+            <a href ui-sref="app.events" ui-sref-active="active" class="ch-menu__link" translate>Events</a>
+          </li> -->
+         <!--  <li ng-if="hasApplications([applications.CONNECT])">
+            <a href ui-sref="app.connect" ui-sref-active="active" class="ch-menu__link" translate>MENU_CONNECT</a>
+          </li> -->
    
           <li ng-if="isAuthorized([roles.CH_SYSTEM_ADMIN])">
             <a href ui-sref="app.customer-settings" ui-sref-active="active" class="ch-menu__link" translate>MENU_CUSTOMER_SETTINGS</a>

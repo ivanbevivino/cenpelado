@@ -9,15 +9,11 @@
     <li class="tabbedNav__item">
       <span class="tabLink" translate ng-class="{'active': tab == 'credentials'}" ng-click="activateTab('credentials')">CREDENTIALS</span>
     </li>
-    <li class="tabbedNav__item">
-      <span class="tabLink" translate ng-class="{'active': tab == 'headquarter'}" ng-click="activateTab('headquarter')">HEADQUARTER</span>
-    </li>
+
     <li class="tabbedNav__item">
       <span class="tabLink" translate ng-class="{'active': tab == 'event-stream-notifications'}" ng-click="activateTab('event-stream-notifications')">EVENTS_STREAM_NOTIFICATIONS</span>
     </li>
-    <li class="tabbedNav__item" ng-if="isAuthorized([roles.CH_SYSTEM_ADMIN])">
-      <span class="tabLink" translate ng-class="{'active': tab == 'liquidware-servers'}" ng-click="activateTab('liquidware-servers')">LIQUIDWARE_SERVERS</span>
-    </li>
+   
   </ul>
 
   <div ng-switch="tab">
@@ -95,30 +91,12 @@
         </div>
       </div>
     </div>
-    <div id="js-headquarter-tab" class="tab__content" ng-switch-when="headquarter">
-      <script type="text/ng-template" id="searchbox.tpl.html">
-        <input type="text" class="headquarter-search" placeholder="Search Box">
-      </script>
-      <div class="headquarter-description" translate>HEADQUARTER_DESCRIPTION</div>
-      <div class="headquarter-map-control">
-        <ui-gmap-google-map center='map.center' zoom='map.zoom' options="options" control="control">
-          <ui-gmap-search-box template="searchbox.template" events="searchbox.events" options="searchbox.options"></ui-gmap-search-box>
-          <ui-gmap-markers models="clickedMarker" coords="'self'" icon="'icon'" ng-if="clickedMarker != null"></ui-gmap-markers>
-        </ui-gmap-google-map>
-      </div>
-    </div>
+
     <div id="js-event-stream-notifications-tab" class="tab__content" ng-switch-when="event-stream-notifications" ng-form name="forms.form">
       <div class="panel panel-default">
         <div class="panel-heading" translate>ADD_EVENTS_STREAM_NOTIFICATIONS</div>
         <div class="panel-body">
-          <!-- <div class="col-lg-3" ng-class="{'hide': !isAuthorized([roles.CH_SYSTEM_ADMIN])}">
-            <div class="scheduling-field__label" translate>CLIENT</div>
-            <div class="scheduling-field__value">
-              <select ui-select2="{ minimumResultsForSearch: -1, width: '100%' }" ng-model="eventStreamNotification.customerId" required>
-                <option value="{{customer.id}}" ng-repeat="customer in customers">{{customer.name}} {{customer.lastName}}</option>
-              </select>
-            </div>
-          </div> -->
+
 
           <div class="col-lg-6">
             <div class="scheduling-field__label" translate>EVENT</div>
@@ -208,59 +186,6 @@
         </div>
       </div>
     </div>
-    <div id="js-liquidwareservers-tab" class="tab__content" ng-switch-when="liquidware-servers">
 
-      <div class="cp-table-container table-light" st-table="displayedRows" st-safe-src="liquidware" style="padding-bottom: 30px;">
-
-
-        <table class="cp-table">
-          <thead>
-            <tr class="unselectable">
-              <th class="hidden">IDACCOUNT</th>
-              <th st-sort="row.name" translate>ALIAS</th>
-              <th translate>TYPE</th>
-              <th translate>URL</th>
-              <th translate>USERNAME</th>
-              <th translate>PASSWORD</th>
-              <th ng-if="(isAuthorized([roles.CH_SYSTEM_ADMIN]))" translate>EDIT</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-if="displayedRows.length == 0">
-              <td colspan="{{(isAuthorized([roles.CH_USER_ADMIN,roles.CH_USER_LIMITED, roles.CH_SYSTEM_ADMIN])) ? 7 : 6}}" translate>NO_LIQUIDWARE_SERVERS</td>
-            </tr>
-            <tr ng-repeat="row in displayedRows" class="hover-opacity" ng-if="::row.liquidwareConfiguration.internal == false && row.liquidwareConfiguration.idaccount !== null">
-                <td class="hidden">{{::row.liquidwareConfiguration.idaccount}}</td>
-                <td>{{::row.accountName}}</td>
-                <td><span class="label label-success margin-y-sm">Customer</span></td>
-                <td>{{::row.liquidwareConfiguration.url}}</td>
-                <td>{{::row.liquidwareConfiguration.username}}</td>
-                <td>******</td>
-                <!-- <td>{{::row.password}}</td> -->
-                <td><a ng-if="(isAuthorized([roles.CH_SYSTEM_ADMIN]))" href="" ng-click="editLiquidware()" class="action"><span class="ct-icon glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
-            </tr>
-            <tr ng-repeat="row in displayedRows" class="hover-opacity" ng-if="::row.liquidwareConfiguration.internal == true && row.liquidwareConfiguration.idaccount !== null">
-                <td class="hidden">{{::row.liquidwareConfiguration.idaccount}}</td>
-                <td>{{::row.accountName}}</td>
-                <td><span class="label label-primary margin-y-sm">CloudHesive</span></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><a ng-if="(isAuthorized([roles.CH_SYSTEM_ADMIN]))" href="" ng-click="editLiquidware()" class="action"><span class="ct-icon glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
-            </tr>
-            <tr ng-repeat="row in displayedRows" class="hover-opacity" ng-if="::row.liquidwareConfiguration.idaccount == null">
-                <td class="hidden">{{::row.liquidwareConfiguration.idaccount}}</td>
-                <td>{{::row.accountName}}</td>
-                <td><span class="label label-danger margin-y-sm">Not configured</span></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><a ng-if="(isAuthorized([roles.CH_SYSTEM_ADMIN]))" href="" ng-click="editLiquidware()" class="action"><span class="ct-icon glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
-            </tr>
-          </tbody>
-        </table>
-        <div st-pagination st-items-by-page="15"></div>
-      </div>
-    </div>
   </div>
 </div>

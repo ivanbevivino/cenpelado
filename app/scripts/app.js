@@ -8,14 +8,14 @@
  */
 var cpconfig = null;
 var app = angular.module('cloudpoxee', [
-  'ui.router', 'ui.gravatar', 'ui.select2', 'ui.bootstrap', 'pascalprecht.translate', 'chart.js', 'nzTour','smart-table', 'ui.ace',
-  'LocalStorageModule', 'mgcrea.ngStrap', 'ngAnimate', 'ngSanitize', 'ngCookies', 'uiGmapgoogle-maps', 'dndLists', 'ngclipboard',
+  'ui.router', 'ui.gravatar', 'ui.select2', 'ui.bootstrap', 'pascalprecht.translate',  'nzTour','smart-table', 'ui.ace',
+  'LocalStorageModule', 'mgcrea.ngStrap', 'ngAnimate', 'ngSanitize', 'ngCookies', 'dndLists', 'ngclipboard',
   'ngTagsInput', 'angular-growl', 'angularMoment', 'cloudpoxee.controllers', 'cloudpoxee.directives',
   'cloudpoxee.filters', 'xeditable', 'exceptionOverwrite', 'angular-svg-round-progressbar','checklist-model','angular.filter','permission', 'permission.ui'
 ]);
 
 app.config(function($stateProvider, $urlRouterProvider, $translateProvider, $dropdownProvider, $modalProvider,
-  gravatarServiceProvider, localStorageServiceProvider, uiGmapGoogleMapApiProvider, growlProvider) {
+  gravatarServiceProvider, localStorageServiceProvider,  growlProvider) {
 
 
 
@@ -57,6 +57,57 @@ app.config(function($stateProvider, $urlRouterProvider, $translateProvider, $dro
       }
     }
   })
+
+
+
+
+
+
+
+ //EVENTS
+  .state('app.events', {
+    url: '/eventos',
+    title: 'Eventos',
+    templateUrl: 'views/eventos/eventos.html',
+    controller: 'EventostCtrl',
+    resolve:{
+      connects: function(ConnectAPI){
+        return ConnectAPI.getConnectInstances();
+      }
+    },
+    data:{
+      permissions: {
+        only: ['CONNECT','ROLE_CH_SYSTEM_ADMIN']
+      }
+    }
+  })
+
+
+
+
+
+ //CATEGORIES
+  .state('app.categories', {
+    url: '/categories',
+    title: 'Categories',
+    templateUrl: 'views/categories/categories.html',
+    controller: 'categoriesCtrl',
+    resolve:{
+      connects: function(ConnectAPI){
+        return ConnectAPI.getConnectInstances();
+      }
+    },
+    data:{
+      permissions: {
+        only: ['CONNECT','ROLE_CH_SYSTEM_ADMIN']
+      }
+    }
+  })
+
+
+
+
+
 
 
   //CONNECT
@@ -252,7 +303,7 @@ app.config(function($stateProvider, $urlRouterProvider, $translateProvider, $dro
   .state('app.manage-admins', {
     url: '/manage-admins',
     title: 'Manage admins',
-    templateUrl: 'views/admin/manage.admins.html',
+    templateUrl: 'views/manageAdmins/manage.admins.html',
     controller: 'ManageAdminsCtrl',
     resolve: {
       admins: function(CloudAPI) {
@@ -349,11 +400,11 @@ app.config(function($stateProvider, $urlRouterProvider, $translateProvider, $dro
   // --------------------------------------------------------------------------
   // Google maps configuration
   // --------------------------------------------------------------------------
-  uiGmapGoogleMapApiProvider.configure({
-      key: 'AIzaSyC-_h6Qj4tqOxENQ5fDKgK1eTvr_UbuTRw',
-      v: '3.17',
-      libraries: 'geometry,visualization,places'
-  });
+  // uiGmapGoogleMapApiProvider.configure({
+  //     key: 'AIzaSyC-_h6Qj4tqOxENQ5fDKgK1eTvr_UbuTRw',
+  //     v: '3.17',
+  //     libraries: 'geometry,visualization,places'
+  // });
 
   // --------------------------------------------------------------------------
   // Growl provider configuration
