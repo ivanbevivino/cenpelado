@@ -13,9 +13,25 @@
           <li ng-if="hasApplications([applications.CLOUDPOXEE])">
             <a href ui-sref="app.dashboard" ui-sref-active="active" class="ch-menu__link" translate>MENU_DASHBOARD</a>
           </li>
-       <li ng-if="hasApplications([applications.CLOUDPOXEE])">
-            <a href ui-sref="app.events" ui-sref-active="active" class="ch-menu__link" translate>EVENTS</a>
+   
+           <li class="app-cloudpoxee">
+            <a href="#" class="ch-menu__link" data-icon-after="&#xe5cd;" translate>EVENTS</a>
+            <div class="ch-level">
+              <h2 translate>EVENTS</h2>
+              <a class="ch-back" href="#" data-icon-before="&#xe5cc;" translate>MENU_BACK</a>
+              <ul>
+                <li ng-if="hasApplications([applications.CLOUDPOXEE])">
+                  <a href ui-sref="app.eventsAdd" class="ch-menu__link" ui-sref-active="active" translate>ADD_EVENT</a>
+                </li>
+                <li ng-if="hasApplications([applications.CLOUDPOXEE])">
+                  <a href ui-sref="app.events" ui-sref-active="active" class="ch-menu__link" translate>EVENTS</a>
+                </li>
+              </ul>
+            </div>
           </li>
+
+
+
           <li ng-if="hasApplications([applications.CLOUDPOXEE])">
             <a href ui-sref="app.categories" ui-sref-active="active" class="ch-menu__link" translate>CATEGORIES</a>
           </li>

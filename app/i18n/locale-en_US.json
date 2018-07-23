@@ -1109,6 +1109,34 @@
   "null": "_",
   "EVENT_REMOVE": "The event was removed",
   "EVENT_NOT_REMOVE": "The event could not be remove",
+  "EVENTS": "Events",
+  "ADD_EVENT": "Add Event",
+
+    "NEW_EVENT_STEP_1_TITLE": "Client information",
+  "NEW_EVENT_STEP_1_NOTE": "Please fill in the name of the client.",
+
+  "NEW_EVENT_STEP_2_TITLE": "Set credentials",
+  "NEW_EVENT_STEP_2_NOTE": "Please fill in the credentials of the cloud provider.",
+
+  "NEW_EVENT_STEP_3_TITLE": "Create a user",
+  "NEW_EVENT_STEP_3_NOTE": "Please, create the first user for the new client. This will send the user an activation E-Mail.",
+
+  "NEW_EVENT_STEP_1_VALIDATION": "Client name is required.",
+  "NEW_EVENT_STEP_1_CREATE_SUCCESS": "Client created successfully.",
+  "NEW_EVENT_STEP_1_CREATE_ERROR": "Error creating client: Name already exists.",
+  "NEW_EVENT_STEP_1_UPDATE_SUCCESS": "Client updated successfully.",
+  "NEW_EVENT_STEP_1_UPDATE_ERROR": "Error updating client: Name already exists.",
+
+  "NEW_EVENT_STEP_2_VALIDATION": "Verify the cloud provider details.",
+  "NEW_EVENT_STEP_2_SUCCESS": "Cloud provider details set successfully.",
+  "NEW_EVENT_STEP_2_ERROR": "Error setting cloud provider details. Please try again. ",
+
+  "NEW_EVENT_STEP_3_VALIDATION_1": "Verify the required fields.",
+  "NEW_EVENT_STEP_3_VALIDATION_2": "One or more of the entered E-Mail addresses are incorrect.",
+  "NEW_EVENT_STEP_3_ERROR": "We could not create your user. Please try again.",
+  "NEW_EVENT_STEP_3_CLOUD_SYNC_ERROR": "We could not preload your cloud account data. Please try again.",
+  "NEW_EVENT_STEP_3_SUCCESS": "User has been created. Please wait while we preload your cloud account data.",
+
 
 
 

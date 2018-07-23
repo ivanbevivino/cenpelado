@@ -66,10 +66,30 @@ app.config(function($stateProvider, $urlRouterProvider, $translateProvider, $dro
 
  //EVENTS
   .state('app.events', {
-    url: '/eventos',
-    title: 'Eventos',
-    templateUrl: 'views/eventos/eventos.html',
-    controller: 'EventostCtrl',
+    url: '/events',
+    title: 'Events',
+    templateUrl: 'views/events/events.html',
+    controller: 'EventsCtrl',
+    resolve:{
+      connects: function(ConnectAPI){
+        return ConnectAPI.getConnectInstances();
+      }
+    },
+    data:{
+      permissions: {
+        only: ['CONNECT','ROLE_CH_SYSTEM_ADMIN']
+      }
+    }
+  })
+
+
+
+ //EVENTS
+  .state('app.eventsAdd', {
+    url: '/eventsAdd',
+    title: 'Events',
+    templateUrl: 'views/eventAdd/eventAdd.html',
+    controller: 'EventAddCtrl',
     resolve:{
       connects: function(ConnectAPI){
         return ConnectAPI.getConnectInstances();

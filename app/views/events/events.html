@@ -1,0 +1,120 @@
+<div class="state-title animated fadeInUp">
+  <span translate>Events</span>
+</div>
+<div class="js-intro-helper">
+  <ul class="tabbedNav">
+    <li class="tabbedNav__item">
+      <span class="tabLink" translate ng-class="{'active': tab == 'list'}" ng-click="activateTab('list')">List</span>
+    </li>
+    <li class="tabbedNav__item">
+      <span class="tabLink" translate ng-class="{'active': tab == 'events'}" ng-click="activateTab('events')">Events</span>
+    </li>
+  </ul>
+  <div ng-switch="tab">
+    <div id="js-users-tab" class="tab__content" ng-switch-when="list">
+      <div class="tab__bar clearfix">
+        <button class="primary-bglight-button right" translate   href ui-sref="app.eventsAdd" class="action" >Create event</button>
+        <button class="secondary-bglight-button button--arrow right" translate data-animation="am-flip-x" bs-dropdown="dropdownUser" data-placement="bottom-right">MORE</button>
+      </div>
+      <div ng-controller="EventsCtrl">
+        <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped">
+          <thead>
+            <tr>
+              <th st-sort="firstName">first name</th>
+              <th st-sort="lastName">last name</th>
+              <th st-sort="birthDate">birth date</th>
+              <th st-sort="balance">balance</th>
+            </tr>
+            <tr>
+              <th colspan="5">
+                <input st-search="" class="form-control" placeholder="global search ..." type="text" />
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="row in displayedCollection">
+              <td>{{row.firstName}}</td>
+              <td>{{row.lastName}}</td>
+              <td>{{row.birthDate}}</td>
+              <td>{{row.balance}}</td>
+              <td>
+                <button type="button" ng-click="removeItem(row)" class="btn btn-sm btn-danger">
+                  <i class="glyphicon glyphicon-remove-circle">
+          </i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="5" class="text-center">
+                <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="7"></div>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+    <div id="js-credentials-tab" class="tab__content" ng-switch-when="events">
+      <div class="tab__bar clearfix">
+        <button class="primary-bglight-button right" translate   href ui-sref="app.eventsAdd" class="action" >Create event</button>
+        
+      </div>
+
+      <div class="row">
+        
+    
+
+
+
+      
+
+      <div class="col-md-55" ng-repeat="events in rowCollection   | startFrom:currentPage*pageSize | limitTo:pageSize ">
+                        <div class="thumbnail">
+                          <div class="image view view-first">
+                            <img style="width: 100%; display: block;" src="../../images/loadcloud.png" alt="image" />
+                            <div class="mask no-caption">
+                              <div class="tools tools-bottom">
+                                     <a href="#"><i class="glyphicon glyphicon-link"></i></a>
+                    <a href="#"><i class="glyphicon glyphicon-pencil"></i></a>
+                    <a href="#"><i class="glyphicon glyphicon-remove"></i></a>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="caption">
+                            <p><strong>{{events.firstName}}</strong>
+                            </p>
+                            <p>{{events.lastName}}</p>
+                          </div>
+                        </div>
+                      </div>
+
+
+
+
+        </div>
+
+      <nav aria-label="...">
+  <ul class="pager">
+    <button class="buttonpager" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+        Previous
+    </button>
+    <span>
+    {{currentPage+1}} 
+    </span> 
+    /<span>
+     {{numberOfPages();}}
+    </span> 
+    <button  class="buttonpager" ng-disabled="currentPage >= numberOfPages() - 1" ng-click="currentPage=currentPage+1">
+        Next
+    </button>
+
+  </ul>
+</nav>
+
+
+
+      </div>
+ 
+  </div>
+</div>
